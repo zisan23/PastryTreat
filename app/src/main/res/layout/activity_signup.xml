@@ -1,176 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/signupbg"
-    tools:context=".SignUpActivity">
-
-
-    <ImageView
-        android:layout_width="155dp"
-        android:layout_height="84dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:contentDescription="Logo"
-        android:src="@drawable/logo" />
-
-    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/signupbg"
+        tools:context=".MainActivity">
 
-        <LinearLayout
+
+        <ImageView
+            android:layout_width="155dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:contentDescription="Logo"
+            android:src="@drawable/logo" />
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@color/white">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SIGN UP HERE!!"
-                android:id="@+id/signuptext"
-                android:textSize="36dp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/username"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_person_24"
-                android:drawablePadding="8dp"
-                android:hint="Username"
-                android:textColorHint="@color/hint_color"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="40dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/email"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_alternate_email_24"
-                android:drawablePadding="8dp"
-                android:hint="Email"
-                android:textColorHint="@color/hint_color"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/newpassword"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:hint="Password"
-                android:textColorHint="@color/hint_color"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"
-                android:inputType="textPassword"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/confirmpassword"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:hint="Confirm Password"
-                android:textColorHint="@color/hint_color"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"
-                android:inputType="textPassword"/>
-
+            android:layout_margin="30dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            android:background="@drawable/custom_edittext">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_edittext"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:padding="0dp">
+                android:padding="24dp"
+                android:background="@color/white">
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/country_code"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    app:ccp_autoDetectCountry="true"
-                    app:ccp_defaultNameCode="BD"
-                    app:ccp_showFlag="true"
-                    app:ccp_showNameCode="true"
-                    android:padding="0dp">
-
-                </com.hbb20.CountryCodePicker>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SIGN UP HERE!!"
+                    android:id="@+id/signuptext"
+                    android:textSize="36dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
                 <EditText
-                    android:id="@+id/mobilenumber"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="10dp"
-                    android:hint="Mobile"
-                    android:inputType="phone|textNoSuggestions"
+                    android:layout_height="50dp"
+                    android:id="@+id/username"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableLeft="@drawable/baseline_person_24"
+                    android:drawablePadding="8dp"
+                    android:hint="Username"
+                    android:textColorHint="@color/hint_color"
                     android:padding="8dp"
-                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hint_color" />
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:layout_marginTop="40dp" />
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/email"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableLeft="@drawable/baseline_alternate_email_24"
+                    android:drawablePadding="8dp"
+                    android:hint="Email"
+                    android:textColorHint="@color/hint_color"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:layout_marginTop="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/newpassword"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableLeft="@drawable/baseline_lock_24"
+                    android:drawablePadding="8dp"
+                    android:hint="Password"
+                    android:textColorHint="@color/hint_color"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPassword"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/confirmpassword"
+                    android:background="@drawable/custom_edittext"
+                    android:drawableLeft="@drawable/baseline_lock_24"
+                    android:drawablePadding="8dp"
+                    android:hint="Confirm Password"
+                    android:textColorHint="@color/hint_color"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPassword"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edittext"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:padding="0dp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/country_code"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        app:ccp_autoDetectCountry="true"
+                        app:ccp_defaultNameCode="BD"
+                        app:ccp_showFlag="true"
+                        app:ccp_showNameCode="true"
+                        android:padding="0dp">
+
+                    </com.hbb20.CountryCodePicker>
+
+                    <EditText
+                        android:id="@+id/mobilenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:layout_marginTop="10dp"
+                        android:hint="Mobile"
+                        android:inputType="phone|textNoSuggestions"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint_color" />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/signupbutton"
+                    android:text="Signup"
+                    android:textSize="18sp"
+                    android:layout_marginTop="30dp"
+                    android:backgroundTint="@color/purple"
+                    app:cornerRadius = "20dp"
+                    android:onClick="playsound"/>
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/signupbutton"
-                android:text="Signup"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
-                app:cornerRadius = "20dp" />
 
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Already registered? Login now"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        android:id="@+id/logintext"
-        android:textColor="@color/purple"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white" />
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Already registered? Login now"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:id="@+id/logintext"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/white" />
 
 </LinearLayout>
