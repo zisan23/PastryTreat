@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); ///zisan rendered signup from here, dont know if i should rermove it or not
-
+// faiak kaj kore na
+        //faiak saradin pore
 
         goToLoginBtn = findViewById(R.id.goToLoginBtn);
 
