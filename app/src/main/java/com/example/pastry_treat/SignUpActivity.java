@@ -44,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupbutton = findViewById(R.id.signupbutton);
         logintext = findViewById(R.id.logintext);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.signupbuttonsound);
+        mediaPlayer = MediaPlayer.create(this, R.raw.signupsound);
 
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
