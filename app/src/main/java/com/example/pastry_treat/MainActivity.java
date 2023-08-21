@@ -6,8 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+
+
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieCompositionFactory;
+import com.airbnb.lottie.LottieListener;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,9 +25,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); ///zisan rendered signup from here, dont know if i should rermove it or not
-// faiak kaj kore na
-        //faiak saradin pore
+        setContentView(R.layout.activity_main);
+
+
+        LottieAnimationView animationView = findViewById(R.id.animationView);
+
+        LottieCompositionFactory.fromRawRes(this, R.raw.animation)
+                .addListener(new LottieListener<LottieComposition>() {
+                    @Override
+                    public void onResult(LottieComposition composition) {
+                        animationView.setComposition(composition);
+                        animationView.playAnimation();
+                    }
+                });
+
+
+
 
         goToLoginBtn = findViewById(R.id.goToLoginBtn);
 

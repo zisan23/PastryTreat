@@ -8,15 +8,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/loginbkg"
+    android:background="@drawable/light_red_gradient"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="106dp"
-        android:layout_height="149dp"
-        card_view:srcCompat="@android:drawable/star_big_on"
-        tools:srcCompat="@tools:sample/avatars" />
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
