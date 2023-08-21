@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button goToLoginBtn;
+    Button startbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        goToLoginBtn = findViewById(R.id.goToLoginBtn);
+        startbutton = findViewById(R.id.startbutton);
 
-        goToLoginBtn.setOnClickListener(new View.OnClickListener() {
+        startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);

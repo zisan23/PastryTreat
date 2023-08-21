@@ -45,7 +45,7 @@
 
                     <Button
                         android:id="@+id/loginSelectorBtn"
-                        android:layout_width="132dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="0dp"
@@ -53,12 +53,13 @@
                         android:gravity="center"
                         android:textColor="@color/ELECTRIC_RED"
                         android:fontFamily="sans-serif"
-                        android:background="@drawable/flag_transparent"/>
+                        android:background="@drawable/flag_transparent"
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/signupSelectorBtn"
-                        android:layout_width="132dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginLeft="-22dp"
                         android:layout_marginEnd="-1dp"
@@ -69,7 +70,8 @@
                         android:fontFamily="sans-serif"
                         android:backgroundTint="@color/ELECTRIC_RED"
 
-                        android:textColor="#fff" />
+                        android:textColor="#fff"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

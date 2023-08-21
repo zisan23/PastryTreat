@@ -45,18 +45,19 @@
 
                     <Button
                         android:id="@+id/loginSelectorBtn"
-                        android:layout_width="132dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="0dp"
                         android:text="Log In"
                         android:gravity="center"
                         android:fontFamily="sans-serif"
-                        android:backgroundTint="@color/ELECTRIC_RED"/>
+                        android:backgroundTint="@color/ELECTRIC_RED"
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/signupSelectorBtn"
-                        android:layout_width="132dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_marginLeft="-22dp"
@@ -64,6 +65,7 @@
                         android:layout_toRightOf="@+id/loginSelectorBtn"
                         android:background="@drawable/flag_transparent"
                         android:gravity="center"
+                        android:layout_weight="1"
 
                         android:text="Sign Up"
 

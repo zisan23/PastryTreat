@@ -2,9 +2,14 @@ package com.example.pastry_treat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
         signUpBtnSelector = findViewById(R.id.signupSelectorBtn);
         LoginBtn = findViewById(R.id.loginButton);
+
+        Transition transition = new AutoTransition();
 
         signUpBtnSelector.setOnClickListener(new View.OnClickListener() {
             @Override

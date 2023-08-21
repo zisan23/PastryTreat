@@ -5,50 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/elctric_red_linear_gradient">
-<!--
-    <TextView
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/goToLoginBtn"
+    android:background="@drawable/elctric_red_linear_gradient"
+    android:orientation="vertical">
 
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="103dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="252dp"
-        android:fontFamily="cursive"
-        android:includeFontPadding="true"
-        android:text="Pastry Treat"
-        android:textColor="@color/white"
-        android:textColorHighlight="@color/white"
-        android:textSize="45sp"
-        android:textStyle="bold|italic" /> -->
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
         app:lottie_autoPlay="false"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/animation" />
 
 
     <Button
-        android:id="@+id/goToLoginBtn"
+        android:id="@+id/startbutton"
         android:layout_width="196dp"
         android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="107dp"
-        android:text=" Login Page"
-        android:background="@drawable/button_pale_green_gradient"/>
+        android:layout_marginStart="104dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/button_pale_green_gradient"
+        android:text="Let's get started" />
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Logo"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:id="@+id/info"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="The 3rd Triumvirate\nAhaj Mahhin (Roll - 01)\nZisan Mahmud (Roll - 23)\nSadman Sakib (Roll- 49)"
+        android:textAlignment="center"
+
+        ></TextView>
 
 
 </RelativeLayout>
