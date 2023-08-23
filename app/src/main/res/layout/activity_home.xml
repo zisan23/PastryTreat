@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="gone"
+        android:visibility="visible"
         > <!--color just for checking...delete it later -->
 
 
@@ -93,6 +93,25 @@
             android:layout_marginRight="10dp"
             />
 
+        <ImageView
+            android:id="@+id/track_location_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/baseline_location_on_24"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/track_location_img"
+            android:text="Track The Location"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            />
+
+
+
 
     </RelativeLayout>
 
@@ -101,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="visible"
+        android:visibility="gone"
         > <!--color just for checking...delete it later -->
 
         <TextView

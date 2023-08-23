@@ -25,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
+    private ImageView track_location_img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +124,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
+        track_location_img = (ImageView) findViewById(R.id.track_location_img);
+
+        track_location_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String locationUrl = "Chillox Dhanmondi";
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locationUrl);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+
+            }
+        });
 
 
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
