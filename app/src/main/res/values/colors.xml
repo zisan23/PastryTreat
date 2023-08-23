@@ -5,5 +5,7 @@
     <color name="purple">#8692f7</color>
     <color name="hint_color"> #707B7C </color>
     <color name="ELECTRIC_RED">#FF0036</color>
+    <color name="FEINT_PINK">#FFE6E6</color>
+    <color name="STRONG_PINK">#FF4081</color>
 
 </resources>

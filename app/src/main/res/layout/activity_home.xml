@@ -12,10 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:background="@color/ELECTRIC_RED"
-        android:visibility="visible"
-        > <!--color just for checking...delete it later -->
+        android:visibility="visible">
 
+        <ImageView
+            android:id="@+id/home_profile_img"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/zuck_smiling_new"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
 
     </RelativeLayout>
 
@@ -24,9 +31,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:background="@color/black"
         android:visibility="gone"
         >
+
+
+        <ImageView
+            android:id="@+id/menu_profile_img"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/zuck_smiling_new"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
 
 
     </RelativeLayout>
@@ -37,11 +54,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:background="#123313"
         android:visibility="gone"
         > <!--color just for checking...delete it later -->
 
 
+        <ImageView
+            android:id="@+id/cart_profile_img"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/zuck_smiling_new"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
 
 
 
@@ -54,19 +79,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:background="#1AB"
+        android:visibility="gone"
+        > <!--color just for checking...delete it later -->
+
+
+        <ImageView
+            android:id="@+id/track_profile_img"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:src="@drawable/zuck_smiling_new"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/settings_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
         android:visibility="gone"
         > <!--color just for checking...delete it later -->
 
 
 
-
-
-
     </RelativeLayout>
-
-
-
 
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation

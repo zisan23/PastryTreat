@@ -2,8 +2,10 @@ package com.example.pastry_treat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -15,7 +17,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
 
-    private RelativeLayout home_layout, menu_layout, cart_layout, track_layout;
+    private RelativeLayout home_layout, menu_layout, cart_layout, track_layout, settings_layout;
+
+    private ImageView home_profile_img, menu_profile_img, cart_profile_img, track_profile_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +30,54 @@ public class HomeActivity extends AppCompatActivity {
         menu_layout = (RelativeLayout) findViewById(R.id.menu_layout);
         cart_layout = (RelativeLayout) findViewById(R.id.cart_layout);
         track_layout = (RelativeLayout) findViewById(R.id.track_layout);
+        settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
 
 
         home_layout.setVisibility(View.VISIBLE);
         menu_layout.setVisibility(View.GONE);
         cart_layout.setVisibility(View.GONE);
         track_layout.setVisibility(View.GONE);
+        settings_layout.setVisibility(View.GONE);
 
 
+        home_profile_img = (ImageView) findViewById(R.id.home_profile_img);
+
+        home_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        menu_profile_img = (ImageView) findViewById(R.id.menu_profile_img);
+
+        menu_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cart_profile_img = (ImageView) findViewById(R.id.cart_profile_img);
+        cart_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        track_profile_img = (ImageView) findViewById(R.id.track_profile_img);
+        track_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -45,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.baseline_restaurant_menu_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_shopping_cart_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_navigation_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.baseline_settings_24));
 
 
 
@@ -68,6 +113,8 @@ public class HomeActivity extends AppCompatActivity {
                         menu_layout.setVisibility(View.GONE);
                         cart_layout.setVisibility(View.GONE);
                         track_layout.setVisibility(View.GONE);
+                        settings_layout.setVisibility(View.GONE);
+
 
                         break;
 
@@ -77,6 +124,7 @@ public class HomeActivity extends AppCompatActivity {
                         menu_layout.setVisibility(View.VISIBLE);
                         cart_layout.setVisibility(View.GONE);
                         track_layout.setVisibility(View.GONE);
+                        settings_layout.setVisibility(View.GONE);
 
                         break;
 
@@ -87,6 +135,7 @@ public class HomeActivity extends AppCompatActivity {
                         menu_layout.setVisibility(View.GONE);
                         cart_layout.setVisibility(View.VISIBLE);
                         track_layout.setVisibility(View.GONE);
+                        settings_layout.setVisibility(View.GONE);
 
                         break;
 
@@ -96,6 +145,17 @@ public class HomeActivity extends AppCompatActivity {
                         menu_layout.setVisibility(View.GONE);
                         cart_layout.setVisibility(View.GONE);
                         track_layout.setVisibility(View.VISIBLE);
+                        settings_layout.setVisibility(View.GONE);
+
+                        break;
+
+                    case 5:
+                        home_layout.setVisibility(View.GONE);
+                        menu_layout.setVisibility(View.GONE);
+                        cart_layout.setVisibility(View.GONE);
+                        track_layout.setVisibility(View.GONE);
+                        settings_layout.setVisibility(View.VISIBLE);
+
 
                         break;
 
