@@ -6,6 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+
+    <RelativeLayout
+        android:id="@+id/home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
+        android:background="@color/ELECTRIC_RED"
+        android:visibility="visible"
+        > <!--color just for checking...delete it later -->
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
+        android:background="@color/black"
+        android:visibility="gone"
+        >
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/cart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
+        android:background="#123313"
+        android:visibility="gone"
+        > <!--color just for checking...delete it later -->
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/track_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation"
+        android:background="#1AB"
+        android:visibility="gone"
+        > <!--color just for checking...delete it later -->
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
