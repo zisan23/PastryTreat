@@ -20,17 +20,28 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Button loginBtnSelector;
 
+    private Button SignUpButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         loginBtnSelector = (Button) findViewById(R.id.loginSelectorBtn);
-
+        SignUpButton = (Button) findViewById(R.id.SignUpButton);
 
         loginBtnSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        SignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
