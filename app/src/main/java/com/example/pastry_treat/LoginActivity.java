@@ -1,19 +1,16 @@
 package com.example.pastry_treat;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.Transition;
-import android.transition.TransitionManager;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         signUpBtnSelector = findViewById(R.id.signupSelectorBtn);
         LoginBtn = findViewById(R.id.loginButton);
@@ -48,7 +44,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
 }
