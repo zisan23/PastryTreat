@@ -3,6 +3,7 @@ package com.example.pastry_treat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +20,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private RelativeLayout home_layout, menu_layout, cart_layout, track_layout, settings_layout;
 
+
     private ImageView home_profile_img, menu_profile_img, cart_profile_img, track_profile_img;
+
+    private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,45 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+
+
+
+        settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
+        settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
+        settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
+
+        settings_phone_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "01793704188";
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:" + number));
+                startActivity(callIntent);
+            }
+        });
+
+        settings_email_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = "ssadman8877@gmail.com";
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                emailIntent.setType("message/rfc822");
+                startActivity(Intent.createChooser(emailIntent, "Send email using:"));
+            }
+        });
+
+        settings_msg_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "01793704188";
+                Intent messageIntent = new Intent(Intent.ACTION_SENDTO);
+                messageIntent.setData(Uri.parse("smsto:" + number));
+                startActivity(messageIntent);
             }
         });
 
