@@ -1,18 +1,36 @@
 package com.example.pastry_treat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.icu.util.ULocale;
+import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
+
+import java.util.ArrayList;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,6 +44,49 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
     private ImageView track_location_img;
+
+    private static final int PERMISSION_REQUEST_CODE = 123;
+
+    // scroll view componant by zisan //
+
+
+
+    private void openCurrentLocationInMap() {
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+
+                    Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    } else {
+                        // Google Maps app is not installed, handle this case
+                        Toast.makeText(HomeActivity.this, "Google Maps app is not installed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +105,12 @@ public class HomeActivity extends AppCompatActivity {
         cart_layout.setVisibility(View.GONE);
         track_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
+
+
+        // scroll view
+
+
+        //end of scroll view
 
 
         home_profile_img = (ImageView) findViewById(R.id.home_profile_img);
@@ -131,11 +198,21 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String locationUrl = "Chillox Dhanmondi";
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locationUrl);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
+//                String locationUrl = "Chillox Dhanmondi";
+//                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locationUrl);
+//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                mapIntent.setPackage("com.google.android.apps.maps");
+//                startActivity(mapIntent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
+                        openCurrentLocationInMap();
+                    }
+                    else{
+                        openCurrentLocationInMap();
+                    }
+                }
 
             }
         });
@@ -155,6 +232,7 @@ public class HomeActivity extends AppCompatActivity {
 
         meowNavigation();
     }
+
 
 
 

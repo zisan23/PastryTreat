@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     LottieAnimationView buttonanim;
     Button startbutton;
 
-    public static final int Timer = 5000;
+    public static final int Timer = 1000;
 
     protected void onResume() {
         super.onResume();
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startbutton = findViewById(R.id.startbutton);
-        LottieAnimationView animationView = findViewById(R.id.animationView);
 
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,15 +56,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        LottieCompositionFactory.fromRawRes(this, R.raw.animation)
-                .addListener(new LottieListener<LottieComposition>() {
-                    @Override
-                    public void onResult(LottieComposition composition) {
-                        animationView.setComposition(composition);
-                        animationView.playAnimation();
-                    }
-                });
     }
 }
