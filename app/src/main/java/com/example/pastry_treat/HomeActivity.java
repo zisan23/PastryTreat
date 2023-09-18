@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -46,6 +47,14 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView track_location_img;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
+
+
+
+
+
+    private Button dineInButton;
+    private Button takeoutButton;
+    private Button deliveryButton;
 
     // scroll view componant by zisan //
 
@@ -106,7 +115,37 @@ public class HomeActivity extends AppCompatActivity {
         track_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
 
+        // mahib button ditese hehe
+        dineInButton = findViewById(R.id.dineInButton);
+        takeoutButton = findViewById(R.id.takeoutButton);
+        deliveryButton = findViewById(R.id.deliveryButton);
 
+        dineInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // start Dine-in activity
+                Intent intent = new Intent(HomeActivity.this, DineInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        takeoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // start Takeout activity
+                Intent intent = new Intent(HomeActivity.this, TakeoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        deliveryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // start Delivery activity
+                Intent intent = new Intent(HomeActivity.this, DeliveryActivity.class);
+                startActivity(intent);
+            }
+        });
         // scroll view
 
 
