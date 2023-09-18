@@ -6,30 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/takeoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Takeout"/>
-
-        <Button
-            android:id="@+id/dineInButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dine-In"/>
-
-        <Button
-            android:id="@+id/deliveryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delivery" />
-
-    </LinearLayout>
 
 
     <RelativeLayout
@@ -37,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -73,6 +50,7 @@
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -113,12 +91,16 @@
                     android:layout_marginTop="10dp"
                     app:cardCornerRadius="10dp">
 
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/categoriesList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp" />
+
+
                 </androidx.cardview.widget.CardView>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/productList"
@@ -127,6 +109,7 @@
                     android:layout_marginTop="16dp" />
 
             </LinearLayout>
+
         </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
@@ -184,7 +167,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="visible"
+        android:visibility="gone"
         > <!--color just for checking...delete it later -->
 
 
