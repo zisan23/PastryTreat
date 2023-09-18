@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "566498742569",
+    "project_id": "pastry-treat",
+    "storage_bucket": "pastry-treat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566498742569:android:754938215bc99bbd232738",
+        "android_client_info": {
+          "package_name": "com.example.pastry_treat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtkkdYTsivXIxa5CBYB6B25Y3dKK9RHIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
