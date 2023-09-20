@@ -30,6 +30,13 @@ import com.example.pastry_treat.Models.HomeRvParentModelClass;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 
@@ -67,6 +74,13 @@ public class HomeActivity extends AppCompatActivity {
     private HomeRvParentAdapter homeRvParentAdapter;
 
 
+    FirebaseAuth auth;
+    FirebaseUser user;
+    String uid;
+    FirebaseFirestore db;
+    String userEmail, userName, userPassword;
+    DocumentReference docRef;
+    StorageReference storageReference;
 
 
 //    private Button dineInButton;
@@ -120,6 +134,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileref = storageReference.child("User/"+ auth.getCurrentUser().getUid()+"/Profile.png");
+        profileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(home_profile_img);
+            }
+        });
 
         try {
             recyclerView_parent = (RecyclerView) findViewById(R.id.home_rv_parent);
@@ -241,7 +266,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
         home_profile_img = (ImageView) findViewById(R.id.home_profile_img);
+
+
 
         home_profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,12 +278,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
 
 
         settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
