@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pastry_treat.Profile_Edit.profile_edit_activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,14 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user;
     String uid;
     FirebaseFirestore db;
-    String userEmail, userName;
+    String userEmail, userName, userPassword;
     DocumentReference docRef;
     StorageReference storageReference;
 
-
-
-
-    int galaryrequestCode = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
                             // Data for the user exists, you can access it here
                             userName = document.getString("name");
                             userEmail = document.getString("email");
+                            userPassword = document.getString("password");
 
                             // Update UI with the retrieved data
                             profile_email.setText(userEmail);
@@ -128,50 +126,15 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // open galary
-                Intent openGallary = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGallary, galaryrequestCode);
-
+                Intent intent = new Intent(getApplicationContext(), profile_edit_activity.class);
+                intent.putExtra("name", userName);
+                intent.putExtra("email", userEmail);
+                intent.putExtra("password", userPassword);
+                startActivity(intent);
+                finish();
             }
         });
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == galaryrequestCode){
-            if(resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-
-                //profile_pic.setImageURI(imageUri);
-
-                uploadImagetoFirebase(imageUri);
-            }
-        }
-    }
-
-    private void uploadImagetoFirebase(Uri imageUri) {
-        StorageReference fileRef = storageReference.child("User/"+ auth.getCurrentUser().getUid()+"/Profile.png");
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(profile_pic);
-                    }
-                });
-
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProfileActivity.this, "Update failed", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 }

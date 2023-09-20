@@ -251,34 +251,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        menu_profile_img = (ImageView) findViewById(R.id.menu_profile_img);
-
-        menu_profile_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
-        cart_profile_img = (ImageView) findViewById(R.id.cart_profile_img);
-        cart_profile_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        track_profile_img = (ImageView) findViewById(R.id.track_profile_img);
-        track_profile_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
 
 
