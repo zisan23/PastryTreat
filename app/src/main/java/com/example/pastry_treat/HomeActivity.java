@@ -57,6 +57,8 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView_parent;
     private ArrayList<HomeRvChildModelClass> top_products;
 
+    private ArrayList<HomeRvChildModelClass> you_may_like_it;
+
 
     private ArrayList<HomeRvParentModelClass> homeRvParentModelClassArrayList;
 
@@ -122,6 +124,8 @@ public class HomeActivity extends AppCompatActivity {
 
             top_products = new ArrayList<>();
 
+            you_may_like_it = new ArrayList<>();
+
             homeRvParentModelClassArrayList = new ArrayList<>();
 
 
@@ -129,10 +133,49 @@ public class HomeActivity extends AppCompatActivity {
             top_products.add(new HomeRvChildModelClass(R.drawable.img2));
             top_products.add(new HomeRvChildModelClass(R.drawable.img3));
             top_products.add(new HomeRvChildModelClass(R.drawable.img4));
-            //top_products.add(new HomeRvChildModelClass(R.drawable.img5));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img5));
+
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img3));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img1));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img5));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img3));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+
+
 
 
             homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Top Products", top_products));
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("You May Also Like it", you_may_like_it));
+
+            top_products.clear();
+            you_may_like_it.clear();
+
+
+            top_products.add(new HomeRvChildModelClass(R.drawable.img1));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img2));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img3));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img4));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img5));
+
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img3));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img1));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img5));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img3));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.img2));
+
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best of Zisan", top_products));
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best of Riya", you_may_like_it));
+
+
+
 
             homeRvParentAdapter = new HomeRvParentAdapter(homeRvParentModelClassArrayList, HomeActivity.this);
             recyclerView_parent.setLayoutManager(new LinearLayoutManager(this));
