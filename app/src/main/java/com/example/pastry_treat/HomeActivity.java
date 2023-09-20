@@ -176,8 +176,8 @@ public class HomeActivity extends AppCompatActivity {
             popular_products.add(new HomeRvChildModelClass(R.drawable.theglobecake));
             popular_products.add(new HomeRvChildModelClass(R.drawable.chocoberrycake));
 
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products", top_products));
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best Deals", you_may_like_it));
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products",popular_products ));
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best Deals", best_deals));
 
 
 
