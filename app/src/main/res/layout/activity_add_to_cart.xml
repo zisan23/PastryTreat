@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AddToCartActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:id="@+id/iv_addToCart"
+        android:src="@drawable/chocobiscuit"
+        />
+
+    <TextView
+        android:id="@+id/tv_desc_food_addToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_addToCart"
+        android:text="Chocobiscuits, the delectable fusion of crisp biscuits enrobed in velvety chocolate, have secured their place as a universally cherished treat. The harmonious marriage of textures and flavors, where the satisfying crunch of the biscuit complements the sweetness of the chocolate, creates an irresistible delight. These versatile snacks, available in various shapes and sizes, serve as quick pick-me-ups, delightful companions to coffee or tea, and even stars in creative desserts, making them a beloved indulgence appreciated by people of all ages around the world."
+        android:padding="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_price_addToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:textColor="@color/ELECTRIC_RED"
+        android:text="$420.69"
+        android:layout_below="@+id/tv_desc_food_addToCart"
+        android:textSize="25sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_addToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add To Cart"
+        android:layout_marginHorizontal="50dp"
+        android:layout_below="@id/tv_price_addToCart"
+        android:layout_marginTop="40dp"
+        />
+
+
+
+
+
+</RelativeLayout>
