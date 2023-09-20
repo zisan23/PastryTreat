@@ -41,36 +41,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="visible">
-
+        android:visibility="invisible">
 
 
         <Button
             android:id="@+id/takeoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Takeout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
-            />
+            android:text="Takeout" />
 
         <Button
             android:id="@+id/dineInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dine-In"
             android:layout_below="@+id/takeoutButton"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"/>
+            android:layout_marginTop="80dp"
+            android:text="Dine-In" />
 
         <Button
             android:id="@+id/deliveryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivery"
             android:layout_below="@+id/dineInButton"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"/>
+            android:layout_marginTop="80dp"
+            android:text="Delivery" />
 
     </RelativeLayout>
 
@@ -117,7 +115,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="invisible">
+        android:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/aboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calistoga"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/contactUsText"
@@ -126,10 +134,11 @@
 
             android:layout_centerHorizontal="true"
 
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="10dp"
             android:text="Contact Us"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_below="@id/aboutUs"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -139,8 +148,8 @@
 
             <ImageView
                 android:id="@+id/settings_phone_img"
-                android:layout_width="124dp"
-                android:layout_height="113dp"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
                 android:src="@drawable/baseline_phone_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -151,8 +160,8 @@
 
             <ImageView
                 android:id="@+id/settings_msg_img"
-                android:layout_width="124dp"
-                android:layout_height="113dp"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="4dp"
                 android:src="@drawable/baseline_message_24"
                 app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
@@ -162,8 +171,8 @@
 
             <ImageView
                 android:id="@+id/settings_email_img"
-                android:layout_width="124dp"
-                android:layout_height="113dp"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
                 android:src="@drawable/baseline_email_24"
                 app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
                 app:layout_constraintEnd_toStartOf="@+id/settings_phone_img"

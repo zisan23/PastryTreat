@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -58,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
     private ImageView track_location_img;
+    private TextView aboutUs;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
 
@@ -89,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // scroll view componant by zisan //
 
-/*
+
 
     private void openCurrentLocationInMap() {
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -126,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-*/
+
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -290,6 +292,15 @@ public class HomeActivity extends AppCompatActivity {
         settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
         settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
         settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
+        aboutUs = findViewById(R.id.aboutUs);
+
+        aboutUs.setText("Welcome to Pastry Treat – Your Culinary Adventure Awaits!\n" +
+                "\n" +
+                "Our Story:\n" +
+                "Founded by a team of passionate food enthusiasts and tech-savvy individuals, Pastry Treat was born out of a shared love for all things sweet. We understand the allure of a perfectly flaky croissant, the temptation of a rich, creamy cheesecake, and the delight of biting into a warm, gooey chocolate chip cookie. With a deep appreciation for the craftsmanship that goes into creating these delightful treats, we set out to create an app that celebrates the world of pastries and sweets.\n" +
+                "\n" +
+                "Our Commitment:\n" +
+                "At Pastry Treat, we are committed to providing you with the tools and inspiration you need to create memorable pastry moments. We strive to make pastry-making accessible to all, from beginners taking their first steps into the kitchen to seasoned bakers looking to expand their repertoire.Satisfy your sweet cravings, one recipe at a time, with Pastry Treat – Your Culinary Adventure Awaits!\n");
 
         settings_phone_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,8 +334,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-       // track_location_img = (ImageView) findViewById(R.id.track_location_img);
-/*
+        track_location_img = (ImageView) findViewById(R.id.track_location_img);
+
         track_location_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -334,7 +345,7 @@ public class HomeActivity extends AppCompatActivity {
 //                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 //                mapIntent.setPackage("com.google.android.apps.maps");
 //                startActivity(mapIntent);
-/*
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
@@ -347,7 +358,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-*/
+
 
         try {
 
