@@ -45,6 +45,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- This is mahib Adding  DineInActivity you can check if there's any problem -->
+        <activity
+            android:name=".DineInActivity"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="false" />
 
 
         <meta-data
