@@ -1,11 +1,14 @@
 package com.example.pastry_treat;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.icu.util.ULocale;
@@ -21,6 +24,9 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
+import com.example.pastry_treat.Models.HomeRvChildModelClass;
+import com.example.pastry_treat.Models.HomeRvParentModelClass;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +54,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 123;
 
+    private RecyclerView recyclerView_parent;
+    private ArrayList<HomeRvChildModelClass> top_products;
+
+
+    private ArrayList<HomeRvParentModelClass> homeRvParentModelClassArrayList;
+
+    private HomeRvParentAdapter homeRvParentAdapter;
 
 
 
@@ -58,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // scroll view componant by zisan //
 
-
+/*
 
     private void openCurrentLocationInMap() {
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -95,12 +108,41 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+*/
 
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        try {
+            recyclerView_parent = (RecyclerView) findViewById(R.id.home_rv_parent);
+
+            top_products = new ArrayList<>();
+
+            homeRvParentModelClassArrayList = new ArrayList<>();
+
+
+            top_products.add(new HomeRvChildModelClass(R.drawable.img1));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img2));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img3));
+            top_products.add(new HomeRvChildModelClass(R.drawable.img4));
+            //top_products.add(new HomeRvChildModelClass(R.drawable.img5));
+
+
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Top Products", top_products));
+
+            homeRvParentAdapter = new HomeRvParentAdapter(homeRvParentModelClassArrayList, HomeActivity.this);
+            recyclerView_parent.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView_parent.setAdapter(homeRvParentAdapter);
+            homeRvParentAdapter.notifyDataSetChanged();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
         menu_layout = (RelativeLayout) findViewById(R.id.menu_layout);
@@ -114,6 +156,12 @@ public class HomeActivity extends AppCompatActivity {
         cart_layout.setVisibility(View.GONE);
         track_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
+
+
+        ActionBar actionBar = getSupportActionBar(); //actionbar = toolbar
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
 
 //        dineInButton.setOnClickListener(new View.OnClickListener() {
@@ -142,10 +190,7 @@ public class HomeActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        // scroll view
 
-
-        //end of scroll view
 
 
         home_profile_img = (ImageView) findViewById(R.id.home_profile_img);
@@ -189,8 +234,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-
         settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
         settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
         settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
@@ -227,8 +270,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        track_location_img = (ImageView) findViewById(R.id.track_location_img);
-
+       // track_location_img = (ImageView) findViewById(R.id.track_location_img);
+/*
         track_location_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -238,7 +281,7 @@ public class HomeActivity extends AppCompatActivity {
 //                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 //                mapIntent.setPackage("com.google.android.apps.maps");
 //                startActivity(mapIntent);
-
+/*
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
@@ -251,24 +294,31 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+*/
+
+        try {
 
 
-        bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
+            bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
 
-        bottomNavigation.show(1, true); //this is default layout
+            bottomNavigation.show(1, false); //this is default layout
 
-        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.baseline_restaurant_menu_24));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_shopping_cart_24));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_navigation_24));
-        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.baseline_settings_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_restaurant_menu_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_shopping_cart_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_navigation_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(5, R.drawable.baseline_settings_24));
+
+
+            meowNavigation();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
 
 
-        meowNavigation();
     }
-
-
 
 
     private void meowNavigation(){
@@ -277,70 +327,72 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public Unit invoke(MeowBottomNavigation.Model model) {
 
+                try {
 
-                switch(model.getId()){
+                    switch (model.getId()) {
 
-                    case 1:
+                        case 1:
 
-                        home_layout.setVisibility(View.VISIBLE);
-                        menu_layout.setVisibility(View.GONE);
-                        cart_layout.setVisibility(View.GONE);
-                        track_layout.setVisibility(View.GONE);
-                        settings_layout.setVisibility(View.GONE);
-
-
-                        break;
-
-                    case 2:
-
-                        home_layout.setVisibility(View.GONE);
-                        menu_layout.setVisibility(View.VISIBLE);
-                        cart_layout.setVisibility(View.GONE);
-                        track_layout.setVisibility(View.GONE);
-                        settings_layout.setVisibility(View.GONE);
-
-                        break;
+                            home_layout.setVisibility(View.VISIBLE);
+                            menu_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.GONE);
+                            track_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.GONE);
 
 
-                    case 3:
+                            break;
 
-                        home_layout.setVisibility(View.GONE);
-                        menu_layout.setVisibility(View.GONE);
-                        cart_layout.setVisibility(View.VISIBLE);
-                        track_layout.setVisibility(View.GONE);
-                        settings_layout.setVisibility(View.GONE);
+                        case 2:
 
-                        break;
+                            home_layout.setVisibility(View.GONE);
+                            menu_layout.setVisibility(View.VISIBLE);
+                            cart_layout.setVisibility(View.GONE);
+                            track_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.GONE);
 
-                    case 4:
-
-                        home_layout.setVisibility(View.GONE);
-                        menu_layout.setVisibility(View.GONE);
-                        cart_layout.setVisibility(View.GONE);
-                        track_layout.setVisibility(View.VISIBLE);
-                        settings_layout.setVisibility(View.GONE);
-
-                        break;
-
-                    case 5:
-                        home_layout.setVisibility(View.GONE);
-                        menu_layout.setVisibility(View.GONE);
-                        cart_layout.setVisibility(View.GONE);
-                        track_layout.setVisibility(View.GONE);
-                        settings_layout.setVisibility(View.VISIBLE);
+                            break;
 
 
-                        break;
+                        case 3:
+
+                            home_layout.setVisibility(View.GONE);
+                            menu_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.VISIBLE);
+                            track_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.GONE);
+
+                            break;
+
+                        case 4:
+
+                            home_layout.setVisibility(View.GONE);
+                            menu_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.GONE);
+                            track_layout.setVisibility(View.VISIBLE);
+                            settings_layout.setVisibility(View.GONE);
+
+                            break;
+
+                        case 5:
+                            home_layout.setVisibility(View.GONE);
+                            menu_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.GONE);
+                            track_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.VISIBLE);
 
 
+                            break;
+
+
+                    }
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
                 }
 
 
                 return null;
             }
         });
-
-
 
     }
 
