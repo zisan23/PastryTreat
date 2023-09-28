@@ -25,7 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
 import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
+import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
+import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
 import com.example.pastry_treat.Models.HomeRvChildModelClass;
 import com.example.pastry_treat.Models.HomeRvParentModelClass;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -74,6 +77,16 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<HomeRvParentModelClass> homeRvParentModelClassArrayList;
 
     private HomeRvParentAdapter homeRvParentAdapter;
+
+
+
+
+    private RecyclerView recyclerView_btn_parent;
+    private ArrayList<HomeRvBtnChildModelClass> homeButtonList;
+
+    private ArrayList<HomeRvBtnParentModelClass> homeRvBtnParentModelClassArrayList;
+    private HomeRvBtnParentAdapter homeRvBtnParentAdapter;
+
 
 
     FirebaseAuth auth;
@@ -148,12 +161,40 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        /////////////
+
+        try{
+            recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
+
+            homeButtonList = new ArrayList<>();
+
+            homeRvBtnParentModelClassArrayList = new ArrayList<>();
+
+            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream"));
+            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream1"));
+            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream2"));
+            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream3"));
+            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream4"));
+
+            homeRvBtnParentModelClassArrayList.add(new HomeRvBtnParentModelClass(homeButtonList));
+
+            homeRvBtnParentAdapter = new HomeRvBtnParentAdapter(homeRvBtnParentModelClassArrayList, HomeActivity.this);
+            recyclerView_btn_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            recyclerView_btn_parent.setAdapter(homeRvBtnParentAdapter);
+            homeRvBtnParentAdapter.notifyDataSetChanged();
+
+
+        }catch (Exception e){
+            System.out.println("Button List home recyclerview not working");
+            System.out.println(e.getMessage());
+        }
 
 
 
 
 
 
+        /////////////////
 
         try {
             recyclerView_parent = (RecyclerView) findViewById(R.id.home_rv_parent);
