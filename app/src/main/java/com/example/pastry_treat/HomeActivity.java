@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -190,7 +191,15 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
+        EditText home_et_search = (EditText) findViewById(R.id.home_et_search);
 
+        home_et_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
