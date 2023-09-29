@@ -80,14 +80,11 @@ public class HomeActivity extends AppCompatActivity {
     private HomeRvParentAdapter homeRvParentAdapter;
 
 
-
-
     private RecyclerView recyclerView_btn_parent;
     private ArrayList<HomeRvBtnChildModelClass> homeButtonList;
 
     private ArrayList<HomeRvBtnParentModelClass> homeRvBtnParentModelClassArrayList;
     private HomeRvBtnParentAdapter homeRvBtnParentAdapter;
-
 
 
     FirebaseAuth auth;
@@ -104,7 +101,6 @@ public class HomeActivity extends AppCompatActivity {
 //    private Button deliveryButton;
 
     // scroll view componant by zisan //
-
 
 
     private void openCurrentLocationInMap() {
@@ -154,7 +150,7 @@ public class HomeActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileref = storageReference.child("User/"+ auth.getCurrentUser().getUid()+"/Profile.png");
+        StorageReference profileref = storageReference.child("User/" + auth.getCurrentUser().getUid() + "/Profile.png");
         profileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -164,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
 
         /////////////
 
-        try{
+        try {
             recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
 
             homeButtonList = new ArrayList<>();
@@ -185,7 +181,7 @@ public class HomeActivity extends AppCompatActivity {
             homeRvBtnParentAdapter.notifyDataSetChanged();
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Button List home recyclerview not working");
             System.out.println(e.getMessage());
         }
@@ -200,7 +196,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         /////////////////
@@ -235,8 +230,6 @@ public class HomeActivity extends AppCompatActivity {
             you_may_like_it.add(new HomeRvChildModelClass(R.drawable.blackforrest));
 
 
-
-
             homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Top Products", top_products));
             homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("You May Also Like ", you_may_like_it));
 
@@ -260,20 +253,17 @@ public class HomeActivity extends AppCompatActivity {
             popular_products.add(new HomeRvChildModelClass(R.drawable.theglobecake));
             popular_products.add(new HomeRvChildModelClass(R.drawable.chocoberrycake));
 
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products",popular_products ));
+            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products", popular_products));
             homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best Deals", best_deals));
-
-
 
 
             homeRvParentAdapter = new HomeRvParentAdapter(homeRvParentModelClassArrayList, HomeActivity.this);
             recyclerView_parent.setLayoutManager(new LinearLayoutManager(this));
             recyclerView_parent.setAdapter(homeRvParentAdapter);
             homeRvParentAdapter.notifyDataSetChanged();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
@@ -324,10 +314,7 @@ public class HomeActivity extends AppCompatActivity {
 //        });
 
 
-
-
         home_profile_img = (ImageView) findViewById(R.id.home_profile_img);
-
 
 
         home_profile_img.setOnClickListener(new View.OnClickListener() {
@@ -400,8 +387,7 @@ public class HomeActivity extends AppCompatActivity {
                     if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
                         openCurrentLocationInMap();
-                    }
-                    else{
+                    } else {
                         openCurrentLocationInMap();
                     }
                 }
@@ -426,16 +412,15 @@ public class HomeActivity extends AppCompatActivity {
 
             meowNavigation();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
 
 
     }
 
 
-    private void meowNavigation(){
+    private void meowNavigation() {
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
@@ -499,7 +484,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
 
