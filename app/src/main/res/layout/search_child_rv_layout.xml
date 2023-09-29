@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_cv_item"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:backgroundTint="@color/FEINT_PINK"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <ImageView
+                    android:id="@+id/search_iv_child_img"
+                    android:layout_width="130dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:elevation="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/search_tv_child_foodname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="food name"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/search_iv_child_img"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/search_iv_child_star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_above="@+id/search_tv_restaurent"
+                    android:layout_below="@+id/search_tv_child_foodname"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="0dp"
+                    android:elevation="10dp"
+                    android:src="@drawable/baseline_star_24" />
+
+                <TextView
+                    android:id="@+id/search_tv_child_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="69/420"
+
+                    android:layout_toRightOf="@+id/search_iv_child_star"
+                    android:layout_below="@+id/search_tv_child_foodname"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="13sp"
+                    />
+
+                <TextView
+                    android:id="@+id/search_tv_restaurent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurent name"
+
+                    android:layout_below="@+id/search_tv_child_rating"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="9dp"
+                    android:textSize="11sp"
+                    />
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
