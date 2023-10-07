@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/home_profile_img"
@@ -25,11 +25,43 @@
 
             />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_cv_search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/home_profile_img"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:backgroundTint="@color/FEINT_PINK"
+            android:padding="10dp"
+            app:cardCornerRadius="25dp">
+
+            <EditText
+                android:id="@+id/home_et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Search here..."
+                android:paddingHorizontal="10dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_btn_rv_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/home_cv_search"
+            android:padding="2dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_rv_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/home_profile_img"
+            android:layout_below="@+id/home_btn_rv_parent"
             android:padding="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -41,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="invisible">
+        android:visibility="gone">
 
 
         <Button
@@ -78,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="invisible">
+        android:visibility="gone">
 
 
     </RelativeLayout>
@@ -89,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="invisible">
+        android:visibility="gone">
 
 
         <ImageView
@@ -115,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <TextView
@@ -132,13 +164,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_centerHorizontal="true"
+            android:layout_below="@id/aboutUs"
 
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="Contact Us"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_below="@id/aboutUs"/>
+            android:textStyle="bold" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -188,11 +220,10 @@
 
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-    android:id="@+id/bottomNavigation"
-    android:layout_alignParentBottom="true"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent" />
-
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>
