@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 import com.hbb20.CountryCodePicker;
@@ -87,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d("Zisan", "starting signup");
 
                 String sUsername, sEmail, sPassword, sConfirm_Password;
                 progressBar.setVisibility(View.VISIBLE);
@@ -129,6 +130,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     firestore.collection("User").document(FirebaseAuth.getInstance().getUid())
                                             .set(new UserModel(sUsername, sEmail, sPassword));
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(sUsername)
+                                            .build();
+
+                                    user.updateProfile(profileUpdates);
 
 
 
@@ -139,8 +145,23 @@ public class SignUpActivity extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpActivity.this, "Authentication failed."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    switch (task.getException().toString()) {
+                                        case "auth/email-already-in-use":
+                                            //EmailWarning.setText("Email already in use");
+                                            Toast.makeText(SignUpActivity.this, "Email already in use", Toast.LENGTH_SHORT).show();
+                                        case "auth/invalid-email":
+                                            //EmailWarning.setText("Invalid Email");
+                                            Toast.makeText(SignUpActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                                        case "auth/weak-password":
+                                            //PasswordWarning.setText("Password should be 8 characters or longer");
+                                            Toast.makeText(SignUpActivity.this, "Password should be 8 characters or longer", Toast.LENGTH_SHORT).show();
 
+                                        default:
+                                            //PasswordWarning.setText("Error during sign up");
+                                            Toast.makeText(SignUpActivity.this, "Error during sign up", Toast.LENGTH_SHORT).show();
+
+                                    }
                                 }
                             }
                         });
