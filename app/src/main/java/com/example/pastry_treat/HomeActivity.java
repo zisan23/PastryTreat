@@ -32,11 +32,14 @@ import android.widget.Toast;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
 import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
+import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
 import com.example.pastry_treat.Adapters.HomeVpAdapter;
 import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
 import com.example.pastry_treat.Models.HomeRvChildModelClass;
 import com.example.pastry_treat.Models.HomeRvParentModelClass;
+import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
+import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -77,8 +80,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView aboutUs;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
-
-
 
 
     private RecyclerView recyclerView_btn_parent;
@@ -173,7 +174,7 @@ public class HomeActivity extends AppCompatActivity {
         vp_arraylist.add(R.drawable.adv1);
         vp_arraylist.add(R.drawable.adv2);
 
-        HomeVpAdapter homeVpAdapter = new HomeVpAdapter(HomeActivity.this,vp_arraylist);
+        HomeVpAdapter homeVpAdapter = new HomeVpAdapter(HomeActivity.this, vp_arraylist);
         home_vp_advertisements.setAdapter(homeVpAdapter);
 
         // Initialize the handler for automatic sliding
@@ -211,9 +212,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
-
-
         try {
             recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
 
@@ -238,10 +236,12 @@ public class HomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println("Button List home recyclerview not working");
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
 
-        CardView home_cv_search = (CardView) findViewById(R.id.home_cv_search);;
+        CardView home_cv_search = (CardView) findViewById(R.id.home_cv_search);
+        ;
 
         home_cv_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,9 +251,37 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        try {
+            RecyclerView home_restaurent_rv_parent = (RecyclerView) findViewById(R.id.home_restaurent_rv_parent);
+
+            ArrayList<HomeRvRestaurentChildModel> featuredRestaurents = new ArrayList<>();
+
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+
+            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
+
+            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
+
+            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
+            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
+            homeRvRestaurentParentAdapter.notifyDataSetChanged();
+
+
+        } catch (Exception e) {
+
+            System.out.println("home restaurent recyclerview not working");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
 
         /////////////////
-
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);

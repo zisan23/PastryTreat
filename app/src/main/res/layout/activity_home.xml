@@ -87,6 +87,17 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_restaurent_rv_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/home_btn_rv_parent"
+            android:padding="2dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
     </RelativeLayout>
 
