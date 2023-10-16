@@ -7,5 +7,9 @@
     <color name="ELECTRIC_RED">#FF0036</color>
     <color name="FEINT_PINK">#FFE6E6</color>
     <color name="STRONG_PINK">#FF4081</color>
+    <color name="LIGHT_SILVER">#F1EFEF</color>
+    <color name="OFF_WHITE">#F0F0F0</color>
+    <color name="PALE_SAGE_GREEN">#D0D4CA</color>
+    <color name="LIGHT_PASTEL_BLUE_GRAY">#ECEFF1</color>
 
 </resources>

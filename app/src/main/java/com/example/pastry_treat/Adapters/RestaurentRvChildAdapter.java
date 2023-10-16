@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pastry_treat.AddToCartActivity;
@@ -29,7 +31,7 @@ public class RestaurentRvChildAdapter extends RecyclerView.Adapter<RestaurentRvC
     @NonNull
     @Override
     public RestaurentRvChildAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.homenav_child_rv_layout,null,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.restaurent_child_rv_layout,null,false);
         return new ViewHolder(view);
     }
 
@@ -37,7 +39,13 @@ public class RestaurentRvChildAdapter extends RecyclerView.Adapter<RestaurentRvC
     public void onBindViewHolder(@NonNull RestaurentRvChildAdapter.ViewHolder holder, int position) {
         holder.homenav_iv_child_image.setImageResource(homeRvChildModelClassList.get(position).image);
 
-        holder.homenav_iv_child_image.setOnClickListener(new View.OnClickListener() {
+        holder.homenav_tv_product_name.setText(homeRvChildModelClassList.get(position).productName);
+
+        holder.homenav_tv_product_description.setText(homeRvChildModelClassList.get(position).description);
+
+        holder.homenav_tv_product_price.setText("$" + Double.toString(homeRvChildModelClassList.get(position).price));
+
+        holder.homenav_cv_child_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent  = new Intent(context, AddToCartActivity.class);
@@ -53,12 +61,18 @@ public class RestaurentRvChildAdapter extends RecyclerView.Adapter<RestaurentRvC
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        CardView homenav_cv_child_item;
         ImageView homenav_iv_child_image ;
+        TextView homenav_tv_product_name, homenav_tv_product_description, homenav_tv_product_price;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             homenav_iv_child_image = itemView.findViewById(R.id.homenav_iv_child_img);
+            homenav_tv_product_name = itemView.findViewById(R.id.homenav_tv_product_name);
+            homenav_tv_product_description = itemView.findViewById(R.id.homenav_tv_product_description);
+            homenav_tv_product_price = itemView.findViewById(R.id.homenav_tv_product_price);
+
+            homenav_cv_child_item = itemView.findViewById(R.id.homenav_cv_child_item);
 
         }
     }

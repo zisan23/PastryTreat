@@ -30,7 +30,7 @@ public class RestaurentRvParentAdapter extends RecyclerView.Adapter<RestaurentRv
     @NonNull
     @Override
     public RestaurentRvParentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.homenav_parent_rv_layout, null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.restaurent_parent_rv_layout, null, false);
 
         return new ViewHolder(view);
     }
