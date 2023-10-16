@@ -3,21 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="13dp"
+    android:padding="5dp"
     >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/homeNav_cv_btn_child_itemCard"
-            android:layout_width="65dp"
+            android:layout_width="75dp"
             android:layout_height="105dp"
-            android:backgroundTint="@color/FEINT_PINK"
-            app:cardCornerRadius="90dp"
-            app:cardElevation="2dp">
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -31,21 +33,22 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/chocobiscuit"
+                    android:src="@drawable/cheesecake"
                     >
 
                 </ImageView>
 
                 <TextView
                     android:id="@+id/homeNav_tv_btn_child_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="title"
                     android:layout_below="@+id/homeNav_iv_btn_child_img"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:textStyle="bold"
-                    android:textSize="7sp"
+                    android:textSize="14sp"
+
                     />
 
             </RelativeLayout>
