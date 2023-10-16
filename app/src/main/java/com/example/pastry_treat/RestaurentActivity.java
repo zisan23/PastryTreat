@@ -8,25 +8,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
-import com.example.pastry_treat.Models.HomeRvChildModelClass;
-import com.example.pastry_treat.Models.HomeRvParentModelClass;
+import com.example.pastry_treat.Adapters.RestaurentRvParentAdapter;
+import com.example.pastry_treat.Models.RestaurentRvChildModel;
+import com.example.pastry_treat.Models.RestaurentRvParentModel;
 
 import java.util.ArrayList;
 
 public class RestaurentActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView_parent;
-    private ArrayList<HomeRvChildModelClass> top_products;
+    private ArrayList<RestaurentRvChildModel> top_products;
 
-    private ArrayList<HomeRvChildModelClass> you_may_like_it;
-    private ArrayList<HomeRvChildModelClass> popular_products;
-    private ArrayList<HomeRvChildModelClass> best_deals;
+    private ArrayList<RestaurentRvChildModel> you_may_like_it;
+    private ArrayList<RestaurentRvChildModel> popular_products;
+    private ArrayList<RestaurentRvChildModel> best_deals;
 
 
-    private ArrayList<HomeRvParentModelClass> homeRvParentModelClassArrayList;
+    private ArrayList<RestaurentRvParentModel> homeRvParentModelClassArrayList;
 
-    private HomeRvParentAdapter homeRvParentAdapter;
+    private RestaurentRvParentAdapter homeRvParentAdapter;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -53,52 +53,52 @@ public class RestaurentActivity extends AppCompatActivity {
             homeRvParentModelClassArrayList = new ArrayList<>();
 
 
-            top_products.add(new HomeRvChildModelClass(R.drawable.chocobiscuit));
-            top_products.add(new HomeRvChildModelClass(R.drawable.chococake));
-            top_products.add(new HomeRvChildModelClass(R.drawable.waffles));
-            top_products.add(new HomeRvChildModelClass(R.drawable.strawcupcake));
-            top_products.add(new HomeRvChildModelClass(R.drawable.chococupcake));
+            top_products.add(new RestaurentRvChildModel(R.drawable.chocobiscuit));
+            top_products.add(new RestaurentRvChildModel(R.drawable.chococake));
+            top_products.add(new RestaurentRvChildModel(R.drawable.waffles));
+            top_products.add(new RestaurentRvChildModel(R.drawable.strawcupcake));
+            top_products.add(new RestaurentRvChildModel(R.drawable.chococupcake));
 
 
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.moosecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.whitecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.jellycake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.cheesecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.marbleee));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.crunchydelight));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.italianpudding));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.redforrest));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.blackforrest));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.moosecake));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.whitecake));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.jellycake));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.cheesecake));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.marbleee));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.crunchydelight));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.italianpudding));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.redforrest));
+            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.blackforrest));
 
 
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Top Products", top_products));
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("You May Also Like ", you_may_like_it));
+            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Top Products", top_products));
+            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("You May Also Like ", you_may_like_it));
 
             //top_products.clear();
             //you_may_like_it.clear();
 
 
-            best_deals.add(new HomeRvChildModelClass(R.drawable.strawchocopastry));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.fraisiercake));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.macaroons));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.brownievalentine));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.oreos));
+            best_deals.add(new RestaurentRvChildModel(R.drawable.strawchocopastry));
+            best_deals.add(new RestaurentRvChildModel(R.drawable.fraisiercake));
+            best_deals.add(new RestaurentRvChildModel(R.drawable.macaroons));
+            best_deals.add(new RestaurentRvChildModel(R.drawable.brownievalentine));
+            best_deals.add(new RestaurentRvChildModel(R.drawable.oreos));
 
-            popular_products.add(new HomeRvChildModelClass(R.drawable.dessertkababs));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.donuts));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.creamdelight));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.oreoart));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.bubbleoybillcake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.yellowicecake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.cheesecupcake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.theglobecake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.chocoberrycake));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.dessertkababs));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.donuts));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.creamdelight));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.oreoart));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.bubbleoybillcake));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.yellowicecake));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.cheesecupcake));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.theglobecake));
+            popular_products.add(new RestaurentRvChildModel(R.drawable.chocoberrycake));
 
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products", popular_products));
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best Deals", best_deals));
+            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Popular Products", popular_products));
+            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Best Deals", best_deals));
 
 
-            homeRvParentAdapter = new HomeRvParentAdapter(homeRvParentModelClassArrayList, RestaurentActivity.this);
+            homeRvParentAdapter = new RestaurentRvParentAdapter(homeRvParentModelClassArrayList, RestaurentActivity.this);
             recyclerView_parent.setLayoutManager(new LinearLayoutManager(this));
             recyclerView_parent.setAdapter(homeRvParentAdapter);
             homeRvParentAdapter.notifyDataSetChanged();

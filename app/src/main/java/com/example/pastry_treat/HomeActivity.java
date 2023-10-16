@@ -4,7 +4,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -13,7 +12,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.icu.util.ULocale;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -21,23 +19,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
-import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
 import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
 import com.example.pastry_treat.Adapters.HomeVpAdapter;
 import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
-import com.example.pastry_treat.Models.HomeRvChildModelClass;
-import com.example.pastry_treat.Models.HomeRvParentModelClass;
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -50,8 +42,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 
 import java.util.ArrayList;
 

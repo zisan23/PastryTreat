@@ -11,27 +11,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pastry_treat.HomeActivity;
-import com.example.pastry_treat.Models.HomeRvParentModelClass;
+import com.example.pastry_treat.Models.RestaurentRvParentModel;
 import com.example.pastry_treat.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class HomeRvParentAdapter extends RecyclerView.Adapter<HomeRvParentAdapter.ViewHolder> {
+public class RestaurentRvParentAdapter extends RecyclerView.Adapter<RestaurentRvParentAdapter.ViewHolder> {
 
-    List<HomeRvParentModelClass> homeRvParentModelClassList;
+    List<RestaurentRvParentModel> homeRvParentModelClassList;
 
     Context context;
 
-    public HomeRvParentAdapter(List<HomeRvParentModelClass> homeRvParentModelClassList, Context context) {
+    public RestaurentRvParentAdapter(List<RestaurentRvParentModel> homeRvParentModelClassList, Context context) {
         this.homeRvParentModelClassList = homeRvParentModelClassList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public HomeRvParentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RestaurentRvParentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.homenav_parent_rv_layout, null, false);
 
         return new ViewHolder(view);
@@ -39,12 +37,12 @@ public class HomeRvParentAdapter extends RecyclerView.Adapter<HomeRvParentAdapte
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onBindViewHolder(@NonNull HomeRvParentAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RestaurentRvParentAdapter.ViewHolder holder, int position) {
         holder.homenav_tv_parent_title.setText(homeRvParentModelClassList.get(position).title);
 
-        HomeRvChildAdapter homeRvChildAdapter;
+        RestaurentRvChildAdapter homeRvChildAdapter;
 
-        homeRvChildAdapter = new HomeRvChildAdapter(homeRvParentModelClassList.get(position).homeRvChildModelClassList, context);
+        homeRvChildAdapter = new RestaurentRvChildAdapter(homeRvParentModelClassList.get(position).homeRvChildModelClassList, context);
         holder.homenav_rv_child.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.homenav_rv_child.setAdapter(homeRvChildAdapter);
         homeRvChildAdapter.notifyDataSetChanged();

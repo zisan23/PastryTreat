@@ -1,9 +1,9 @@
 package com.example.pastry_treat.Models;
 
-public class HomeRvChildModelClass {
+public class RestaurentRvChildModel {
     public int image;
 
-    public HomeRvChildModelClass(int image) {
+    public RestaurentRvChildModel(int image) {
 
         this.image = image;
     }
