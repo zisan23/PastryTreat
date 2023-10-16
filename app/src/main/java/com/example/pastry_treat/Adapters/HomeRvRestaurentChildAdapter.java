@@ -2,6 +2,7 @@ package com.example.pastry_treat.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.R;
+import com.example.pastry_treat.RestaurentActivity;
 
 import java.util.List;
 
@@ -35,6 +38,17 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
 
     @Override
     public void onBindViewHolder(@NonNull HomeRvRestaurentChildAdapter.ViewHolder holder, int position) {
+
+        holder.home_cv_RvRestaurent_childItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RestaurentActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
+
         holder.home_iv_RvRestaurent_child_img.setImageResource(childModelList.get(position).getImage());
 
         holder.home_tv_RvRestaurent_child_restName.setText(childModelList.get(position).getName());
@@ -51,6 +65,8 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        CardView home_cv_RvRestaurent_childItem;
+
         ImageView home_iv_RvRestaurent_child_img;
         TextView home_tv_RvRestaurent_child_restName,
                 home_tv_RvRestaurent_child_restAddress,
@@ -59,6 +75,7 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            home_cv_RvRestaurent_childItem =  itemView.findViewById(R.id.home_cv_RvRestaurent_childItem);
             home_iv_RvRestaurent_child_img = itemView.findViewById(R.id.home_iv_RvRestaurent_child_img);
             home_tv_RvRestaurent_child_restName = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restName);
             home_tv_RvRestaurent_child_restAddress = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restAddress);
