@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_cv_RvRestaurent_childItem"
+            android:layout_width="295dp"
+            android:layout_height="195dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/home_iv_RvRestaurent_child_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="97.5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/adv1" />
+
+                <TextView
+                    android:id="@+id/home_tv_RvRestaurent_child_restName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_iv_RvRestaurent_child_img"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/home_tv_RvRestaurent_child_restAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_tv_RvRestaurent_child_restName"
+                    android:layout_marginStart="16dp"
+                    android:text="123 Main Street, City"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/home_tv_RvRestaurent_child_restDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_tv_RvRestaurent_child_restAddress"
+                    android:layout_marginStart="16dp"
+                    android:text="Short description of the restaurant."
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

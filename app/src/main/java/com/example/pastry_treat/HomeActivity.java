@@ -2,36 +2,36 @@ package com.example.pastry_treat;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.icu.util.ULocale;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
-import com.example.pastry_treat.Adapters.HomeRvParentAdapter;
+import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
+import com.example.pastry_treat.Adapters.HomeVpAdapter;
 import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
-import com.example.pastry_treat.Models.HomeRvChildModelClass;
-import com.example.pastry_treat.Models.HomeRvParentModelClass;
+import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
+import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,8 +42,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 
 import java.util.ArrayList;
 
@@ -57,6 +55,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private RelativeLayout home_layout, menu_layout, cart_layout, track_layout, settings_layout;
 
+    private ViewPager home_vp_advertisements;
+    private ArrayList<Integer> vp_arraylist = new ArrayList<>();
+    Handler VpHandler;
+    private boolean userTouchedViewPager = false;
+    final long DELAY_MS = 4000; // Delay between page changes (adjust as needed)
+
 
     private ImageView home_profile_img, menu_profile_img, cart_profile_img, track_profile_img;
 
@@ -66,18 +70,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView aboutUs;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
-
-    private RecyclerView recyclerView_parent;
-    private ArrayList<HomeRvChildModelClass> top_products;
-
-    private ArrayList<HomeRvChildModelClass> you_may_like_it;
-    private ArrayList<HomeRvChildModelClass> popular_products;
-    private ArrayList<HomeRvChildModelClass> best_deals;
-
-
-    private ArrayList<HomeRvParentModelClass> homeRvParentModelClassArrayList;
-
-    private HomeRvParentAdapter homeRvParentAdapter;
 
 
     private RecyclerView recyclerView_btn_parent;
@@ -140,7 +132,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
+    /////////OnCreate() method //////
+
+    @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +153,54 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         /////////////
+
+        home_vp_advertisements = (ViewPager) findViewById(R.id.home_vp_advertisements);
+        vp_arraylist.add(R.drawable.adv1);
+        vp_arraylist.add(R.drawable.adv2);
+        vp_arraylist.add(R.drawable.adv1);
+        vp_arraylist.add(R.drawable.adv2);
+        vp_arraylist.add(R.drawable.adv1);
+        vp_arraylist.add(R.drawable.adv2);
+        vp_arraylist.add(R.drawable.adv1);
+        vp_arraylist.add(R.drawable.adv2);
+
+        HomeVpAdapter homeVpAdapter = new HomeVpAdapter(HomeActivity.this, vp_arraylist);
+        home_vp_advertisements.setAdapter(homeVpAdapter);
+
+        // Initialize the handler for automatic sliding
+        VpHandler = new Handler();
+        final Runnable runnable = new Runnable() {
+            public void run() {
+                int currentItem = home_vp_advertisements.getCurrentItem();
+                int totalItems = homeVpAdapter.getCount();
+
+                if (currentItem < totalItems - 1) {
+                    home_vp_advertisements.setCurrentItem(currentItem + 1);
+                } else {
+                    home_vp_advertisements.setCurrentItem(0);
+                }
+
+                VpHandler.postDelayed(this, DELAY_MS);
+            }
+        };
+
+        // Set up automatic scrolling
+        VpHandler.postDelayed(runnable, DELAY_MS);
+
+        // Add a touch listener to pause automatic scrolling
+        home_vp_advertisements.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                userTouchedViewPager = true;
+                VpHandler.removeCallbacksAndMessages(null);
+
+                // Resume automatic scrolling after 10 seconds
+                VpHandler.postDelayed(runnable, 10000);
+
+                return false;
+            }
+        });
+
 
         try {
             recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
@@ -184,12 +226,14 @@ public class HomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println("Button List home recyclerview not working");
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
 
-        EditText home_et_search = (EditText) findViewById(R.id.home_et_search);
+        CardView home_cv_search = (CardView) findViewById(R.id.home_cv_search);
+        ;
 
-        home_et_search.setOnClickListener(new View.OnClickListener() {
+        home_cv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
@@ -197,73 +241,37 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        try {
+            RecyclerView home_restaurent_rv_parent = (RecyclerView) findViewById(R.id.home_restaurent_rv_parent);
+
+            ArrayList<HomeRvRestaurentChildModel> featuredRestaurents = new ArrayList<>();
+
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+
+            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
+
+            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
+
+            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
+            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
+            homeRvRestaurentParentAdapter.notifyDataSetChanged();
+
+
+        } catch (Exception e) {
+
+            System.out.println("home restaurent recyclerview not working");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
 
         /////////////////
-
-        try {
-            recyclerView_parent = (RecyclerView) findViewById(R.id.home_rv_parent);
-
-            top_products = new ArrayList<>();
-            you_may_like_it = new ArrayList<>();
-            popular_products = new ArrayList<>();
-            best_deals = new ArrayList<>();
-
-
-            homeRvParentModelClassArrayList = new ArrayList<>();
-
-
-            top_products.add(new HomeRvChildModelClass(R.drawable.chocobiscuit));
-            top_products.add(new HomeRvChildModelClass(R.drawable.chococake));
-            top_products.add(new HomeRvChildModelClass(R.drawable.waffles));
-            top_products.add(new HomeRvChildModelClass(R.drawable.strawcupcake));
-            top_products.add(new HomeRvChildModelClass(R.drawable.chococupcake));
-
-
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.moosecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.whitecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.jellycake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.cheesecake));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.marbleee));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.crunchydelight));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.italianpudding));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.redforrest));
-            you_may_like_it.add(new HomeRvChildModelClass(R.drawable.blackforrest));
-
-
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Top Products", top_products));
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("You May Also Like ", you_may_like_it));
-
-            //top_products.clear();
-            //you_may_like_it.clear();
-
-
-            best_deals.add(new HomeRvChildModelClass(R.drawable.strawchocopastry));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.fraisiercake));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.macaroons));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.brownievalentine));
-            best_deals.add(new HomeRvChildModelClass(R.drawable.oreos));
-
-            popular_products.add(new HomeRvChildModelClass(R.drawable.dessertkababs));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.donuts));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.creamdelight));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.oreoart));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.bubbleoybillcake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.yellowicecake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.cheesecupcake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.theglobecake));
-            popular_products.add(new HomeRvChildModelClass(R.drawable.chocoberrycake));
-
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Popular Products", popular_products));
-            homeRvParentModelClassArrayList.add(new HomeRvParentModelClass("Best Deals", best_deals));
-
-
-            homeRvParentAdapter = new HomeRvParentAdapter(homeRvParentModelClassArrayList, HomeActivity.this);
-            recyclerView_parent.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView_parent.setAdapter(homeRvParentAdapter);
-            homeRvParentAdapter.notifyDataSetChanged();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
@@ -493,6 +501,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Stop the handler when the activity is paused
+        VpHandler.removeCallbacksAndMessages(null);
     }
 
 
