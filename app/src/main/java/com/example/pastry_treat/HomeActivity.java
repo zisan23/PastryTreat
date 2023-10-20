@@ -17,10 +17,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Layout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +55,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
 
-    private RelativeLayout home_layout, cart_layout, settings_layout;
+    private RelativeLayout home_layout, settings_layout;
+    private ScrollView cart_layout;
 
     private ViewPager home_vp_advertisements;
     private ArrayList<Integer> vp_arraylist = new ArrayList<>();
@@ -274,7 +277,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
-        cart_layout = (RelativeLayout) findViewById(R.id.cart_layout);
+        cart_layout = (ScrollView) findViewById(R.id.cart_layout);
         settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
 
 
