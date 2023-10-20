@@ -55,8 +55,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
 
-    private RelativeLayout home_layout, settings_layout;
-    private ScrollView cart_layout;
+    private RelativeLayout home_layout, settings_layout,cart_layout;
+    private ScrollView home_scrollview, settings_scrollview, cart_scrollview;
 
     private ViewPager home_vp_advertisements;
     private ArrayList<Integer> vp_arraylist = new ArrayList<>();
@@ -277,13 +277,22 @@ public class HomeActivity extends AppCompatActivity {
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
-        cart_layout = (ScrollView) findViewById(R.id.cart_layout);
+        cart_layout = (RelativeLayout) findViewById(R.id.cart_layout);
         settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
 
 
         home_layout.setVisibility(View.VISIBLE);
         cart_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
+
+        home_scrollview = (ScrollView) findViewById(R.id.home_scrollview);
+        cart_scrollview = (ScrollView) findViewById(R.id.cart_scrollview);
+        settings_scrollview = (ScrollView) findViewById(R.id.settings_scrollview);
+
+        home_scrollview.setVisibility(View.VISIBLE);
+        cart_scrollview.setVisibility(View.GONE);
+        settings_scrollview.setVisibility(View.GONE);
+
 
 
         ActionBar actionBar = getSupportActionBar(); //actionbar = toolbar
@@ -439,6 +448,10 @@ public class HomeActivity extends AppCompatActivity {
                             cart_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.GONE);
 
+                            home_scrollview.setVisibility(View.VISIBLE);
+                            cart_scrollview.setVisibility(View.GONE);
+                            settings_scrollview.setVisibility(View.GONE);
+
 
                             break;
 
@@ -448,12 +461,20 @@ public class HomeActivity extends AppCompatActivity {
                             cart_layout.setVisibility(View.VISIBLE);
                             settings_layout.setVisibility(View.GONE);
 
+                            home_scrollview.setVisibility(View.GONE);
+                            cart_scrollview.setVisibility(View.VISIBLE);
+                            settings_scrollview.setVisibility(View.GONE);
+
                             break;
 
                         case 3:
                             home_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.VISIBLE);
+
+                            home_scrollview.setVisibility(View.GONE);
+                            cart_scrollview.setVisibility(View.GONE);
+                            settings_scrollview.setVisibility(View.VISIBLE);
 
                             break;
 
