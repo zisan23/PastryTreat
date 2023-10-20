@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
 
-    private RelativeLayout home_layout, menu_layout, cart_layout, track_layout, settings_layout;
+    private RelativeLayout home_layout, cart_layout, settings_layout;
 
     private ViewPager home_vp_advertisements;
     private ArrayList<Integer> vp_arraylist = new ArrayList<>();
@@ -62,11 +62,10 @@ public class HomeActivity extends AppCompatActivity {
     final long DELAY_MS = 4000; // Delay between page changes (adjust as needed)
 
 
-    private ImageView home_profile_img, menu_profile_img, cart_profile_img, track_profile_img;
+    private ImageView home_profile_img, menu_profile_img, cart_profile_img;
 
     private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
-    private ImageView track_location_img;
     private TextView aboutUs;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
@@ -275,16 +274,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
-        menu_layout = (RelativeLayout) findViewById(R.id.menu_layout);
         cart_layout = (RelativeLayout) findViewById(R.id.cart_layout);
-        track_layout = (RelativeLayout) findViewById(R.id.track_layout);
         settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
 
 
         home_layout.setVisibility(View.VISIBLE);
-        menu_layout.setVisibility(View.GONE);
         cart_layout.setVisibility(View.GONE);
-        track_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
 
 
@@ -379,7 +374,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        track_location_img = (ImageView) findViewById(R.id.track_location_img);
+        /*
 
         track_location_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -402,7 +397,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
         try {
 
@@ -410,12 +405,9 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
 
             bottomNavigation.show(1, false); //this is default layout
-
             bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_restaurant_menu_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_shopping_cart_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_navigation_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(5, R.drawable.baseline_settings_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_shopping_cart_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_settings_24));
 
 
             meowNavigation();
@@ -441,9 +433,7 @@ public class HomeActivity extends AppCompatActivity {
                         case 1:
 
                             home_layout.setVisibility(View.VISIBLE);
-                            menu_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.GONE);
-                            track_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.GONE);
 
 
@@ -452,41 +442,15 @@ public class HomeActivity extends AppCompatActivity {
                         case 2:
 
                             home_layout.setVisibility(View.GONE);
-                            menu_layout.setVisibility(View.VISIBLE);
-                            cart_layout.setVisibility(View.GONE);
-                            track_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.VISIBLE);
                             settings_layout.setVisibility(View.GONE);
 
                             break;
-
 
                         case 3:
-
                             home_layout.setVisibility(View.GONE);
-                            menu_layout.setVisibility(View.GONE);
-                            cart_layout.setVisibility(View.VISIBLE);
-                            track_layout.setVisibility(View.GONE);
-                            settings_layout.setVisibility(View.GONE);
-
-                            break;
-
-                        case 4:
-
-                            home_layout.setVisibility(View.GONE);
-                            menu_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.GONE);
-                            track_layout.setVisibility(View.VISIBLE);
-                            settings_layout.setVisibility(View.GONE);
-
-                            break;
-
-                        case 5:
-                            home_layout.setVisibility(View.GONE);
-                            menu_layout.setVisibility(View.GONE);
-                            cart_layout.setVisibility(View.GONE);
-                            track_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.VISIBLE);
-
 
                             break;
 
