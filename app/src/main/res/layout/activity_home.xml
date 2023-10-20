@@ -7,15 +7,17 @@
     tools:context=".HomeActivity">
 
     <ScrollView
+        android:id="@+id/home_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottomNavigation"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/home_profile_img"
@@ -102,100 +104,114 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@+id/home_restaurent_rv_parent"/>
+                android:layout_below="@+id/home_restaurent_rv_parent" />
 
 
         </RelativeLayout>
 
     </ScrollView>
 
-
     <ScrollView
-        android:id="@+id/cart_layout"
+        android:id="@+id/cart_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigation"
-        android:visibility="gone">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/cart_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigation"
+            android:visibility="visible">
 
 
+        </RelativeLayout>
     </ScrollView>
 
 
-    <RelativeLayout
-        android:id="@+id/settings_layout"
+    <ScrollView
+        android:id="@+id/settings_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigation"
+        android:layout_height="wrap_content"
         android:visibility="gone">
 
-
-        <TextView
-            android:id="@+id/aboutUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/calistoga"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/contactUsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/aboutUs"
-
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Contact Us"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/settings_layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/contactUsText"
-            android:layout_marginTop="43dp">
-
-            <ImageView
-                android:id="@+id/settings_phone_img"
-                android:layout_width="60dp"
-                android:layout_height="80dp"
-                android:src="@drawable/baseline_phone_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.494" />
-
-            <ImageView
-                android:id="@+id/settings_msg_img"
-                android:layout_width="60dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/baseline_message_24"
-                app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
-                app:layout_constraintLeft_toRightOf="@+id/settings_phone_img"
-                app:layout_constraintTop_toTopOf="@+id/settings_phone_img"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:id="@+id/settings_email_img"
-                android:layout_width="60dp"
-                android:layout_height="80dp"
-                android:src="@drawable/baseline_email_24"
-                app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
-                app:layout_constraintEnd_toStartOf="@+id/settings_phone_img"
-                app:layout_constraintHorizontal_bias="0.842"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/settings_phone_img"
-                app:layout_constraintVertical_bias="1.0" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigation"
+            android:visibility="gone">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/aboutUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calistoga"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+
+            <TextView
+                android:id="@+id/contactUsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/aboutUs"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Contact Us"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/contactUsText"
+                android:layout_marginTop="43dp">
+
+                <ImageView
+                    android:id="@+id/settings_phone_img"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/baseline_phone_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.494" />
+
+                <ImageView
+                    android:id="@+id/settings_msg_img"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/baseline_message_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
+                    app:layout_constraintLeft_toRightOf="@+id/settings_phone_img"
+                    app:layout_constraintTop_toTopOf="@+id/settings_phone_img"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/settings_email_img"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/baseline_email_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/settings_phone_img"
+                    app:layout_constraintEnd_toStartOf="@+id/settings_phone_img"
+                    app:layout_constraintHorizontal_bias="0.842"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/settings_phone_img"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
