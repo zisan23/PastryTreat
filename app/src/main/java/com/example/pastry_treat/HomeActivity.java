@@ -31,10 +31,12 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
 import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
 import com.example.pastry_treat.Adapters.HomeVpAdapter;
+import com.example.pastry_treat.Adapters.OrderedItemAdapter;
 import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
+import com.example.pastry_treat.Models.OrderedItemModel;
 import com.example.pastry_treat.More.AboutUs;
 import com.example.pastry_treat.More.faq;
 import com.example.pastry_treat.More.privacy;
@@ -83,6 +85,16 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<HomeRvBtnParentModelClass> homeRvBtnParentModelClassArrayList;
     private HomeRvBtnParentAdapter homeRvBtnParentAdapter;
+
+
+
+
+
+
+
+    private RecyclerView cart_rv_orderedItems;
+    private ArrayList<OrderedItemModel> orderedItemModels = new ArrayList<>();
+    private OrderedItemAdapter menuOrderedItemAdapter;
 
 
     FirebaseAuth auth;
@@ -388,6 +400,27 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        try{
+            cart_rv_orderedItems = (RecyclerView) findViewById(R.id.cart_rv_order_menu);
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
+
+            menuOrderedItemAdapter = new OrderedItemAdapter(HomeActivity.this, orderedItemModels);
+            cart_rv_orderedItems.setLayoutManager(new LinearLayoutManager(HomeActivity.this,LinearLayoutManager.VERTICAL,false));
+            cart_rv_orderedItems.setAdapter(menuOrderedItemAdapter);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
 
 
 
