@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.LottieCompositionFactory;
 import com.airbnb.lottie.LottieListener;
 
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Button startbutton;
 
     public static final int Timer = 1000;
+
+
 
     protected void onResume() {
         super.onResume();
@@ -38,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar(); //actionbar = toolbarif (actionBar != null) {
         actionBar.hide();
-
         startbutton = findViewById(R.id.startbutton);
 
         startbutton.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 buttonanim.setVisibility(View.GONE);
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+
 
     }
 }

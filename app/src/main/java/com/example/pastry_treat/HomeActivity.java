@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.text.Layout;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -34,6 +35,9 @@ import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
+import com.example.pastry_treat.More.AboutUs;
+import com.example.pastry_treat.More.faq;
+import com.example.pastry_treat.More.privacy;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,9 +71,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private ImageView home_profile_img, menu_profile_img, cart_profile_img;
 
-    private ImageView settings_phone_img, settings_email_img, settings_msg_img;
+//    private ImageView settings_phone_img, settings_email_img, settings_msg_img;
 
-    private TextView aboutUs;
+    private Button aboutus, FAQ, Privacy, TOS, Help;
 
     private static final int PERMISSION_REQUEST_CODE = 123;
 
@@ -341,75 +345,89 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
-        settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
-        settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
-        aboutUs = findViewById(R.id.aboutUs);
+        // More Activity
 
-        aboutUs.setText("Welcome to Pastry Treat – Your Culinary Adventure Awaits!\n" +
-                "\n" +
-                "Our Story:\n" +
-                "Founded by a team of passionate food enthusiasts and tech-savvy individuals, Pastry Treat was born out of a shared love for all things sweet. We understand the allure of a perfectly flaky croissant, the temptation of a rich, creamy cheesecake, and the delight of biting into a warm, gooey chocolate chip cookie. With a deep appreciation for the craftsmanship that goes into creating these delightful treats, we set out to create an app that celebrates the world of pastries and sweets.\n" +
-                "\n" +
-                "Our Commitment:\n" +
-                "At Pastry Treat, we are committed to providing you with the tools and inspiration you need to create memorable pastry moments. We strive to make pastry-making accessible to all, from beginners taking their first steps into the kitchen to seasoned bakers looking to expand their repertoire.Satisfy your sweet cravings, one recipe at a time, with Pastry Treat – Your Culinary Adventure Awaits!\n");
+        aboutus = findViewById(R.id.aboutus);
+        FAQ = findViewById(R.id.FAQ);
+        Privacy = findViewById(R.id.Privacy);
+        TOS = findViewById(R.id.TOS);
+        Help = findViewById(R.id.Help);
 
-        settings_phone_img.setOnClickListener(new View.OnClickListener() {
+        aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = "01793704188";
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + number));
-                startActivity(callIntent);
+                Intent intent = new Intent(HomeActivity.this, AboutUs.class);
+                startActivity(intent);
+            }
+        });
+        FAQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, faq.class);
+                startActivity(intent);
             }
         });
 
-        settings_email_img.setOnClickListener(new View.OnClickListener() {
+        Privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = "ssadman8877@gmail.com";
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                emailIntent.setType("message/rfc822");
-                startActivity(Intent.createChooser(emailIntent, "Send email using:"));
+                Intent intent = new Intent(HomeActivity.this, privacy.class);
+                startActivity(intent);
             }
         });
-
-        settings_msg_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String number = "01793704188";
-                Intent messageIntent = new Intent(Intent.ACTION_SENDTO);
-                messageIntent.setData(Uri.parse("smsto:" + number));
-                startActivity(messageIntent);
-            }
-        });
-
-
-        /*
-
-        track_location_img.setOnClickListener(new View.OnClickListener() {
+        TOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                String locationUrl = "Chillox Dhanmondi";
-//                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locationUrl);
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                startActivity(mapIntent);
+            }
+        });
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
-                        openCurrentLocationInMap();
-                    } else {
-                        openCurrentLocationInMap();
-                    }
-                }
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
-*/
+
+
+
+
+//        settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
+//        settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
+//        settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
+//
+//
+//        settings_phone_img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String number = "01793704188";
+//                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+//                callIntent.setData(Uri.parse("tel:" + number));
+//                startActivity(callIntent);
+//            }
+//        });
+//
+//        settings_email_img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String email = "ssadman8877@gmail.com";
+//                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+//                emailIntent.setType("message/rfc822");
+//                startActivity(Intent.createChooser(emailIntent, "Send email using:"));
+//            }
+//        });
+//
+//        settings_msg_img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String number = "01793704188";
+//                Intent messageIntent = new Intent(Intent.ACTION_SENDTO);
+//                messageIntent.setData(Uri.parse("smsto:" + number));
+//                startActivity(messageIntent);
+//            }
+//        });
+
 
         try {
 
@@ -419,7 +437,7 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigation.show(1, false); //this is default layout
             bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
             bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_shopping_cart_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_settings_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_more_horiz_24));
 
 
             meowNavigation();
