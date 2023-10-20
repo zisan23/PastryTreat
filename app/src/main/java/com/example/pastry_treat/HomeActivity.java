@@ -252,12 +252,12 @@ public class HomeActivity extends AppCompatActivity {
 
             ArrayList<HomeRvRestaurentChildModel> featuredRestaurents = new ArrayList<>();
 
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Zisan's Hotel", "NarayanGanj", "Zisan lovesssss Riyaaaaaaaaaaaa"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
+            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
 
             ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
 
