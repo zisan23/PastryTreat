@@ -31,3 +31,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Pastry-Treat"
 include ':app'
+include ':appadmin'
