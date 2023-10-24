@@ -87,6 +87,7 @@ public class RestaurentInfoActivity extends AppCompatActivity {
                                             public void onSuccess(Object documentReference) {
                                                 Toast.makeText(RestaurentInfoActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
                                                 Intent intent = new Intent(RestaurentInfoActivity.this, RestaurentActivity.class);
+
                                                 startActivity(intent);
 
                                             }

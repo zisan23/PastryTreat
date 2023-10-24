@@ -30,13 +30,13 @@ public class RestaurentRvFoodAdapter extends RecyclerView.Adapter<RestaurentRvFo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.restaurent_child_rv_layout,null,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.restaurent_food_rv_layout,null,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.rest_iv_child_image.setImageResource(Integer.parseInt(homeRvChildModelClassList.get(position).imageUri));
+        //holder.rest_iv_child_image.setImageResource(Integer.parseInt(homeRvChildModelClassList.get(position).imageUri));
 
         holder.rest_tv_product_name.setText(homeRvChildModelClassList.get(position).productName);
 
