@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/FEINT_PINK"
+    android:background="@color/black"
     android:orientation="vertical">
 
 
@@ -21,31 +21,14 @@
         android:visibility="gone"
         android:layout_centerInParent="true"/>
 
-    <Button
-        android:id="@+id/startbutton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="96dp"
-        android:backgroundTint="@color/STRONG_PINK"
-        android:text="Let's get started"
-        />
-
-
-
-
     <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Logo"
         android:src="@drawable/logo"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>

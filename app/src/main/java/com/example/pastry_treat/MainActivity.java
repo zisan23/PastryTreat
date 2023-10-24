@@ -4,65 +4,104 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
-
-
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieComposition;
-import com.airbnb.lottie.LottieCompositionFactory;
-import com.airbnb.lottie.LottieListener;
-
-import java.util.Objects;
-
 
 public class MainActivity extends AppCompatActivity {
 
     LottieAnimationView buttonanim;
-    Button startbutton;
+    ImageView title;
+    public static final int DelayBeforeFadeIn = 500;
+    public static final int FadeInDuration = 2000;
+    public static final int StayDuration = 3000;
+    public static final int FadeOutDuration = 2000;
+    public static final int Timer = 1500;
 
-    public static final int Timer = 1000;
-
-
-
+    @Override
     protected void onResume() {
         super.onResume();
-        // Make the startbutton visible when returning to the activity
-        startbutton.setVisibility(View.VISIBLE);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar actionBar = getSupportActionBar(); //actionbar = toolbarif (actionBar != null) {
+        ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        startbutton = findViewById(R.id.startbutton);
 
-        startbutton.setOnClickListener(new View.OnClickListener() {
+        title = findViewById(R.id.title);
+        title.setVisibility(View.INVISIBLE);
+
+        // Delay before starting the fade-in animation
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                buttonanim = findViewById(R.id.buttonanim);
-                buttonanim.setVisibility(View.VISIBLE);
-                buttonanim.playAnimation();
-                startbutton.setVisibility(View.GONE);
-                new Handler().postDelayed(this::resetbutton, Timer);
+            public void run() {
+                startFadeIn();
+            }
+        }, DelayBeforeFadeIn);
+    }
+
+    private void startFadeIn() {
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        fadeIn.setDuration(FadeInDuration);
+        fadeIn.setFillAfter(true);
+
+        AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
+        fadeOut.setStartOffset(FadeInDuration + StayDuration);
+        fadeOut.setDuration(FadeOutDuration);
+        fadeOut.setFillAfter(true);
+
+        AnimationSet animationSet = new AnimationSet(true);
+        animationSet.addAnimation(fadeIn);
+        animationSet.addAnimation(fadeOut);
+
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
             }
 
-            private void resetbutton(){
-                buttonanim.pauseAnimation();;
-                buttonanim.setVisibility(View.GONE);
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Start the Lottie animation after fade-out
+                startLottieAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
             }
         });
 
+        title.startAnimation(animationSet);
 
+    }
+
+    private void startLottieAnimation() {
+        buttonanim = findViewById(R.id.buttonanim);
+        buttonanim.setVisibility(View.VISIBLE);
+        buttonanim.playAnimation();
+
+        // Delay the reset of the button
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                resetButton();
+            }
+        }, Timer);
+    }
+
+    private void resetButton() {
+        buttonanim.pauseAnimation();
+        buttonanim.setVisibility(View.GONE);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
