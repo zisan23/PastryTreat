@@ -47,17 +47,27 @@
         app:layout_constraintTop_toBottomOf="@+id/restName" />
 
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rest_rv_parent"
+        android:id="@+id/rest_rv"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="8dp"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/restAddress"
-        tools:layout_editor_absoluteX="39dp">
+        app:layout_constraintTop_toBottomOf="@+id/addItemBtn"
+        tools:layout_editor_absoluteX="7dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/addItemBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Add Items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restAddress" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
