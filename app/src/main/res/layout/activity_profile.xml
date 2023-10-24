@@ -5,38 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="@color/FEINT_PINK">
+    android:background="@color/OFF_WHITE">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_pic"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@drawable/zuck_smiling_new"
+        android:src="@drawable/user"
         />
-
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mark Zuckerberg"
-        android:layout_below="@id/profile_pic"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/profile_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_name"
-        android:text="zucktheking@gmail.com"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"/>
-
-
 
 
     <androidx.cardview.widget.CardView
@@ -46,15 +24,36 @@
         android:layout_marginTop="278dp"
         app:cardCornerRadius="@android:dimen/app_icon_size"
         android:layout_centerHorizontal="true"
-
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
             >
 
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User name"
+                android:layout_below="@id/profile_pic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
 
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_name"
+                android:text="User Email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
 

@@ -117,8 +117,9 @@ public class ProfileActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish();
+                    //finish();
                 }
             });
         }
@@ -135,6 +136,10 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

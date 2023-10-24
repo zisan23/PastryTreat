@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,8 +19,11 @@ import android.widget.Toast;
 import com.example.pastry_treat.LoginActivity;
 import com.example.pastry_treat.ProfileActivity;
 import com.example.pastry_treat.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,8 +39,9 @@ import java.util.Map;
 public class profile_edit_activity extends AppCompatActivity {
 
     ImageView imageView;
-    Button save_button_update;
-    EditText profile_name, password, email;
+    Button save_button_update, req;
+    EditText profile_name;
+    // EditText password, email; // Comment out the email and password fields
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -47,9 +50,9 @@ public class profile_edit_activity extends AppCompatActivity {
     DocumentReference docRef;
     StorageReference storageReference;
 
-
-    int galaryrequestCode = 1000;
+    int galleryRequestCode = 1000;
     String user_name, user_email, user_password;
+    private static final String TAG = "ProfileEditActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +79,6 @@ public class profile_edit_activity extends AppCompatActivity {
             }
         });
 
-
         if(user == null){
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
@@ -86,12 +88,9 @@ public class profile_edit_activity extends AppCompatActivity {
             imageView = findViewById(R.id.imageView);
             save_button_update = findViewById(R.id.save_button_update);
             profile_name = findViewById(R.id.profile_name);
-            password = findViewById(R.id.password);
-            email = findViewById(R.id.email);
+            req = findViewById(R.id.req);
 
             profile_name.setText(user_name);
-            email.setText(user_email);
-            password.setText(user_password);
 
             uid = user.getUid();
             docRef = db.collection("User").document(uid);
@@ -99,61 +98,90 @@ public class profile_edit_activity extends AppCompatActivity {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent openGallary = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(openGallary, galaryrequestCode);
+                    Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(openGallery, galleryRequestCode);
                 }
             });
+
+            req.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseAuth.getInstance().setLanguageCode("en"); // Set the language code to English
+
+                    FirebaseAuth.getInstance()
+                            .sendPasswordResetEmail(user_email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    // Receive a response from Firebase Console
+                                }
+                            })
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Reset password email has been successfully sent to the email
+                                    Toast.makeText(profile_edit_activity.this, "Reset password request sent to your mail", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Reset password request has failed with an exception
+                                    Toast.makeText(profile_edit_activity.this, "Reset password request failed", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                }
+            });
+
 
             save_button_update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(profile_name.getText().toString().isEmpty() || password.getText().toString().isEmpty() || email.getText().toString().isEmpty()){
-                        Toast.makeText(profile_edit_activity.this, "Can not update empty fields", Toast.LENGTH_SHORT).show();
+                    if (profile_name.getText().toString().isEmpty()) {
+                        Toast.makeText(profile_edit_activity.this, "Cannot update with an empty name", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    String Email = email.getText().toString();
-                    user.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Map<String, Object> edited = new HashMap<>();
-                            edited.put("email", Email);
-                            edited.put("name", profile_name.getText().toString());
-                            edited.put("password", password.getText().toString());
-                            docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                    final String newName = profile_name.getText().toString();
+
+                    // Update the name in Firestore
+                    Map<String, Object> edited = new HashMap<>();
+                    edited.put("name", newName);
+
+                    docRef.update(edited)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
+                                    // Firestore updated successfully
                                     Toast.makeText(profile_edit_activity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                     finish();
                                 }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(profile_edit_activity.this, "Error updating Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             });
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(profile_edit_activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
                 }
             });
         }
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == galaryrequestCode){
+        if(requestCode == galleryRequestCode){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
-                uploadImagetoFirebase(imageUri);
+                uploadImageToFirebase(imageUri);
             }
         }
     }
 
-    private void uploadImagetoFirebase(Uri imageUri) {
+    private void uploadImageToFirebase(Uri imageUri) {
         StorageReference fileRef = storageReference.child("User/"+ auth.getCurrentUser().getUid()+"/Profile.png");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -165,14 +193,11 @@ public class profile_edit_activity extends AppCompatActivity {
                         Picasso.get().load(uri).into(imageView);
                     }
                 });
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onFailure(Exception e) {
                 Toast.makeText(profile_edit_activity.this, "Update failed", Toast.LENGTH_SHORT).show();
-
             }
         });
     }

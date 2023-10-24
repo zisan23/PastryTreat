@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile_Edit.profile_edit_activity"
-    android:background="@color/FEINT_PINK">
+    android:background="@color/OFF_WHITE">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/zuck_smiling_new"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/user"
         />
 
     <EditText
@@ -25,36 +25,25 @@
         android:hint="User name"
         android:textStyle="bold"
         android:textSize="15sp"
+        android:textAlignment="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:hint="Change email"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/profile_name"
-        android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:hint="Change Password"
+    <Button
+        android:id="@+id/req"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/email"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="20sp"
+        android:backgroundTint="@color/STRONG_PINK"
+        android:layout_below="@+id/profile_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
 
 
     <Button
@@ -65,7 +54,7 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:backgroundTint="@color/STRONG_PINK"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/req"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"/>
 
