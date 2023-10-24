@@ -1,5 +1,7 @@
 package com.example.appadmin;
 
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.appadmin.Models.UserModel;
+import com.example.appadmin.Models.OwnerModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,12 +39,13 @@ public class SignUpActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+        /*
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), RestaurentInfoActivity.class);
+            startActivity(intent);
             finish();
-        }
+        }*/
     }
 
 
@@ -122,8 +125,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(SignUpActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
 
-                                    firestore.collection("User").document(FirebaseAuth.getInstance().getUid())
-                                            .set(new UserModel(sUsername, sEmail, sPassword));
+                                    firestore.collection("Owner").document(FirebaseAuth.getInstance().getUid())
+                                            .set(new OwnerModel(sUsername, sEmail, sPassword));
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                             .setDisplayName(sUsername)
                                             .build();
@@ -131,10 +134,10 @@ public class SignUpActivity extends AppCompatActivity {
                                     user.updateProfile(profileUpdates);
 
 
-
-                                    //Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-                                   // startActivity(intent);
-                                    finish();
+                                    Intent intent = new Intent(SignUpActivity.this, RestaurentInfoActivity.class);
+                                    intent.putExtra("email",sEmail);
+                                    startActivity(intent);
+                                    //finish();
 
                                 } else {
                                     // If sign in fails, display a message to the user.

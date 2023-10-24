@@ -1,13 +1,13 @@
 package com.example.appadmin.Models;
 
-public class UserModel {
+public class OwnerModel {
     private String name, email, password;
 
-    public UserModel() {
+    public OwnerModel() {
 
     }
 
-    public UserModel(String name, String email, String password){
+    public OwnerModel(String name, String email, String password){
         this.name = name;
         this.email = email;
         this.password = password;

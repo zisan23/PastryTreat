@@ -10,7 +10,7 @@ pluginManagement {
             maven { url 'https://jitpack.io' }
 
         }
-        jcenter()
+        mavenCentral()
 
     }
 }
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
             maven { url 'https://jitpack.io' }
 
         }
-        jcenter()
+        mavenCentral()
     }
 }
 rootProject.name = "Pastry-Treat"
