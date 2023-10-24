@@ -1,5 +1,6 @@
 package com.example.pastry_treat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -39,13 +40,18 @@ import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
 import com.example.pastry_treat.Models.OrderedItemModel;
 import com.example.pastry_treat.More.AboutUs;
 import com.example.pastry_treat.More.faq;
+import com.example.pastry_treat.More.help;
 import com.example.pastry_treat.More.privacy;
+import com.example.pastry_treat.More.termsofservice;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -60,6 +66,7 @@ import kotlin.jvm.functions.Function1;
 public class HomeActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
+    private TextView home_tv_hiName;
 
     private RelativeLayout home_layout, settings_layout,cart_layout;
     private ScrollView home_scrollview, settings_scrollview, cart_scrollview;
@@ -161,6 +168,34 @@ public class HomeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
+        home_tv_hiName = findViewById(R.id.home_tv_hiName);
+        uid = user.getUid();
+        docRef = db.collection("User").document(uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Data for the user exists, you can access it here
+                        userName = document.getString("name");
+
+                        // Update UI with the retrieved data
+                        home_tv_hiName.setText("Hi! " + userName);
+                    } else {
+                        // Document does not exist
+                        Toast.makeText(HomeActivity.this, "Home Activity User Do Not Exists", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // An error occurred while fetching the data
+                    Toast.makeText(HomeActivity.this, "ERROR WHILE FRETCHING DATA", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
         storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference profileref = storageReference.child("User/" + auth.getCurrentUser().getUid() + "/Profile.png");
         profileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -169,6 +204,7 @@ public class HomeActivity extends AppCompatActivity {
                 Picasso.get().load(uri).into(home_profile_img);
             }
         });
+
 
         /////////////
 
@@ -390,14 +426,16 @@ public class HomeActivity extends AppCompatActivity {
         TOS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(HomeActivity.this, termsofservice.class);
+                startActivity(intent);
             }
         });
 
         Help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(HomeActivity.this, help.class);
+                startActivity(intent);
             }
         });
 
@@ -420,46 +458,6 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-
-
-
-
-
-//        settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
-//        settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
-//        settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
-//
-//
-//        settings_phone_img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String number = "01793704188";
-//                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-//                callIntent.setData(Uri.parse("tel:" + number));
-//                startActivity(callIntent);
-//            }
-//        });
-//
-//        settings_email_img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String email = "ssadman8877@gmail.com";
-//                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-//                emailIntent.setType("message/rfc822");
-//                startActivity(Intent.createChooser(emailIntent, "Send email using:"));
-//            }
-//        });
-//
-//        settings_msg_img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String number = "01793704188";
-//                Intent messageIntent = new Intent(Intent.ACTION_SENDTO);
-//                messageIntent.setData(Uri.parse("smsto:" + number));
-//                startActivity(messageIntent);
-//            }
-//        });
 
 
         try {

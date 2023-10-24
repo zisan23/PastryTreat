@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/OFF_WHITE">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/pale_green_gradient"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Help"
+            android:textAlignment="center"
+            android:textColor="@color/SEA_SHELL"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="28dp"
+                android:backgroundTint="@color/white"
+                android:layout_gravity="center"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Call us: +880 1793704188"
+                            android:padding="20dp"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:lineSpacingExtra="8sp"
+                            />
+                        <ImageButton
+                            android:id="@+id/call1"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/telephone_call"
+                            android:scaleType="fitXY"
+                            android:backgroundTint="@color/white"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="               +880 1534211977"
+                            android:padding="20dp"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:lineSpacingExtra="8sp"
+                            />
+                        <ImageButton
+                            android:id="@+id/call2"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/telephone_call"
+                            android:scaleType="fitXY"
+                            android:backgroundTint="@color/white"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email:     ssadman887@gmail.com"
+                            android:padding="20dp"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            />
+                        <ImageButton
+                            android:id="@+id/mail"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/email"
+                            android:scaleType="fitXY"
+                            android:backgroundTint="@color/white"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:backgroundTint="@color/OFF_WHITE">
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</LinearLayout>
