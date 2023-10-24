@@ -76,7 +76,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:backgroundTint="@color/OFF_WHITE ">
+                android:backgroundTint="@color/OFF_WHITE">
 
             </androidx.cardview.widget.CardView>
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -86,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         confirm_password = findViewById(R.id.confirm_password);
 
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_bar);
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +120,8 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                progressBar.setVisibility(View.VISIBLE);
+
                 mAuth.createUserWithEmailAndPassword(sEmail, sPassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -128,25 +131,34 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     // Sign in success, update UI with the signed-in user's information
 
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(SignUpActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Toast.makeText(SignUpActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
 
-                                    firestore.collection("User").document(FirebaseAuth.getInstance().getUid())
-                                            .set(new UserModel(sUsername, sEmail, sPassword));
-                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(sUsername)
-                                            .build();
+                                            firestore.collection("User").document(FirebaseAuth.getInstance().getUid())
+                                                    .set(new UserModel(sUsername, sEmail, sPassword));
+                                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                    .setDisplayName(sUsername)
+                                                    .build();
 
-                                    user.updateProfile(profileUpdates);
+                                            user.updateProfile(profileUpdates);
 
 
 
-                                    Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                                            startActivity(intent);
+                                            finish();;
+                                        }
+                                    }, 1000);
+
 
                                 } else {
                                     // If sign in fails, display a message to the user.
+
+                                    progressBar.setVisibility(View.INVISIBLE);
 
                                     Toast.makeText(SignUpActivity.this, "Authentication failed."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     switch (task.getException().toString()) {

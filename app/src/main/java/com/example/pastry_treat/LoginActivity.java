@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.transition.AutoTransition;
 import android.transition.Transition;
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
    private Button signUpBtnSelector;
 
    private Button LoginBtn;
+   private ProgressBar progress_bar;
 
    private EditText email, password;
    FirebaseAuth mAuth;
@@ -53,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         signUpBtnSelector = findViewById(R.id.signupSelectorBtn);
         LoginBtn = findViewById(R.id.loginButton);
+        progress_bar = findViewById(R.id.progress_bar);
 
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
@@ -84,25 +88,37 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                progress_bar.setVisibility(View.VISIBLE);
+
+
+
 
                 mAuth.signInWithEmailAndPassword(Lemail, Lpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intent);
-                            finish();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // This code will be executed after the delay
+                                    progress_bar.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 1000);
+
 
                         } else {
                             // If sign in fails, display a message to the user.
-
+                            progress_bar.setVisibility(View.INVISIBLE);
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
 
             }
         });
