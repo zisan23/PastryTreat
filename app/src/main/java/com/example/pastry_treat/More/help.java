@@ -1,5 +1,6 @@
 package com.example.pastry_treat.More;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,15 +21,14 @@ public class help extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
         call1 = findViewById(R.id.call1);
         call2 = findViewById(R.id.call2);
         mail = findViewById(R.id.mail);
-
-
-//
-//        settings_phone_img = (ImageView) findViewById(R.id.settings_phone_img);
-//        settings_email_img = (ImageView) findViewById(R.id.settings_email_img);
-//        settings_msg_img = (ImageView) findViewById(R.id.settings_msg_img);
 
 
         call1.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +61,6 @@ public class help extends AppCompatActivity {
                 startActivity(Intent.createChooser(emailIntent, "Send email using:"));
             }
         });
-
-
-
-
 
 
 //        settings_msg_img.setOnClickListener(new View.OnClickListener() {
