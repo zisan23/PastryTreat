@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appadmin.Adapters.FoodAdapter;
 import com.example.appadmin.Adapters.RestaurentRvFoodAdapter;
 import com.example.appadmin.Models.FoodModel;
 import com.example.appadmin.Models.RestaurentModel;
@@ -68,9 +69,8 @@ public class RestaurentActivity extends AppCompatActivity {
     FirebaseUser user;
 
     private RecyclerView recyclerView;
-    private RestaurentRvFoodAdapter adapter;
-
-    List<RestaurentRvFoodModel> foodModelList = new ArrayList<>();
+    private FoodAdapter adapter; // Custom adapter for food items
+    private List<FoodModel> foodItems = new ArrayList<>(); // List to store food items
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +78,26 @@ public class RestaurentActivity extends AppCompatActivity {
         binding = ActivityRestaurentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize and set up the RecyclerView
+        // Get the current user
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        // Initialize the RecyclerView
         recyclerView = findViewById(R.id.rest_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        adapter = new FoodAdapter(foodItems);
+        recyclerView.setAdapter(adapter);
+
 
 
         firestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
-        // Get the current user
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        // Fetch food items from Firestore
+        fetchFoodItems();
+
+
+
 
 
 
@@ -113,9 +124,6 @@ public class RestaurentActivity extends AppCompatActivity {
 
                                     restaurantId = document.getId();
 
-                                    if(restaurantId != null){
-                                        System.out.println(restaurantId + "faiak");
-                                    }
 
                                     restaurantRef = document.getReference();
 
@@ -151,7 +159,7 @@ public class RestaurentActivity extends AppCompatActivity {
                     });
         } else {
             // Handle the case where the user is not authenticated
-            Toast.makeText(RestaurentActivity.this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RestaurentActivity.this, "User not authenticated", Toast.LENGTH_LONG).show();
         }
 
 
@@ -246,10 +254,48 @@ public class RestaurentActivity extends AppCompatActivity {
         });
 
 
+    }
 
+
+
+
+
+    // Create a method to fetch food items from Firestore
+    private void fetchFoodItems() {
+        // Use FirebaseFirestore to query the food items collection from Firestore
+
+        firestore.collection("foodItems")
+                .whereEqualTo("ownerId", user.getUid()) // Filter by owner ID (you may need to adapt this)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            foodItems.clear(); // Clear existing items
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Convert Firestore document to a FoodItemModel
+                                FoodModel foodItem = document.toObject(FoodModel.class);
+                                foodItems.add(foodItem); // Add the item to the list
+                            }
+                            adapter.notifyDataSetChanged(); // Notify the adapter that data has changed
+                        } else {
+                            // Handle errors if necessary
+                            Toast.makeText(RestaurentActivity.this, "Error fetching food items", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
 
     }
+
+
+
+
+
+
+
+
 
     private void addFoodItemToFireStorePekka(StorageReference storageReference,String foodId, String itemName, String itemDescription, double itemPrice, Uri selectedImageUri) {
         storageReference.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -275,7 +321,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Object documentReference) {
                                         Toast.makeText(RestaurentActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
-
+                                        fetchFoodItems();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
