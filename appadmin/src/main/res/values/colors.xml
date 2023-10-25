@@ -16,4 +16,6 @@
     <color name="PALEGREEN">#cef7c9</color>
     <color name="LIME_GREEN">#98e49a</color>
     <color name="DARK_SILVER">#A9A9A9</color>
+    <color name="Theme_Blue">#004AAD</color>
+    <color name="test">#fffbc2</color>
 </resources>

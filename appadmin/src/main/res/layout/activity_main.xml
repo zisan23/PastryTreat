@@ -4,43 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/FEINT_PINK"
+    android:background="@color/OFF_WHITE"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/buttonanim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/button_start" />
-
-    <Button
-        android:id="@+id/startbutton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="96dp"
-        android:backgroundTint="@color/STRONG_PINK"
-        android:text="Let's get started" />
-
 
     <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
         android:contentDescription="Logo"
         android:src="@drawable/logo" />
-
 
 </RelativeLayout>
