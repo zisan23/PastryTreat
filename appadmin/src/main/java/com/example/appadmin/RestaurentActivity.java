@@ -176,7 +176,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
                 // Dexter permission request to access the gallery
                 Dexter.withContext(RestaurentActivity.this)
-                        .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .withPermission(Manifest.permission.READ_MEDIA_IMAGES)
                         .withListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
