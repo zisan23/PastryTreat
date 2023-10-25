@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/adv1" />
+        app:srcCompat="@drawable/adv1"/>
 
     <TextView
         android:id="@+id/restName"
@@ -60,14 +60,18 @@
 
     <Button
         android:id="@+id/addItemBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="Add Items"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/restAddress"
+        android:backgroundTint="@color/Theme_Blue"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

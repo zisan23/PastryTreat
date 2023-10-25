@@ -20,9 +20,10 @@
 
         <ImageView
             android:id="@+id/restInfo_iv_profile_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/baseline_add_a_photo_24" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_add_a_photo_24"
+            android:layout_gravity="center"/>
 
 
     </androidx.cardview.widget.CardView>
@@ -32,10 +33,12 @@
         android:id="@+id/restInfo_btn_uploadImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:text="Upload Image"
-        app:layout_constraintBottom_toTopOf="@+id/restInfo_et_restName"
-        tools:layout_editor_absoluteX="10dp"
-        android:layout_marginBottom="90dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/restInfo_cv_selectPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/Theme_Blue"/>
 
     <EditText
         android:id="@+id/restInfo_et_restName"
@@ -43,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="Restaurent Name"
+        android:textSize="28dp"
         android:paddingStart="20sp"
         android:textStyle="bold"
         android:singleLine="true"
@@ -61,6 +65,7 @@
         android:hint="Location"
         android:paddingStart="20sp"
         android:textStyle="bold"
+        android:textSize="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restInfo_et_restName" />
@@ -74,7 +79,9 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restInfo_et_restLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/restInfo_et_restLocation"
+        android:backgroundTint="@color/Theme_Blue"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
