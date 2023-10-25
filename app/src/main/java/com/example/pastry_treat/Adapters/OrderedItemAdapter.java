@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pastry_treat.Models.OrderedItemModel;
 import com.example.pastry_treat.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,13 +37,15 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OrderedItemAdapter.ViewHolder holder, int position) {
-        holder.cart_rv_menu_item_img.setImageResource(orderedItemModelList.get(position).getImage());
+        //holder.cart_rv_menu_item_img.setImageResource(orderedItemModelList.get(position).getImage());
+
+        Picasso.get().load(orderedItemModelList.get(position).getImageUri());
 
         holder.cart_rv_menu_foodName.setText(orderedItemModelList.get(position).getFoodName());
 
         holder.cart_rv_menu_Restaurent.setText(orderedItemModelList.get(position).getRestaurentName());
 
-        holder.cart_rv_menu_price.setText(Integer.toString(orderedItemModelList.get(position).getTotalPrice()));
+        holder.cart_rv_menu_price.setText(Double.toString(orderedItemModelList.get(position).getTotalPrice()));
 
         holder.cart_rv_menu_quantity.setText(Integer.toString(orderedItemModelList.get(position).getQuantity()));
 

@@ -1,24 +1,57 @@
 package com.example.pastry_treat.Models;
 
 public class OrderedItemModel {
-    private Integer image;
+    private String imageUri;
+    private String ownerId, foodId, buyerId;
     private String foodName, restaurentName;
-    private Integer totalPrice, quantity;
+    private Integer quantity;
+    private Double totalPrice;
 
-    public OrderedItemModel(Integer image, String foodName, String restaurentName, Integer totalPrice, Integer quantity) {
-        this.image = image;
+
+    public OrderedItemModel() {
+    }
+
+    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String foodName, String restaurentName, Integer quantity, Double totalPrice) {
+        this.imageUri = imageUri;
+        this.ownerId = ownerId;
+        this.foodId = foodId;
+        this.buyerId = buyerId;
         this.foodName = foodName;
         this.restaurentName = restaurentName;
-        this.totalPrice = totalPrice;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
     }
 
-    public Integer getImage() {
-        return image;
+    public String getBuyerId() {
+        return buyerId;
     }
 
-    public void setImage(Integer image) {
-        this.image = image;
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(String foodId) {
+        this.foodId = foodId;
     }
 
     public String getFoodName() {
@@ -37,11 +70,11 @@ public class OrderedItemModel {
         this.restaurentName = restaurentName;
     }
 
-    public Integer getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
