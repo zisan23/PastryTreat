@@ -11,6 +11,7 @@
         android:padding="10dp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cart_cv"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:backgroundTint="@color/FEINT_PINK"

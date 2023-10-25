@@ -477,6 +477,7 @@ public class HomeActivity extends AppCompatActivity {
                                     return;
                                 }
                                 Double totalPrice = documentSnapshot.getDouble("totalPrice");
+                                String orderId = documentSnapshot.getString("orderId");
 
 
 
@@ -502,6 +503,7 @@ public class HomeActivity extends AppCompatActivity {
                                 orderedItem.setFoodName(foodName);
                                 orderedItem.setQuantity(quantity);
                                 orderedItem.setTotalPrice(totalPrice);
+                                orderedItem.setOrderId(orderId);
 
                                 orderedItemModels.add(orderedItem);
 
