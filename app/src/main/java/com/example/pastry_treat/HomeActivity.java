@@ -415,7 +415,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-       ShowOrdersRecyclerView();
+       //ShowOrdersRecyclerView();
 
 
 
@@ -536,13 +536,13 @@ public class HomeActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(HomeActivity.this, "restaurants not loaded", Toast.LENGTH_LONG).show();
+                            Toast.makeText(HomeActivity.this, "orders not loaded", Toast.LENGTH_LONG).show();
                         }
                     });
 
         } catch (Exception e) {
 
-            System.out.println("home restaurant recyclerview not working");
+            System.out.println("home cart orders recyclerview not working");
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -660,6 +660,8 @@ public class HomeActivity extends AppCompatActivity {
                             cart_scrollview.setVisibility(View.VISIBLE);
                             settings_scrollview.setVisibility(View.GONE);
 
+                            ShowOrdersRecyclerView();
+
                             break;
 
                         case 3:
@@ -687,13 +689,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private Handler handler = new Handler();
-    private int delay = 5000; // 5 seconds in milliseconds
+    private int delay = 20000; // 20 seconds in milliseconds
 
     private Runnable updateRunnable = new Runnable() {
         @Override
         public void run() {
             // Call your ShowOrdersRecyclerView() function here or put the RecyclerView update logic directly
-            ShowOrdersRecyclerView();
+            ShowRestaurantsRecyclerView();
+            //ShowOrdersRecyclerView();
             handler.postDelayed(this, delay); // Schedule the Runnable again
         }
     };

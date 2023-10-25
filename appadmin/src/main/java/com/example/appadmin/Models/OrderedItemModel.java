@@ -1,4 +1,4 @@
-package com.example.pastry_treat.Models;
+package com.example.appadmin.Models;
 
 public class OrderedItemModel {
     private String imageUri;

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,6 +67,7 @@ public class RestaurentActivity extends AppCompatActivity {
     DocumentReference restaurantRef;
     private Uri selectedImageUri;
     String restaurantId;
+    String restName;
     FirebaseUser user;
 
     private RecyclerView recyclerView;
@@ -80,6 +82,8 @@ public class RestaurentActivity extends AppCompatActivity {
 
         // Get the current user
         user = FirebaseAuth.getInstance().getCurrentUser();
+        firestore = FirebaseFirestore.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
 
 
         // Initialize the RecyclerView
@@ -90,8 +94,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
 
 
-        firestore = FirebaseFirestore.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
+
 
         // Fetch food items from Firestore
         fetchFoodItems();
@@ -116,6 +119,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
                                     // Now you have the restaurant details, you can use them as needed
                                     String restaurantName = restaurant.getRestaurentName();
+                                    restName = restaurantName;
                                     String restaurantAddress = restaurant.getLocation();
                                     String restaurantImageURL = restaurant.getProfile_image(); // Get the image URL
 
@@ -162,6 +166,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
 
         binding.addItemBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RestaurentActivity.this);
@@ -176,7 +181,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
                 // Dexter permission request to access the gallery
                 Dexter.withContext(RestaurentActivity.this)
-                        .withPermission(Manifest.permission.READ_MEDIA_IMAGES)
+                        .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .withListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -250,6 +255,15 @@ public class RestaurentActivity extends AppCompatActivity {
         });
 
 
+        binding.seeOrdersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurentActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 
@@ -308,6 +322,7 @@ public class RestaurentActivity extends AppCompatActivity {
                         food.price = itemPrice;
                         food.foodId = foodId;
                         food.imageUri = String.valueOf(uri);
+                        food.setRestaurantName(restName);
 
 
                         // Save data to Firestore

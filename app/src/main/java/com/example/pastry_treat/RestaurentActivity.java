@@ -147,6 +147,11 @@ public class RestaurentActivity extends AppCompatActivity {
         }
 
         ShowFoodItemsRecyclerView();
+
+
+
+
+
     }
 
 
@@ -171,6 +176,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                 String imageUri = documentSnapshot.getString("imageUri");
                                 String name = documentSnapshot.getString("name");
                                 Double price = documentSnapshot.getDouble("price");
+                                String rest_name = documentSnapshot.getString("restaurantName");
 
                                 //Toast.makeText(HomeActivity.this, restaurantName + " " + profileImage, Toast.LENGTH_SHORT).show();
 
@@ -182,6 +188,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                 food.setOwnerId(ownerId);
                                 food.setImageUri(imageUri);
                                 food.setPrice(price);
+                                food.setRestaurantName(rest_name);
 
                                 foodModels.add(food);
 

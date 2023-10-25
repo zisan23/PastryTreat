@@ -22,6 +22,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.UUID;
+
 public class AddToCartActivity extends AppCompatActivity {
 
     ActivityAddToCartBinding binding;
@@ -32,6 +34,8 @@ public class AddToCartActivity extends AppCompatActivity {
     String description;
     String imageUri;
     Double price;
+    String restaurantName;
+
 
     FirebaseUser user;
     FirebaseFirestore firestore;
@@ -64,6 +68,7 @@ public class AddToCartActivity extends AppCompatActivity {
         imageUri = getIntent().getStringExtra("imageUri");
         description = getIntent().getStringExtra("description");
         price = getIntent().getDoubleExtra("price", 0.0);
+        restaurantName = getIntent().getStringExtra("restaurantName");
 
         Picasso.get()
                 .load(imageUri)
@@ -101,13 +106,14 @@ public class AddToCartActivity extends AppCompatActivity {
 
                 if(quantity > 0){
                     OrderedItemModel order = new OrderedItemModel();
-
+                    String orderId = UUID.randomUUID().toString();
+                    order.setOrderId(orderId);
                     order.setFoodId(foodId);
                     order.setFoodName(foodName);
                     order.setQuantity(quantity);
                     order.setTotalPrice(total_price);
                     order.setImageUri(imageUri);
-                    order.setRestaurentName("need to implement");
+                    order.setRestaurentName(restaurantName);
                     order.setOwnerId(ownerId);
                     order.setBuyerId(user.getUid());
 

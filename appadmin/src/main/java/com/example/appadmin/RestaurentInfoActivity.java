@@ -108,7 +108,7 @@ public class RestaurentInfoActivity extends AppCompatActivity {
 
     private void UploadImage() {
         Dexter.withContext(this)
-                .withPermission(Manifest.permission.READ_MEDIA_IMAGES)
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {

@@ -61,6 +61,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodItemViewHo
                 intent.putExtra("imageUri",foodItem.getImageUri());
                 intent.putExtra("price",foodItem.getPrice());
                 intent.putExtra("description", foodItem.getDescription());
+                intent.putExtra("restaurantName", foodItem.getRestaurantName());
 
                 context.startActivity(intent);
 
