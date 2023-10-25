@@ -98,7 +98,6 @@ public class RestaurentActivity extends AppCompatActivity {
 
 
 
-
         if (user != null) {
             // Get the user's unique ID
             String userId = user.getUid();
@@ -194,7 +193,6 @@ public class RestaurentActivity extends AppCompatActivity {
 
                             @Override
                             public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-                                // Handle permission denied
                                 Toast.makeText(RestaurentActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
                             }
 

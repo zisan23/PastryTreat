@@ -8,10 +8,10 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profileImage"
         android:layout_width="410dp"
         android:layout_height="214dp"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/adv1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/restName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -31,10 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/restAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -44,27 +44,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/restName" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/addToWishList"
         android:layout_width="33dp"
         android:layout_height="38dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/restName"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
         app:srcCompat="@drawable/ic_heart_24dp" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_rv_parent"
+        android:id="@+id/rest_rv"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_marginTop="52dp"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/restAddress"
         tools:layout_editor_absoluteX="39dp">
 
     </androidx.recyclerview.widget.RecyclerView>

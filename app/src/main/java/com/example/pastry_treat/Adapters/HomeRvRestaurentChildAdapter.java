@@ -38,7 +38,7 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeRvRestaurentChildAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HomeRvRestaurentChildAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.home_cv_RvRestaurent_childItem.setOnClickListener(new View.OnClickListener() {
             @Override

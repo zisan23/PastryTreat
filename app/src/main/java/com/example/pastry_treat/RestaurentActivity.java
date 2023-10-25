@@ -1,39 +1,59 @@
 package com.example.pastry_treat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.pastry_treat.Adapters.FoodAdapter;
+import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
 import com.example.pastry_treat.Adapters.RestaurentRvParentAdapter;
+import com.example.pastry_treat.Models.FoodModel;
+import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
+import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
+import com.example.pastry_treat.Models.RestaurentModel;
 import com.example.pastry_treat.Models.RestaurentRvChildModel;
 import com.example.pastry_treat.Models.RestaurentRvParentModel;
+import com.example.pastry_treat.databinding.ActivityRestaurentBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RestaurentActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView_parent;
-    private ArrayList<RestaurentRvChildModel> top_products;
+    ActivityRestaurentBinding binding;
+    FirebaseFirestore firestore;
+    FirebaseStorage firebaseStorage;
+    DocumentReference restaurantRef;
+    private Uri selectedImageUri;
+    String restaurantId;
+    FirebaseUser user;
+    String userId;
 
-    private ArrayList<RestaurentRvChildModel> you_may_like_it;
-    private ArrayList<RestaurentRvChildModel> popular_products;
-    private ArrayList<RestaurentRvChildModel> best_deals;
-    //////best deals is not showing!!!!????
-
-
-    private ArrayList<RestaurentRvParentModel> homeRvParentModelClassArrayList;
-
-    private RestaurentRvParentAdapter homeRvParentAdapter;
+    private RecyclerView recyclerView;
 
 
-    //delete these later
-    private String sn = "Cheese Cake";
-    private String sd = "Product description goes here. Provide details about the delicious dessert.";
-    private Double sp = 420.69;
+    private String ownerId;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -41,79 +61,209 @@ public class RestaurentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurent);
 
+        binding = ActivityRestaurentBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         ActionBar actionBar = getSupportActionBar(); //actionbar = toolbar
         if (actionBar != null) {
             actionBar.hide();
         }
 
+        ownerId = getIntent().getStringExtra("ownerId");
+
+        // Get the current user
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        // Get the user's unique ID
+        assert user != null;
+        userId = user.getUid();
+
+        // Initialize the RecyclerView
+        recyclerView = findViewById(R.id.rest_rv);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
 
+
+        firestore = FirebaseFirestore.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+
+        // Fetch food items from Firestore
+        //fetchFoodItems();
+
+
+
+        if (user != null) {
+            // Query the Firestore to retrieve the restaurant associated with the user
+            firestore.collection("restaurants")
+                    .whereEqualTo("ownerId", ownerId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Process the user's restaurant data
+                                    RestaurentModel restaurant = document.toObject(RestaurentModel.class);
+
+                                    // Now you have the restaurant details, you can use them as needed
+                                    String restaurantName = restaurant.getRestaurentName();
+                                    String restaurantAddress = restaurant.getLocation();
+                                    String restaurantImageURL = restaurant.getProfile_image(); // Get the image URL
+
+                                    restaurantId = document.getId();
+
+
+                                    restaurantRef = document.getReference();
+
+                                    // Display restaurant information in your UI
+                                    binding.restName.setText(restaurantName);
+                                    binding.restAddress.setText(restaurantAddress);
+
+                                    // Load the restaurant image using Picasso with error handling
+                                    Picasso.get()
+                                            .load(restaurantImageURL)
+                                            .into(binding.profileImage, new Callback() {
+                                                @Override
+                                                public void onSuccess() {
+                                                    // Image loaded successfully
+                                                    Toast.makeText(RestaurentActivity.this, "Image Loaded Successfully", Toast.LENGTH_LONG).show();
+                                                }
+
+                                                @Override
+                                                public void onError(Exception e) {
+                                                    // Handle image loading error
+                                                    // You can set a placeholder image or show an error message
+                                                    binding.profileImage.setImageResource(R.drawable.adv1); // Set a placeholder image
+                                                    Toast.makeText(RestaurentActivity.this, "Error loading image", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
+                                }
+                            } else {
+                                // Handle errors if necessary
+                                Toast.makeText(RestaurentActivity.this, "Error fetching restaurant data", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            // Handle the case where the user is not authenticated
+            Toast.makeText(RestaurentActivity.this, "User not authenticated", Toast.LENGTH_LONG).show();
+        }
+
+        ShowFoodItemsRecyclerView();
+    }
+
+
+    // Create a method to fetch food items from Firestore
+    /*
+    private void fetchFoodItems() {
+        // Use FirebaseFirestore to query the food items collection from Firestore
+
+        firestore.collection("foodItems")
+                .whereEqualTo("ownerId", ownerId) // Filter by owner ID (you may need to adapt this)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            foodItems.clear(); // Clear existing items
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Convert Firestore document to a FoodItemModel
+                                FoodModel foodItem = document.toObject(FoodModel.class);
+                                foodItems.add(foodItem); // Add the item to the list
+                            }
+                            adapter.notifyDataSetChanged(); // Notify the adapter that data has changed
+                        } else {
+                            // Handle errors if necessary
+                            Toast.makeText(RestaurentActivity.this, "Error fetching food items", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+    }
+*/
+
+
+    private void ShowFoodItemsRecyclerView(){
         try {
-            recyclerView_parent = (RecyclerView) findViewById(R.id.home_rv_parent);
 
-            top_products = new ArrayList<>();
-            you_may_like_it = new ArrayList<>();
-            popular_products = new ArrayList<>();
-            best_deals = new ArrayList<>();
+            ArrayList<FoodModel> foodModels = new ArrayList<>();
 
+            CollectionReference restaurantsCollection = firestore.collection("foodItems");
 
+            // Query to retrieve all documents in the collection
+            restaurantsCollection
+                    .whereEqualTo("ownerId",ownerId)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @SuppressLint("NotifyDataSetChanged")
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                String foodId = documentSnapshot.getString("foodId");
+                                String description = documentSnapshot.getString("description");
+                                String imageUri = documentSnapshot.getString("imageUri");
+                                String name = documentSnapshot.getString("name");
+                                Double price = documentSnapshot.getDouble("price");
 
-            homeRvParentModelClassArrayList = new ArrayList<>();
+                                //Toast.makeText(HomeActivity.this, restaurantName + " " + profileImage, Toast.LENGTH_SHORT).show();
 
+                                FoodModel food = new FoodModel();
 
-            top_products.add(new RestaurentRvChildModel(R.drawable.chocobiscuit,sn,sd,sp));
-            top_products.add(new RestaurentRvChildModel(R.drawable.chococake,sn,sd,sp));
-            top_products.add(new RestaurentRvChildModel(R.drawable.waffles,sn,sd,sp));
-            top_products.add(new RestaurentRvChildModel(R.drawable.strawcupcake,sn,sd,sp));
-            top_products.add(new RestaurentRvChildModel(R.drawable.chococupcake,sn,sd,sp));
+                                food.setFoodId(foodId);
+                                food.setName(name);
+                                food.setDescription(description);
+                                food.setOwnerId(ownerId);
+                                food.setImageUri(imageUri);
+                                food.setPrice(price);
 
+                                foodModels.add(food);
 
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.moosecake,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.whitecake, sn, sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.jellycake,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.marbleee,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.crunchydelight,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.italianpudding,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.redforrest,sn,sd,sp));
-            you_may_like_it.add(new RestaurentRvChildModel(R.drawable.blackforrest,sn,sd,sp));
+                            }
+                            //Log.d("Firestore", "Number of documents retrieved: " + queryDocumentSnapshots.size());
+                            //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
 
-
-            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Top Products", top_products));
-            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("You May Also Like ", you_may_like_it));
-
-            //top_products.clear();
-            //you_may_like_it.clear();
-
-
-
-            popular_products.add(new RestaurentRvChildModel(R.drawable.dessertkababs,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.donuts,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.creamdelight,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.oreoart,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.bubbleoybillcake,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.yellowicecake,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.cheesecupcake,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.theglobecake,sn,sd,sp));
-            popular_products.add(new RestaurentRvChildModel(R.drawable.chocoberrycake,sn,sd,sp));
-
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-            best_deals.add(new RestaurentRvChildModel(R.drawable.cheesecake,sn,sd,sp));
-
-            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Popular Products", popular_products));
-            homeRvParentModelClassArrayList.add(new RestaurentRvParentModel("Best Deals", best_deals));
+                            if(foodModels.isEmpty()){
+                                Toast.makeText(RestaurentActivity.this, "food-models empty", Toast.LENGTH_LONG).show();
+                            }
 
 
-            homeRvParentAdapter = new RestaurentRvParentAdapter(homeRvParentModelClassArrayList, RestaurentActivity.this);
-            recyclerView_parent.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-            recyclerView_parent.setAdapter(homeRvParentAdapter);
-            homeRvParentAdapter.notifyDataSetChanged();
+//                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
+//
+//                            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
+//
+//                            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
+//                            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+//                            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
+//                            homeRvRestaurentParentAdapter.notifyDataSetChanged();
+
+                            FoodAdapter foodAdapter = new FoodAdapter(foodModels);
+
+                            recyclerView.setLayoutManager(new LinearLayoutManager(RestaurentActivity.this, LinearLayoutManager.HORIZONTAL,false));
+                            recyclerView.setAdapter(foodAdapter);
+                            foodAdapter.notifyDataSetChanged();
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RestaurentActivity.this, "foods not loaded", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+
+
         } catch (Exception e) {
+
+            System.out.println("home food items recyclerview not working");
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
+
+
 }
