@@ -95,21 +95,30 @@ public class AddToCartActivity extends AppCompatActivity {
         });
 
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                OrderedItemModel order = new OrderedItemModel();
 
-                order.setFoodId(foodId);
-                order.setFoodName(foodName);
-                order.setQuantity(quantity);
-                order.setTotalPrice(total_price);
-                order.setImageUri(imageUri);
-                order.setRestaurentName("need to implement");
-                order.setOwnerId(ownerId);
-                order.setBuyerId(user.getUid());
+                if(quantity > 0){
+                    OrderedItemModel order = new OrderedItemModel();
+
+                    order.setFoodId(foodId);
+                    order.setFoodName(foodName);
+                    order.setQuantity(quantity);
+                    order.setTotalPrice(total_price);
+                    order.setImageUri(imageUri);
+                    order.setRestaurentName("need to implement");
+                    order.setOwnerId(ownerId);
+                    order.setBuyerId(user.getUid());
 
 
-                addToCartFireStorePekka(order);
+                    addToCartFireStorePekka(order);
+                }
+                else{
+                    Toast.makeText(AddToCartActivity.this, "order some", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 

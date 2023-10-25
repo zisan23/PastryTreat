@@ -102,9 +102,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    private RecyclerView cart_rv_orderedItems;
-    private ArrayList<OrderedItemModel> orderedItemModels = new ArrayList<>();
-    private OrderedItemAdapter menuOrderedItemAdapter;
 
 
     FirebaseAuth auth;
@@ -416,23 +413,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        try{
-//            cart_rv_orderedItems = (RecyclerView) findViewById(R.id.cart_rv_order_menu);
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//            orderedItemModels.add(new OrderedItemModel(R.drawable.cheesecake,"Cheese Cake","ZisanXRiyaHotel",10000,10));
-//
-//            menuOrderedItemAdapter = new OrderedItemAdapter(HomeActivity.this, orderedItemModels);
-//            cart_rv_orderedItems.setLayoutManager(new LinearLayoutManager(HomeActivity.this,LinearLayoutManager.VERTICAL,false));
-//            cart_rv_orderedItems.setAdapter(menuOrderedItemAdapter);
 
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
+
+       ShowOrdersRecyclerView();
+
+
+
 
 
         try {
@@ -454,6 +440,116 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
+    private void ShowOrdersRecyclerView(){
+        try {
+            RecyclerView cart_rv_orderedItems = (RecyclerView) findViewById(R.id.cart_rv_order_menu);
+            ArrayList<OrderedItemModel> orderedItemModels = new ArrayList<>();
+
+
+
+            // Get a reference to the Firestore collection
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            CollectionReference restaurantsCollection = firestore.collection("orders");
+
+            // Query to retrieve all documents in the collection
+            restaurantsCollection
+                    .whereEqualTo("buyerId",user.getUid())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @SuppressLint("NotifyDataSetChanged")
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                String buyerId = documentSnapshot.getString("buyerId");
+                                String ownerId = documentSnapshot.getString("ownerId");
+                                String imageUri = documentSnapshot.getString("imageUri");
+                                String restaurantName = documentSnapshot.getString("restaurentName");
+                                String foodId = documentSnapshot.getString("foodId");
+                                String foodName = documentSnapshot.getString("foodName");
+                                Long quantityLong = documentSnapshot.getLong("quantity");
+                                int quantity = 0;
+                                if (quantityLong != null) {
+                                    quantity = quantityLong.intValue();
+
+                                } else {
+                                    Toast.makeText(HomeActivity.this, "QUANTITY PROBLEM", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                Double totalPrice = documentSnapshot.getDouble("totalPrice");
+
+
+
+                                //Toast.makeText(HomeActivity.this, restaurantName + " " + profileImage, Toast.LENGTH_SHORT).show();
+
+//                                HomeRvRestaurentChildModel restaurent = new HomeRvRestaurentChildModel();
+//
+//                                restaurent.setName(restaurantName);
+//                                restaurent.setAddress(location);
+//                                restaurent.setImage(profileImage);
+//                                restaurent.setShortDescription("description needs to be added");
+//                                restaurent.setOwnerId(ownerId);
+//
+//                                featuredRestaurents.add(restaurent);
+
+                                OrderedItemModel orderedItem = new OrderedItemModel();
+
+                                orderedItem.setBuyerId(buyerId);
+                                orderedItem.setOwnerId(ownerId);
+                                orderedItem.setImageUri(imageUri);
+                                orderedItem.setRestaurentName(restaurantName);
+                                orderedItem.setFoodId(foodId);
+                                orderedItem.setFoodName(foodName);
+                                orderedItem.setQuantity(quantity);
+                                orderedItem.setTotalPrice(totalPrice);
+
+                                orderedItemModels.add(orderedItem);
+
+                            }
+                            //Log.d("Firestore", "Number of documents retrieved: " + queryDocumentSnapshots.size());
+                            //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
+
+                            if(orderedItemModels.isEmpty()){
+                                Toast.makeText(HomeActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
+                            }
+
+//
+//                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
+//
+//                            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
+//
+//                            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
+//                            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+//                            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
+//                            homeRvRestaurentParentAdapter.notifyDataSetChanged();
+
+                            OrderedItemAdapter orderedItemAdapter = new OrderedItemAdapter(HomeActivity.this,
+                                    orderedItemModels);
+                            cart_rv_orderedItems.setLayoutManager(new LinearLayoutManager(HomeActivity.this
+                            ,LinearLayoutManager.VERTICAL,false));
+                            cart_rv_orderedItems.setAdapter(orderedItemAdapter);
+                            orderedItemAdapter.notifyDataSetChanged();
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(HomeActivity.this, "restaurants not loaded", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+        } catch (Exception e) {
+
+            System.out.println("home restaurant recyclerview not working");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 
@@ -589,6 +685,29 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+
+    private Handler handler = new Handler();
+    private int delay = 5000; // 5 seconds in milliseconds
+
+    private Runnable updateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            // Call your ShowOrdersRecyclerView() function here or put the RecyclerView update logic directly
+            ShowOrdersRecyclerView();
+            handler.postDelayed(this, delay); // Schedule the Runnable again
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Start the recurring update when the activity is resumed
+        handler.postDelayed(updateRunnable, delay);
+    }
+
+
+
 
     @Override
     protected void onPause() {
