@@ -45,7 +45,6 @@ public class RestaurentActivity extends AppCompatActivity {
     FirebaseFirestore firestore;
     FirebaseStorage firebaseStorage;
     DocumentReference restaurantRef;
-    private Uri selectedImageUri;
     String restaurantId;
     FirebaseUser user;
     String userId;
@@ -86,8 +85,6 @@ public class RestaurentActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
-        // Fetch food items from Firestore
-        //fetchFoodItems();
 
 
 
@@ -153,38 +150,6 @@ public class RestaurentActivity extends AppCompatActivity {
     }
 
 
-    // Create a method to fetch food items from Firestore
-    /*
-    private void fetchFoodItems() {
-        // Use FirebaseFirestore to query the food items collection from Firestore
-
-        firestore.collection("foodItems")
-                .whereEqualTo("ownerId", ownerId) // Filter by owner ID (you may need to adapt this)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            foodItems.clear(); // Clear existing items
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                // Convert Firestore document to a FoodItemModel
-                                FoodModel foodItem = document.toObject(FoodModel.class);
-                                foodItems.add(foodItem); // Add the item to the list
-                            }
-                            adapter.notifyDataSetChanged(); // Notify the adapter that data has changed
-                        } else {
-                            // Handle errors if necessary
-                            Toast.makeText(RestaurentActivity.this, "Error fetching food items", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-
-    }
-*/
-
-
     private void ShowFoodItemsRecyclerView(){
         try {
 
@@ -239,7 +204,7 @@ public class RestaurentActivity extends AppCompatActivity {
 //                            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
 //                            homeRvRestaurentParentAdapter.notifyDataSetChanged();
 
-                            FoodAdapter foodAdapter = new FoodAdapter(foodModels);
+                            FoodAdapter foodAdapter = new FoodAdapter(RestaurentActivity.this,foodModels);
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(RestaurentActivity.this, LinearLayoutManager.HORIZONTAL,false));
                             recyclerView.setAdapter(foodAdapter);
