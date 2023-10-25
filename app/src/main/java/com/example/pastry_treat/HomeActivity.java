@@ -15,10 +15,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Layout;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -46,13 +45,17 @@ import com.example.pastry_treat.More.termsofservice;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -157,6 +160,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
+
     /////////OnCreate() method //////
 
     @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
@@ -194,7 +199,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        ShowRestaurantsRecyclerView();
 
         storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference profileref = storageReference.child("User/" + auth.getCurrentUser().getUid() + "/Profile.png");
@@ -294,36 +299,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        try {
-            RecyclerView home_restaurent_rv_parent = (RecyclerView) findViewById(R.id.home_restaurent_rv_parent);
-
-            ArrayList<HomeRvRestaurentChildModel> featuredRestaurents = new ArrayList<>();
-
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv1, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-            featuredRestaurents.add(new HomeRvRestaurentChildModel(R.drawable.adv2, "Meherun's Hotel", "CTG", "Faiak er wife Meherun"));
-
-            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
-
-            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
-
-            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
-            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
-            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
-            homeRvRestaurentParentAdapter.notifyDataSetChanged();
-
-
-        } catch (Exception e) {
-
-            System.out.println("home restaurent recyclerview not working");
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-
 
         /////////////////
 
@@ -481,6 +456,81 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+
+    private void ShowRestaurantsRecyclerView(){
+        try {
+            RecyclerView home_restaurent_rv_parent = (RecyclerView) findViewById(R.id.home_restaurent_rv_parent);
+
+            ArrayList<HomeRvRestaurentChildModel> featuredRestaurents = new ArrayList<>();
+
+            // Get a reference to the Firestore collection
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            CollectionReference restaurantsCollection = firestore.collection("restaurants");
+
+            // Query to retrieve all documents in the collection
+            restaurantsCollection.get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                String location = documentSnapshot.getString("location");
+                                String ownerId = documentSnapshot.getString("ownerId");
+                                String profileImage = documentSnapshot.getString("profile_image");
+                                String restaurantName = documentSnapshot.getString("restaurentName");
+
+                                //Toast.makeText(HomeActivity.this, restaurantName + " " + profileImage, Toast.LENGTH_SHORT).show();
+
+                                HomeRvRestaurentChildModel restaurent = new HomeRvRestaurentChildModel();
+
+                                restaurent.setName(restaurantName);
+                                restaurent.setAddress(location);
+                                restaurent.setImage(profileImage);
+                                restaurent.setShortDescription("description needs to be added");
+                                restaurent.setOwnerId(ownerId);
+
+                                featuredRestaurents.add(restaurent);
+
+                            }
+                            //Log.d("Firestore", "Number of documents retrieved: " + queryDocumentSnapshots.size());
+                            //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
+
+                            if(featuredRestaurents.isEmpty()){
+                                Toast.makeText(HomeActivity.this, "featurerestaurants empty", Toast.LENGTH_LONG).show();
+                            }
+
+
+                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
+
+                            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
+
+                            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
+                            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+                            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
+                            homeRvRestaurentParentAdapter.notifyDataSetChanged();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(HomeActivity.this, "restaurants not loaded", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+
+
+        } catch (Exception e) {
+
+            System.out.println("home restaurant recyclerview not working");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     private void meowNavigation() {
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
@@ -545,6 +595,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onPause();
         // Stop the handler when the activity is paused
         VpHandler.removeCallbacksAndMessages(null);
+
     }
 
 

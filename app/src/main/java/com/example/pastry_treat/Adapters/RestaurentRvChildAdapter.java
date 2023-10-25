@@ -2,6 +2,7 @@ package com.example.pastry_treat.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pastry_treat.AddToCartActivity;
 import com.example.pastry_treat.Models.RestaurentRvChildModel;
 import com.example.pastry_treat.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -44,6 +46,10 @@ public class RestaurentRvChildAdapter extends RecyclerView.Adapter<RestaurentRvC
         holder.homenav_tv_product_description.setText(homeRvChildModelClassList.get(position).description);
 
         holder.homenav_tv_product_price.setText("$" + Double.toString(homeRvChildModelClassList.get(position).price));
+
+//        Picasso.get()
+//                .load(homeRvChildModelClassList.get(position).image)
+//                        .into(holder.homenav_iv_child_image);
 
         holder.homenav_cv_child_item.setOnClickListener(new View.OnClickListener() {
             @Override

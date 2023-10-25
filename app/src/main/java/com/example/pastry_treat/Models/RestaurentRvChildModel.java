@@ -11,4 +11,7 @@ public class RestaurentRvChildModel {
         this.description = description;
         this.price = price;
     }
+
+    public RestaurentRvChildModel() {
+    }
 }

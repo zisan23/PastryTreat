@@ -1,23 +1,37 @@
 package com.example.pastry_treat.Models;
 
 public class HomeRvRestaurentChildModel {
-    int image;
+    String image;
     String name;
     String address;
     String shortDescription;
+    String ownerId;
 
-    public HomeRvRestaurentChildModel(int image, String name, String address, String shortDescription) {
+    public HomeRvRestaurentChildModel(String image, String name, String address, String shortDescription, String ownerId) {
         this.image = image;
         this.name = name;
         this.address = address;
         this.shortDescription = shortDescription;
+        this.ownerId = ownerId;
     }
 
-    public int getImage() {
+    public HomeRvRestaurentChildModel() {
+
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

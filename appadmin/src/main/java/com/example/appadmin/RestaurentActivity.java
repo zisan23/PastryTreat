@@ -99,8 +99,6 @@ public class RestaurentActivity extends AppCompatActivity {
 
 
 
-
-
         if (user != null) {
             // Get the user's unique ID
             String userId = user.getUid();

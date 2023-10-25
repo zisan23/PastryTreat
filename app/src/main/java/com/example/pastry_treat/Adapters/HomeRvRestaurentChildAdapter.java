@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.R;
 import com.example.pastry_treat.RestaurentActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,13 +44,17 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, RestaurentActivity.class);
+                intent.putExtra("ownerId",childModelList.get(position).getOwnerId());
                 context.startActivity(intent);
             }
         });
 
 
 
-        holder.home_iv_RvRestaurent_child_img.setImageResource(childModelList.get(position).getImage());
+        //holder.home_iv_RvRestaurent_child_img.setImageResource(childModelList.get(position).getImage());
+
+        Picasso.get()
+                .load(childModelList.get(position).getImage()).into(holder.home_iv_RvRestaurent_child_img);
 
         holder.home_tv_RvRestaurent_child_restName.setText(childModelList.get(position).getName());
 
