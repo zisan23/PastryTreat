@@ -16,6 +16,9 @@
     <color name="PALEGREEN">#cef7c9</color>
     <color name="LIME_GREEN">#98e49a</color>
     <color name="DARK_SILVER">#A9A9A9</color>
+    <color name="Theme_Green">#92fe9d</color>
+    <color name="Orange">#F39C12</color>
+    <color name="Teal">#008080</color>
 
 
 </resources>

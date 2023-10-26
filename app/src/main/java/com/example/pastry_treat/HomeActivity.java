@@ -13,6 +13,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -285,17 +286,18 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ////////////// Search commented
 
-        CardView home_cv_search = (CardView) findViewById(R.id.home_cv_search);
+//        CardView home_cv_search = (CardView) findViewById(R.id.home_cv_search);
         ;
 
-        home_cv_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                startActivity(intent);
-            }
-        });
+//        home_cv_search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         /////////////////
 
@@ -324,33 +326,6 @@ public class HomeActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-
-//        dineInButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // start Dine-in activity
-//                Intent intent = new Intent(HomeActivity.this, DineInActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        takeoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // start Takeout activity
-//                Intent intent = new Intent(HomeActivity.this, TakeoutActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        deliveryButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // start Delivery activity
-//                Intent intent = new Intent(HomeActivity.this, DeliveryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
 
         home_profile_img = (ImageView) findViewById(R.id.home_profile_img);

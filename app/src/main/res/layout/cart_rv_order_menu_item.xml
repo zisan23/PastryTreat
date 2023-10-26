@@ -14,13 +14,13 @@
             android:id="@+id/cart_cv"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:backgroundTint="@color/FEINT_PINK"
             app:cardCornerRadius="28dp"
             app:cardElevation="6dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/pale_green_gradient">
 
 
                 <ImageView
@@ -61,12 +61,23 @@
                     android:id="@+id/cardView2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="48dp"
-                    android:backgroundTint="@color/ELECTRIC_RED"
-                    app:cardCornerRadius="50dp"
-                    app:cardElevation="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/Teal"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
                     android:layout_alignParentEnd="true"
                     >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Unit"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        />
 
                     <TextView
                         android:id="@+id/cart_rv_menu_quantity"
@@ -82,19 +93,34 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/cart_rv_menu_price"
+                    android:id="@+id/payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Total Payment"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
-                    android:text="$100000000"
-                    android:textColor="@color/ELECTRIC_RED"
-                    android:textSize="20sp"
+                    android:textColor="@color/Orange"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/cart_rv_menu_item_img"
                     android:layout_below="@+id/cart_rv_menu_Restaurent"
+                    />
+
+                <TextView
+                    android:id="@+id/cart_rv_menu_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="$100000000"
+                    android:textColor="@color/Orange"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/cart_rv_menu_item_img"
+                    android:layout_below="@+id/payment"
 
                     />
 

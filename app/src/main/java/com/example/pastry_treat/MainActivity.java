@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     LottieAnimationView buttonanim;
     ImageView title;
     public static final int DelayBeforeFadeIn = 500;
-    public static final int FadeInDuration = 2000;
-    public static final int StayDuration = 3000;
-    public static final int FadeOutDuration = 2000;
+    public static final int FadeInDuration = 1500;
+    public static final int StayDuration = 2000;
+    public static final int FadeOutDuration = 1500;
     public static final int Timer = 1500;
 
     @Override

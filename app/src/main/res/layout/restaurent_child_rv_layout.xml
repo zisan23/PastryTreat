@@ -10,13 +10,13 @@
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="#FFF5E0"> <!-- Use a more vibrant background color -->
+        app:cardElevation="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/card_gradient">
 
             <ImageView
                 android:id="@+id/homenav_iv_child_img"
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product Name"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Product description goes here. Provide details about the delicious dessert."
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:padding="16dp" />
 
             <TextView
@@ -51,8 +51,9 @@
                 android:text="$10.99"
                 android:textColor="@color/ELECTRIC_RED"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:paddingStart="16dp"
+                android:layout_marginBottom="15dp"
                 android:paddingTop="4dp"
                 android:paddingEnd="16dp" />
 

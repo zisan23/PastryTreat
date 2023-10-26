@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private Button signUpBtnSelector;
+
+    private TextView forgot_password;
 
     private Button LoginBtn;
 
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         signUpBtnSelector = findViewById(R.id.signupSelectorBtn);
         LoginBtn = findViewById(R.id.loginButton);
+        forgot_password = findViewById(R.id.forgot_password);
 
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email);
@@ -103,6 +107,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPassword.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }

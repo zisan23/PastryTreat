@@ -38,8 +38,17 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_gravity="center"
         android:padding="16dp"
         android:text="Select Image"
         android:backgroundTint="@color/Theme_Blue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="* image size should not exceed 2MB"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textColor="@color/hint_color"/>
 
 </LinearLayout>

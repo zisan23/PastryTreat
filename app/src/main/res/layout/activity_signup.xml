@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/light_red_gradient"
+    android:background="@drawable/pale_green_gradient"
     tools:context=".MainActivity">
 
 
@@ -51,10 +51,11 @@
                         android:layout_marginStart="0dp"
                         android:text="Log In"
                         android:gravity="center"
-                        android:textColor="@color/ELECTRIC_RED"
+                        android:textColor="@color/Theme_Green"
                         android:fontFamily="sans-serif"
                         android:background="@drawable/flag_transparent"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/signupSelectorBtn"
@@ -68,7 +69,8 @@
 
                         android:text="Sign Up"
                         android:fontFamily="sans-serif"
-                        android:backgroundTint="@color/ELECTRIC_RED"
+                        android:backgroundTint="@color/Theme_Green"
+                        android:textStyle="bold"
 
                         android:textColor="#fff"
                         android:layout_weight="1"/>
@@ -156,7 +158,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 app:cornerRadius="20dp"
-                android:backgroundTint="@color/ELECTRIC_RED"/>
+                android:backgroundTint="@color/Theme_Green"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

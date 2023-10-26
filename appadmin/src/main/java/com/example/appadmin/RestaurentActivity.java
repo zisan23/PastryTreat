@@ -62,6 +62,8 @@ import java.util.UUID;
 public class RestaurentActivity extends AppCompatActivity {
 
     ActivityRestaurentBinding binding;
+
+    private Button signout;
     FirebaseFirestore firestore;
     FirebaseStorage firebaseStorage;
     DocumentReference restaurantRef;
@@ -139,7 +141,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess() {
                                                     // Image loaded successfully
-                                                    Toast.makeText(RestaurentActivity.this, "Image Loaded Successfully", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(RestaurentActivity.this, "Welcome Chef", Toast.LENGTH_LONG).show();
                                                 }
 
                                                 @Override
@@ -181,7 +183,7 @@ public class RestaurentActivity extends AppCompatActivity {
 
                 // Dexter permission request to access the gallery
                 Dexter.withContext(RestaurentActivity.this)
-                        .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .withPermission(Manifest.permission.READ_MEDIA_IMAGES)
                         .withListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
@@ -262,6 +264,21 @@ public class RestaurentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        signout = findViewById(R.id.signout);
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+
 
 
     }
@@ -368,5 +385,9 @@ public class RestaurentActivity extends AppCompatActivity {
             }
         }
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 
 }
