@@ -392,7 +392,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-       //ShowOrdersRecyclerView();
+       ShowOrdersRecyclerView();
 
 
 
@@ -417,6 +417,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
 
     private void ShowOrdersRecyclerView(){
         try {
