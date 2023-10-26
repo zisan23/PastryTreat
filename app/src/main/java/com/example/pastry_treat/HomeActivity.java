@@ -259,32 +259,34 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        try {
-            recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
+    //button recyclerView commented
 
-            homeButtonList = new ArrayList<>();
-
-            homeRvBtnParentModelClassArrayList = new ArrayList<>();
-
-            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream"));
-            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream1"));
-            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream2"));
-            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream3"));
-            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream4"));
-
-            homeRvBtnParentModelClassArrayList.add(new HomeRvBtnParentModelClass(homeButtonList));
-
-            homeRvBtnParentAdapter = new HomeRvBtnParentAdapter(homeRvBtnParentModelClassArrayList, HomeActivity.this);
-            recyclerView_btn_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            recyclerView_btn_parent.setAdapter(homeRvBtnParentAdapter);
-            homeRvBtnParentAdapter.notifyDataSetChanged();
-
-
-        } catch (Exception e) {
-            System.out.println("Button List home recyclerview not working");
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+//        try {
+//            recyclerView_btn_parent = (RecyclerView) findViewById(R.id.home_btn_rv_parent);
+//
+//            homeButtonList = new ArrayList<>();
+//
+//            homeRvBtnParentModelClassArrayList = new ArrayList<>();
+//
+//            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream"));
+//            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream1"));
+//            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream2"));
+//            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream3"));
+//            homeButtonList.add(new HomeRvBtnChildModelClass(R.drawable.img1, "ice cream4"));
+//
+//            homeRvBtnParentModelClassArrayList.add(new HomeRvBtnParentModelClass(homeButtonList));
+//
+//            homeRvBtnParentAdapter = new HomeRvBtnParentAdapter(homeRvBtnParentModelClassArrayList, HomeActivity.this);
+//            recyclerView_btn_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+//            recyclerView_btn_parent.setAdapter(homeRvBtnParentAdapter);
+//            homeRvBtnParentAdapter.notifyDataSetChanged();
+//
+//
+//        } catch (Exception e) {
+//            System.out.println("Button List home recyclerview not working");
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+//        }
 
         ////////////// Search commented
 

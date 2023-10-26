@@ -51,7 +51,7 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
         //holder.cart_rv_menu_item_img.setImageResource(orderedItemModelList.get(position).getImage());
         String orderId = orderedItemModelList.get(position).getOrderId();
 
-        Picasso.get().load(orderedItemModelList.get(position).getImageUri());
+        Picasso.get().load(orderedItemModelList.get(position).getImageUri()).into(holder.cart_rv_menu_item_img);
 
         holder.cart_rv_menu_foodName.setText(orderedItemModelList.get(position).getFoodName());
 

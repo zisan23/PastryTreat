@@ -39,7 +39,7 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //holder.cart_rv_menu_item_img.setImageResource(orderedItemModelList.get(position).getImage());
 
-        Picasso.get().load(orderedItemModelList.get(position).getImageUri());
+        Picasso.get().load(orderedItemModelList.get(position).getImageUri()).into(holder.cart_rv_menu_item_img);
 
         holder.cart_rv_menu_foodName.setText(orderedItemModelList.get(position).getFoodName());
 
