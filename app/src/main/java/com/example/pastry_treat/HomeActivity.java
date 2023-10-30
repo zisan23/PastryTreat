@@ -495,9 +495,9 @@ public class HomeActivity extends AppCompatActivity {
                             //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
 
-                            if(orderedItemModels.isEmpty()){
-                                Toast.makeText(HomeActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
-                            }
+//                            if(orderedItemModels.isEmpty()){
+//                                Toast.makeText(HomeActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
+//                            }
 
 //
 //                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
@@ -594,7 +594,7 @@ public class HomeActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(HomeActivity.this, "restaurants not loaded", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(HomeActivity.this, "restaurants not loaded", Toast.LENGTH_LONG).show();
                         }
                     });
 

@@ -122,7 +122,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess() {
                                                     // Image loaded successfully
-                                                    Toast.makeText(RestaurentActivity.this, "Image Loaded Successfully", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(RestaurentActivity.this, "Image Loaded Successfully", Toast.LENGTH_LONG).show();
                                                 }
 
                                                 @Override
@@ -197,9 +197,9 @@ public class RestaurentActivity extends AppCompatActivity {
                             //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
 
-                            if(foodModels.isEmpty()){
-                                Toast.makeText(RestaurentActivity.this, "food-models empty", Toast.LENGTH_LONG).show();
-                            }
+//                            if(foodModels.isEmpty()){
+//                                Toast.makeText(RestaurentActivity.this, "food-models empty", Toast.LENGTH_LONG).show();
+//                            }
 
 
 //                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();

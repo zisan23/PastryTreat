@@ -108,9 +108,9 @@ public class OrderActivity extends AppCompatActivity {
                             //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
 
-                            if(orderedItemModels.isEmpty()){
-                                Toast.makeText(OrderActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
-                            }
+//                            if(orderedItemModels.isEmpty()){
+//                                Toast.makeText(OrderActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
+//                            }
 
 //
 //                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();

@@ -377,10 +377,10 @@ public class RestaurentActivity extends AppCompatActivity {
                 selectedImageUri = data.getData();
 
                 if (selectedImageUri == null) {
-                    Toast.makeText(this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to get image", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(this, "Image URI Taken", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Image uploaded", Toast.LENGTH_SHORT).show();
                 }
             }
         }

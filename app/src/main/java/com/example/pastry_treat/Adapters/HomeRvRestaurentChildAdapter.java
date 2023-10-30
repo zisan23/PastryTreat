@@ -60,7 +60,7 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
 
         holder.home_tv_RvRestaurent_child_restAddress.setText(childModelList.get(position).getAddress());
 
-        holder.home_tv_RvRestaurent_child_restDesc.setText(childModelList.get(position).getShortDescription());
+//        holder.home_tv_RvRestaurent_child_restDesc.setText(childModelList.get(position).getShortDescription());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class HomeRvRestaurentChildAdapter extends RecyclerView.Adapter<HomeRvRes
             home_iv_RvRestaurent_child_img = itemView.findViewById(R.id.home_iv_RvRestaurent_child_img);
             home_tv_RvRestaurent_child_restName = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restName);
             home_tv_RvRestaurent_child_restAddress = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restAddress);
-            home_tv_RvRestaurent_child_restDesc = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restDesc);
+//            home_tv_RvRestaurent_child_restDesc = itemView.findViewById(R.id.home_tv_RvRestaurent_child_restDesc);
 
         }
     }
