@@ -60,12 +60,10 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:label="Sign Up"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+            android:label="Sign Up" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
