@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ActionBar actionBar = getSupportActionBar(); //actionbar = toolbarif (actionBar != null) {
-        actionBar.hide();
+//        actionBar.hide();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();

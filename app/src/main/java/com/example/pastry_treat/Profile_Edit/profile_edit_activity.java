@@ -59,7 +59,7 @@ public class profile_edit_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+//        actionBar.hide();
 
         Intent data = getIntent();
         user_name = data.getStringExtra("name");

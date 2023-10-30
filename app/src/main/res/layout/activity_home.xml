@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
-    android:background="@color/SEA_SHELL"
+    android:background="@color/OFF_WHITE"
     >
 
     <ScrollView
         android:id="@+id/home_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/SEA_SHELL"
-        android:visibility="gone">
+        android:background="@color/OFF_WHITE"
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottomNavigation"
-            android:background="@color/SEA_SHELL"
+            android:background="@color/OFF_WHITE"
             android:visibility="visible">
 
             <androidx.cardview.widget.CardView
@@ -155,7 +155,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@+id/home_restaurent_rv_parent" />
+                android:layout_below="@+id/home_restaurent_rv_parent"
+                android:backgroundTint="@color/OFF_WHITE"/>
 
 
         </RelativeLayout>
@@ -166,35 +167,35 @@
         android:id="@+id/cart_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:id="@+id/cart_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="invisible">
 
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/orders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_margin="30dp"
                 app:cardCornerRadius="30dp"
-                app:cardElevation="20dp"
-                android:layout_alignParentStart="true">
+                app:cardElevation="20dp">
 
                 <TextView
                     android:id="@+id/cart_tv_your_orders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="Your Orders"
+                    android:textAlignment="center"
                     android:textColor="@color/Theme_Green"
                     android:textSize="50sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="center"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 

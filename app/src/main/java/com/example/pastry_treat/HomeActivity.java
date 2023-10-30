@@ -214,12 +214,12 @@ public class HomeActivity extends AppCompatActivity {
         home_vp_advertisements = (ViewPager) findViewById(R.id.home_vp_advertisements);
         vp_arraylist.add(R.drawable.adv1);
         vp_arraylist.add(R.drawable.adv2);
+        vp_arraylist.add(R.drawable.adv3);
+        vp_arraylist.add(R.drawable.adv4);
         vp_arraylist.add(R.drawable.adv1);
         vp_arraylist.add(R.drawable.adv2);
-        vp_arraylist.add(R.drawable.adv1);
-        vp_arraylist.add(R.drawable.adv2);
-        vp_arraylist.add(R.drawable.adv1);
-        vp_arraylist.add(R.drawable.adv2);
+        vp_arraylist.add(R.drawable.adv3);
+        vp_arraylist.add(R.drawable.adv4);
 
         HomeVpAdapter homeVpAdapter = new HomeVpAdapter(HomeActivity.this, vp_arraylist);
         home_vp_advertisements.setAdapter(homeVpAdapter);

@@ -24,6 +24,7 @@
         android:layout_marginTop="278dp"
         app:cardCornerRadius="@android:dimen/app_icon_size"
         android:layout_centerHorizontal="true"
+        app:cardElevation="6dp"
         >
 
         <LinearLayout
