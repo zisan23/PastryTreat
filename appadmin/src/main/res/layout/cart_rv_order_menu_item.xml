@@ -12,7 +12,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:backgroundTint="@color/FEINT_PINK"
             app:cardCornerRadius="28dp"
             app:cardElevation="6dp">
@@ -57,26 +57,35 @@
                     android:layout_toRightOf="@+id/cart_rv_menu_item_img"
                     android:layout_below="@+id/cart_rv_menu_foodName"
                     />
+
+                <TextView
+                    android:id="@+id/cart_rv_menu_orderID"
+                    android:layout_width="200dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Order ID"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/cart_rv_menu_item_img"
+                    android:layout_below="@+id/cart_rv_menu_Restaurent"
+
+                    />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="4dp"
                     android:backgroundTint="@color/Theme_Blue"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/cart_rv_menu_orderID"
                     >
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Unit"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textAlignment="center"
-                        />
-
 
                     <TextView
                         android:id="@+id/cart_rv_menu_quantity"
@@ -103,7 +112,7 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/cart_rv_menu_item_img"
-                    android:layout_below="@+id/cart_rv_menu_Restaurent"
+                    android:layout_below="@+id/cart_rv_menu_orderID"
                     />
 
 

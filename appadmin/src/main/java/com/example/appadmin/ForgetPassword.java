@@ -78,7 +78,6 @@ public class ForgetPassword extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(ForgetPassword.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
                 }
-                return false;
             }
         });
     }

@@ -158,7 +158,6 @@ public class RestaurentActivity extends AppCompatActivity {
                                 // Handle errors if necessary
                                 Toast.makeText(RestaurentActivity.this, "Error fetching restaurant data", Toast.LENGTH_SHORT).show();
                             }
-                            return false;
                         }
                     });
         } else {
@@ -311,7 +310,6 @@ public class RestaurentActivity extends AppCompatActivity {
                             // Handle errors if necessary
                             Toast.makeText(RestaurentActivity.this, "Error fetching food items", Toast.LENGTH_SHORT).show();
                         }
-                        return false;
                     }
                 });
 

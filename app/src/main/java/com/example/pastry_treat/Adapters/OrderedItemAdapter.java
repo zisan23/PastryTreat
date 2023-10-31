@@ -61,6 +61,8 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
 
         holder.cart_rv_menu_quantity.setText(Integer.toString(orderedItemModelList.get(position).getQuantity()));
 
+        holder.cart_rv_menu_orderID.setText("Order ID: " + orderedItemModelList.get(position).getOrderId());
+
 
 
         holder.cartCardView.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +94,7 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cart_rv_menu_item_img;
-        TextView cart_rv_menu_foodName, cart_rv_menu_Restaurent, cart_rv_menu_quantity,cart_rv_menu_price;
+        TextView cart_rv_menu_foodName, cart_rv_menu_Restaurent, cart_rv_menu_quantity,cart_rv_menu_price, cart_rv_menu_orderID;
         CardView cartCardView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -102,6 +104,7 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
             cart_rv_menu_Restaurent = itemView.findViewById(R.id.cart_rv_menu_Restaurent);
             cart_rv_menu_quantity = itemView.findViewById(R.id.cart_rv_menu_quantity);
             cart_rv_menu_price = itemView.findViewById(R.id.cart_rv_menu_price);
+            cart_rv_menu_orderID = itemView.findViewById(R.id.cart_rv_menu_orderID);
             cartCardView = itemView.findViewById(R.id.cart_cv);
         }
     }

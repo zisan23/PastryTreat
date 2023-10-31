@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -66,6 +67,9 @@ public class OrderActivity extends AppCompatActivity {
                                 String foodId = documentSnapshot.getString("foodId");
                                 String foodName = documentSnapshot.getString("foodName");
                                 Long quantityLong = documentSnapshot.getLong("quantity");
+                                String orderId = documentSnapshot.getString("orderId");
+
+
                                 int quantity = 0;
                                 if (quantityLong != null) {
                                     quantity = quantityLong.intValue();
@@ -100,6 +104,7 @@ public class OrderActivity extends AppCompatActivity {
                                 orderedItem.setFoodName(foodName);
                                 orderedItem.setQuantity(quantity);
                                 orderedItem.setTotalPrice(totalPrice);
+                                orderedItem.setOrderId(orderId);
 
                                 orderedItemModels.add(orderedItem);
 
