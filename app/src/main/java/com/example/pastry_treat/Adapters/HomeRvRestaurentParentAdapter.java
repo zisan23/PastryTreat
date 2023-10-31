@@ -19,10 +19,17 @@ import java.util.List;
 public class HomeRvRestaurentParentAdapter extends RecyclerView.Adapter<HomeRvRestaurentParentAdapter.ViewHolder> {
     Context context;
     List<HomeRvRestaurentParentModel> parentModelList;
+    boolean vertical = false;
 
     public HomeRvRestaurentParentAdapter(Context context, List<HomeRvRestaurentParentModel> parentModelList) {
         this.context = context;
         this.parentModelList = parentModelList;
+    }
+
+    public HomeRvRestaurentParentAdapter(Context context, List<HomeRvRestaurentParentModel> parentModelList, boolean vertical) {
+        this.context = context;
+        this.parentModelList = parentModelList;
+        this.vertical = vertical;
     }
 
     @NonNull
@@ -39,7 +46,14 @@ public class HomeRvRestaurentParentAdapter extends RecyclerView.Adapter<HomeRvRe
 
         HomeRvRestaurentChildAdapter childAdapter;
         childAdapter = new HomeRvRestaurentChildAdapter(parentModelList.get(position).getChildModelList(),context);
-        holder.home_restaurent_rv_child.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+        if(vertical){
+            holder.home_restaurent_rv_child.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
+        }
+        else{
+            holder.home_restaurent_rv_child.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+        }
+
+
         holder.home_restaurent_rv_child.setAdapter(childAdapter);
         childAdapter.notifyDataSetChanged();
     }

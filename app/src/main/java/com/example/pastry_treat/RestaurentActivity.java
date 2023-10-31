@@ -176,8 +176,8 @@ public class RestaurentActivity extends AppCompatActivity {
                     if(user != null && profileImageUri!= null){
                         wishList.userId = userId;
                         wishList.ownerId = ownerId;
-                        wishList.restaurantName = binding.restName.toString();
-                        wishList.restAddress = binding.restAddress.toString();
+                        wishList.restaurantName = binding.restName.getText().toString();
+                        wishList.restAddress = binding.restAddress.getText().toString();
                         wishList.liked = true;
                         wishList.imageUri = profileImageUri;
 
