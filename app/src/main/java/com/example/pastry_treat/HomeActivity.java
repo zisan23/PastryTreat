@@ -425,8 +425,9 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigation.show(1, false); //this is default layout
             bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
             bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_shopping_cart_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_more_horiz_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_heart_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_heart_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_more_horiz_24));
+
 
 
             meowNavigation();
@@ -716,20 +717,6 @@ public class HomeActivity extends AppCompatActivity {
                         case 3:
                             home_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.GONE);
-                            settings_layout.setVisibility(View.VISIBLE);
-                            wishlist_layout.setVisibility(View.GONE);
-
-                            home_scrollview.setVisibility(View.GONE);
-                            cart_scrollview.setVisibility(View.GONE);
-                            settings_scrollview.setVisibility(View.VISIBLE);
-                            wishlist_scrollview.setVisibility(View.GONE);
-
-                            break;
-
-                        case 4:
-
-                            home_layout.setVisibility(View.GONE);
-                            cart_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.GONE);
                             wishlist_layout.setVisibility(View.VISIBLE);
 
@@ -737,6 +724,20 @@ public class HomeActivity extends AppCompatActivity {
                             cart_scrollview.setVisibility(View.GONE);
                             settings_scrollview.setVisibility(View.GONE);
                             wishlist_scrollview.setVisibility(View.VISIBLE);
+
+                            break;
+
+                        case 4:
+
+                            home_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.VISIBLE);
+                            wishlist_layout.setVisibility(View.GONE);
+
+                            home_scrollview.setVisibility(View.GONE);
+                            cart_scrollview.setVisibility(View.GONE);
+                            settings_scrollview.setVisibility(View.VISIBLE);
+                            wishlist_scrollview.setVisibility(View.GONE);
 
                             ShowOrdersRecyclerView();
 

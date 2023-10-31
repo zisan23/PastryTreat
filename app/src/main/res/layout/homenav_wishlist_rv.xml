@@ -39,7 +39,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/wishlist_rv_restImage"
                 android:text="Restaurant Name"
-                android:textSize="25sp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/wishlist_rv_restAddress"
@@ -49,9 +49,11 @@
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/wishlist_rv_restImage"
                 android:layout_below="@+id/wishlist_rv_restName"
+
                 android:text="Restaurant Addresss"
-                android:textSize="19sp"
-                android:textStyle="bold" />
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#A9A9A9"/>
 
 
         </RelativeLayout>

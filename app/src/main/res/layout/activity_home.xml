@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity"
-    android:background="@color/OFF_WHITE"
-    >
+    android:background="@color/OFF_WHITE">
 
     <ScrollView
         android:id="@+id/home_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/OFF_WHITE"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <RelativeLayout
             android:id="@+id/home_layout"
@@ -21,14 +21,15 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/bottomNavigation"
             android:background="@color/OFF_WHITE"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tilecard"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_margin="30dp"
-                app:cardCornerRadius="30dp"
+                app:cardCornerRadius="20dp"
+
                 app:cardElevation="20dp"
 
                 >
@@ -52,11 +53,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:layout_gravity="start"
+                            android:layout_gravity="center|start"
                             android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
                             android:text="Hi User"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
 
                         <TextView
@@ -98,29 +100,32 @@
             </androidx.cardview.widget.CardView>
 
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/home_cv_search"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_below="@+id/tilecard"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="20dp"
-                            android:backgroundTint="@color/FEINT_PINK"
-                            android:padding="10dp"
-                            app:cardCornerRadius="25dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/home_cv_search"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tilecard"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/white"
+                android:padding="10dp"
+                app:cardCornerRadius="15dp">
 
-                            <EditText
-                                android:id="@+id/home_et_search"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:hint="Search Restaurent..."
-                                android:paddingHorizontal="10dp"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/home_et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/round_search_24"
+                    android:gravity="center"
+                    android:hint="Search Restaurent"
+                    android:paddingHorizontal="10dp"
+                    android:textAlignment="gravity"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
 
-                        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/home_vp_advertisements"
@@ -157,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_below="@+id/home_restaurent_rv_parent"
-                android:backgroundTint="@color/OFF_WHITE"/>
+                android:backgroundTint="@color/OFF_WHITE" />
 
 
         </RelativeLayout>
@@ -183,20 +188,30 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_margin="30dp"
-                app:cardCornerRadius="30dp"
+                app:cardCornerRadius="15dp"
                 app:cardElevation="20dp">
 
-                <TextView
-                    android:id="@+id/cart_tv_your_orders"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Your Orders"
-                    android:textAlignment="center"
-                    android:textColor="@color/Theme_Green"
-                    android:textSize="50sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/pale_green_gradient">
+
+                    <TextView
+                        android:id="@+id/cart_tv_your_orders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="Your Orders"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
 
             </androidx.cardview.widget.CardView>
 
@@ -374,14 +389,14 @@
         android:id="@+id/wishlist_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/wishlist_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottomNavigation"
-            android:visibility="gone">
+            android:visibility="visible">
 
 
             <androidx.cardview.widget.CardView
@@ -390,20 +405,31 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_margin="30dp"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="20dp">
+                app:cardCornerRadius="5dp"
+                app:cardElevation="20dp"
+                card_view:cardBackgroundColor="@android:color/transparent">
 
-                <TextView
-                    android:id="@+id/homenav_wishlist_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Your Favourite Restaurents"
-                    android:textAlignment="center"
-                    android:textColor="@color/Theme_Green"
-                    android:textSize="50sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/pale_green_gradient">
+
+                    <TextView
+                        android:id="@+id/homenav_wishlist_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:text="Favourite Restaurents"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
 
             </androidx.cardview.widget.CardView>
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".SearchActivity"
+    android:background="@color/OFF_WHITE">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_cv_search"
@@ -13,9 +14,9 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/FEINT_PINK"
+        android:backgroundTint="@color/white"
         android:padding="10dp"
-        app:cardCornerRadius="25dp">
+        app:cardCornerRadius="15dp">
 
         <EditText
             android:id="@+id/search_et_search"
@@ -24,7 +25,8 @@
             android:hint="Search here..."
             android:paddingHorizontal="10dp"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableRight="@drawable/round_search_24"/>
 
 
 
@@ -37,7 +39,7 @@
         android:layout_below="@+id/search_cv_search"
         android:text="Search"
         android:backgroundTint="@color/Theme_Green"
-        android:textColor="@color/ELECTRIC_RED"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp" />
 
