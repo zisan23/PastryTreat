@@ -107,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                         // An error occurred while fetching the data
                         Toast.makeText(ProfileActivity.this, "ERROR WHILE FRETCHING DATA", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
 

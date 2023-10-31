@@ -72,8 +72,8 @@ public class HomeActivity extends AppCompatActivity {
     private MeowBottomNavigation bottomNavigation;
     private TextView home_tv_hiName;
 
-    private RelativeLayout home_layout, settings_layout,cart_layout;
-    private ScrollView home_scrollview, settings_scrollview, cart_scrollview;
+    private RelativeLayout home_layout, settings_layout,cart_layout,wishlist_layout;
+    private ScrollView home_scrollview, settings_scrollview, cart_scrollview,  wishlist_scrollview;
 
     private ViewPager home_vp_advertisements;
     private ArrayList<Integer> vp_arraylist = new ArrayList<>();
@@ -194,6 +194,7 @@ public class HomeActivity extends AppCompatActivity {
                     // An error occurred while fetching the data
                     Toast.makeText(HomeActivity.this, "ERROR WHILE FRETCHING DATA", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -307,19 +308,23 @@ public class HomeActivity extends AppCompatActivity {
         home_layout = (RelativeLayout) findViewById(R.id.home_layout);
         cart_layout = (RelativeLayout) findViewById(R.id.cart_layout);
         settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
+        wishlist_layout = (RelativeLayout) findViewById(R.id.wishlist_layout);
 
 
         home_layout.setVisibility(View.VISIBLE);
         cart_layout.setVisibility(View.GONE);
         settings_layout.setVisibility(View.GONE);
+        wishlist_layout.setVisibility(View.GONE);
 
         home_scrollview = (ScrollView) findViewById(R.id.home_scrollview);
         cart_scrollview = (ScrollView) findViewById(R.id.cart_scrollview);
         settings_scrollview = (ScrollView) findViewById(R.id.settings_scrollview);
+        wishlist_scrollview = (ScrollView) findViewById(R.id.wishlist_scrollview);
 
         home_scrollview.setVisibility(View.VISIBLE);
         cart_scrollview.setVisibility(View.GONE);
         settings_scrollview.setVisibility(View.GONE);
+        wishlist_scrollview.setVisibility(View.GONE);
 
 
 
@@ -407,6 +412,7 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
             bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_shopping_cart_24));
             bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_more_horiz_24));
+            bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_heart_24));
 
 
             meowNavigation();
@@ -627,10 +633,12 @@ public class HomeActivity extends AppCompatActivity {
                             home_layout.setVisibility(View.VISIBLE);
                             cart_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.GONE);
+                            wishlist_layout.setVisibility(View.GONE);
 
                             home_scrollview.setVisibility(View.VISIBLE);
                             cart_scrollview.setVisibility(View.GONE);
                             settings_scrollview.setVisibility(View.GONE);
+                            wishlist_scrollview.setVisibility(View.GONE);
 
 
                             break;
@@ -640,10 +648,12 @@ public class HomeActivity extends AppCompatActivity {
                             home_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.VISIBLE);
                             settings_layout.setVisibility(View.GONE);
+                            wishlist_layout.setVisibility(View.GONE);
 
                             home_scrollview.setVisibility(View.GONE);
                             cart_scrollview.setVisibility(View.VISIBLE);
                             settings_scrollview.setVisibility(View.GONE);
+                            wishlist_scrollview.setVisibility(View.GONE);
 
                             ShowOrdersRecyclerView();
 
@@ -653,10 +663,26 @@ public class HomeActivity extends AppCompatActivity {
                             home_layout.setVisibility(View.GONE);
                             cart_layout.setVisibility(View.GONE);
                             settings_layout.setVisibility(View.VISIBLE);
+                            wishlist_layout.setVisibility(View.GONE);
 
                             home_scrollview.setVisibility(View.GONE);
                             cart_scrollview.setVisibility(View.GONE);
                             settings_scrollview.setVisibility(View.VISIBLE);
+                            wishlist_scrollview.setVisibility(View.GONE);
+
+                            break;
+
+                        case 4:
+
+                            home_layout.setVisibility(View.GONE);
+                            cart_layout.setVisibility(View.GONE);
+                            settings_layout.setVisibility(View.GONE);
+                            wishlist_layout.setVisibility(View.VISIBLE);
+
+                            home_scrollview.setVisibility(View.GONE);
+                            cart_scrollview.setVisibility(View.GONE);
+                            settings_scrollview.setVisibility(View.GONE);
+                            wishlist_scrollview.setVisibility(View.VISIBLE);
 
                             break;
 

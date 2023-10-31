@@ -9,17 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.pastry_treat.Adapters.FoodAdapter;
-import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
-import com.example.pastry_treat.Adapters.RestaurentRvParentAdapter;
+
 import com.example.pastry_treat.Models.FoodModel;
-import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
-import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
+
 import com.example.pastry_treat.Models.RestaurentModel;
 import com.example.pastry_treat.Models.RestaurentRvChildModel;
 import com.example.pastry_treat.Models.RestaurentRvParentModel;
+import com.example.pastry_treat.Models.WishListModel;
 import com.example.pastry_treat.databinding.ActivityRestaurentBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +39,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RestaurentActivity extends AppCompatActivity {
 
@@ -49,10 +51,15 @@ public class RestaurentActivity extends AppCompatActivity {
     FirebaseUser user;
     String userId;
 
+    private Boolean liked = false;
+    private String profileImageUri;
+
     private RecyclerView recyclerView;
 
 
     private String ownerId;
+
+    ImageView wishListHeart;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -79,11 +86,15 @@ public class RestaurentActivity extends AppCompatActivity {
         // Initialize the RecyclerView
         recyclerView = findViewById(R.id.rest_rv);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        wishListHeart = (ImageView) findViewById(R.id.addToWishList);
 
 
 
         firestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+
+
+        checkWishListPekka(ownerId,userId);
 
 
 
@@ -114,6 +125,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                     // Display restaurant information in your UI
                                     binding.restName.setText(restaurantName);
                                     binding.restAddress.setText(restaurantAddress);
+                                    profileImageUri = restaurantImageURL;
 
                                     // Load the restaurant image using Picasso with error handling
                                     Picasso.get()
@@ -139,6 +151,7 @@ public class RestaurentActivity extends AppCompatActivity {
                                 // Handle errors if necessary
                                 Toast.makeText(RestaurentActivity.this, "Error fetching restaurant data", Toast.LENGTH_SHORT).show();
                             }
+
                         }
                     });
         } else {
@@ -149,10 +162,79 @@ public class RestaurentActivity extends AppCompatActivity {
         ShowFoodItemsRecyclerView();
 
 
+        binding.addToWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(liked){
+                    Toast.makeText(getApplicationContext(),"Already added to wishlist", Toast.LENGTH_LONG).show();
+                    removeFromWishList(ownerId, userId);
+
+                }else{
+                    WishListModel wishList = new WishListModel();
+
+                    if(user != null && profileImageUri!= null){
+                        wishList.userId = userId;
+                        wishList.ownerId = ownerId;
+                        wishList.restaurantName = binding.restName.toString();
+                        wishList.restAddress = binding.restAddress.toString();
+                        wishList.liked = true;
+                        wishList.imageUri = profileImageUri;
+
+                        addToWishListFireStorePekka(wishList);
+                    }else{
+                        Toast.makeText(RestaurentActivity.this, "something wrong in wishList...not loaded", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+        });
 
 
 
     }
+
+    private void checkWishListPekka(String ownerId, String userId) {
+        if (user != null) {
+            // Query the Firestore to retrieve the restaurant associated with the user
+            firestore.collection("wishlist")
+                    .whereEqualTo("userId", userId)
+                    .whereEqualTo("ownerId", ownerId)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            boolean restaurantExistsInWishlist = false;
+
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // If a document is found, the restaurant exists in the user's wishlist
+                                    restaurantExistsInWishlist = true;
+                                    break;
+                                }
+                            } else {
+                                // Handle errors if necessary
+                                Toast.makeText(RestaurentActivity.this, "Error fetching wishlist data", Toast.LENGTH_SHORT).show();
+                            }
+
+                            // Here, you can update your UI or perform other actions based on the flag.
+                            if (restaurantExistsInWishlist) {
+                                // Restaurant exists in the wishlist
+                                wishListHeart.setImageResource(R.drawable.baseline_heart_24_red);
+                                liked = true;
+                            } else {
+                                // Restaurant does not exist in the wishlist
+                                wishListHeart.setImageResource(R.drawable.baseline_heart_24);
+                                liked = false;
+                            }
+                        }
+                    });
+        } else {
+            // Handle the case where the user is not authenticated
+            Toast.makeText(RestaurentActivity.this, "User not authenticated", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
 
     private void ShowFoodItemsRecyclerView(){
@@ -235,6 +317,68 @@ public class RestaurentActivity extends AppCompatActivity {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private void addToWishListFireStorePekka(WishListModel wishList) {
+
+        // Save data to Firestore
+        firestore.collection("wishlist")
+                .add(wishList)
+                .addOnSuccessListener(new OnSuccessListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onSuccess(Object documentReference) {
+                        //Toast.makeText(getApplicationContext(), "WishList has been added", Toast.LENGTH_LONG).show();
+                        liked = true;
+                        wishListHeart.setImageResource(R.drawable.baseline_heart_24_red);
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Error!!! wishlist could not be added", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+    }
+
+    private void removeFromWishList(String ownerId, String userId) {
+        // Query the Firestore to find and remove the restaurant from the wishlist
+        firestore.collection("wishlist")
+                .whereEqualTo("userId", userId)
+                .whereEqualTo("ownerId", ownerId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Delete the document to remove the restaurant from the wishlist
+                                document.getReference().delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Successfully removed from the wishlist
+                                                Toast.makeText(RestaurentActivity.this, "Removed from wishlist", Toast.LENGTH_SHORT).show();
+                                                liked = false;
+                                                wishListHeart.setImageResource(R.drawable.baseline_heart_24);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Handle removal failure
+                                                Toast.makeText(RestaurentActivity.this, "Error removing from wishlist", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        } else {
+                            // Handle errors if necessary
+                            Toast.makeText(RestaurentActivity.this, "Error fetching wishlist data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 

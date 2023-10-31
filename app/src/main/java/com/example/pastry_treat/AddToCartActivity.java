@@ -57,6 +57,13 @@ public class AddToCartActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+//        ActionBar actionBar = getSupportActionBar(); //actionbar = toolbar
+//        if (actionBar != null) {
+//            actionBar.hide();
+//        }
+
+       // getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+       // getSupportActionBar().setCustomView(R.drawable.custom_action_bar);
 
         foodId = getIntent().getStringExtra("foodId");
         ownerId = getIntent().getStringExtra("ownerId");

@@ -30,6 +30,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodItemViewHo
         this.context =  context;
     }
 
+    public FoodAdapter() {
+
+    }
+
     @NonNull
     @Override
     public FoodItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +59,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodItemViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddToCartActivity.class);
+
                 intent.putExtra("foodId",foodItem.getFoodId());
                 intent.putExtra("ownerId",foodItem.getOwnerId());
                 intent.putExtra("foodName",foodItem.getName());

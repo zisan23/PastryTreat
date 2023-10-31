@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/OFF_WHITE"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/home_layout"
@@ -369,6 +369,58 @@
         </RelativeLayout>
 
     </ScrollView>
+
+    <ScrollView
+        android:id="@+id/wishlist_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/wishlist_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigation"
+            android:visibility="visible">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/homenav_wishlist_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="30dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="20dp">
+
+                <TextView
+                    android:id="@+id/homenav_wishlist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Your Favourite Restaurents"
+                    android:textAlignment="center"
+                    android:textColor="@color/Theme_Green"
+                    android:textSize="50sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wishlist_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/homenav_wishlist_cv"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="150dp" />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
 
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
