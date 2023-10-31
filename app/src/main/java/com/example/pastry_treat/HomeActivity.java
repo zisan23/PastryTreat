@@ -466,18 +466,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-                                //Toast.makeText(HomeActivity.this, restaurantName + " " + profileImage, Toast.LENGTH_SHORT).show();
-
-//                                HomeRvRestaurentChildModel restaurent = new HomeRvRestaurentChildModel();
-//
-//                                restaurent.setName(restaurantName);
-//                                restaurent.setAddress(location);
-//                                restaurent.setImage(profileImage);
-//                                restaurent.setShortDescription("description needs to be added");
-//                                restaurent.setOwnerId(ownerId);
-//
-//                                featuredRestaurents.add(restaurent);
-
                                 OrderedItemModel orderedItem = new OrderedItemModel();
 
                                 orderedItem.setBuyerId(buyerId);
