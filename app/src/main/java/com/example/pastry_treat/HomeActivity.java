@@ -392,6 +392,24 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        CardView searchCV = (CardView) findViewById(R.id.home_cv_search);
+        TextView searchTv = (TextView) findViewById(R.id.home_et_search);
+
+        searchCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        searchTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
