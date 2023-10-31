@@ -33,11 +33,13 @@ import com.example.pastry_treat.Adapters.HomeRvBtnParentAdapter;
 import com.example.pastry_treat.Adapters.HomeRvRestaurentParentAdapter;
 import com.example.pastry_treat.Adapters.HomeVpAdapter;
 import com.example.pastry_treat.Adapters.OrderedItemAdapter;
+import com.example.pastry_treat.Adapters.WishListAdapter;
 import com.example.pastry_treat.Models.HomeRvBtnChildModelClass;
 import com.example.pastry_treat.Models.HomeRvBtnParentModelClass;
 import com.example.pastry_treat.Models.HomeRvRestaurentChildModel;
 import com.example.pastry_treat.Models.HomeRvRestaurentParentModel;
 import com.example.pastry_treat.Models.OrderedItemModel;
+import com.example.pastry_treat.Models.WishListModel;
 import com.example.pastry_treat.More.AboutUs;
 import com.example.pastry_treat.More.faq;
 import com.example.pastry_treat.More.help;
@@ -96,10 +98,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<HomeRvBtnParentModelClass> homeRvBtnParentModelClassArrayList;
     private HomeRvBtnParentAdapter homeRvBtnParentAdapter;
-
-
-
-
 
 
 
@@ -398,9 +396,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
        ShowOrdersRecyclerView();
-
-
-
+       ShowWishListRecyclerView();
 
 
         try {
@@ -540,7 +536,58 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    private void ShowWishListRecyclerView(){
+        try {
+            RecyclerView wishlist_rv = (RecyclerView) findViewById(R.id.wishlist_rv);
+            ArrayList<WishListModel> wishListModels = new ArrayList<>();
 
+
+
+            // Get a reference to the Firestore collection
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            CollectionReference restaurantsCollection = firestore.collection("wishlist");
+
+            // Query to retrieve all documents in the collection
+            restaurantsCollection
+                    .whereEqualTo("userId",user.getUid())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @SuppressLint("NotifyDataSetChanged")
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+
+                                WishListModel wishList = documentSnapshot.toObject(WishListModel.class);
+
+                                wishListModels.add(wishList);
+
+                            }
+
+
+                            WishListAdapter wishListAdapter = new WishListAdapter(wishListModels,HomeActivity.this);
+                            wishlist_rv.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                                    LinearLayoutManager.VERTICAL,true));
+                            wishlist_rv.setAdapter(wishListAdapter);
+                            wishListAdapter.notifyDataSetChanged();
+
+                            Toast.makeText(getApplicationContext(),"wishlists Loaded",Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(HomeActivity.this, "wishlists not loaded", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+        } catch (Exception e) {
+
+            System.out.println("home wishlist recyclerview not working");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -557,6 +604,7 @@ public class HomeActivity extends AppCompatActivity {
             // Query to retrieve all documents in the collection
             restaurantsCollection.get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @SuppressLint("NotifyDataSetChanged")
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
@@ -684,6 +732,8 @@ public class HomeActivity extends AppCompatActivity {
                             settings_scrollview.setVisibility(View.GONE);
                             wishlist_scrollview.setVisibility(View.VISIBLE);
 
+                            ShowOrdersRecyclerView();
+
                             break;
 
 
@@ -707,6 +757,7 @@ public class HomeActivity extends AppCompatActivity {
         public void run() {
             // Call your ShowOrdersRecyclerView() function here or put the RecyclerView update logic directly
             ShowRestaurantsRecyclerView();
+            //ShowWishListRecyclerView();
             //ShowOrdersRecyclerView();
             handler.postDelayed(this, delay); // Schedule the Runnable again
         }
