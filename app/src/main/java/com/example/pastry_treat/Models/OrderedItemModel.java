@@ -8,14 +8,13 @@ public class OrderedItemModel {
     private Double totalPrice;
     private String orderId;
 
+    private String buyerAddresss;
+
 
     public OrderedItemModel() {
     }
 
-
-
-
-    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String buyerAddress, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId) {
+    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId, String buyerAddresss) {
         this.imageUri = imageUri;
         this.ownerId = ownerId;
         this.foodId = foodId;
@@ -25,6 +24,15 @@ public class OrderedItemModel {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.orderId = orderId;
+        this.buyerAddresss = buyerAddresss;
+    }
+
+    public String getBuyerAddresss() {
+        return buyerAddresss;
+    }
+
+    public void setBuyerAddresss(String buyerAddresss) {
+        this.buyerAddresss = buyerAddresss;
     }
 
     public String getOrderId() {

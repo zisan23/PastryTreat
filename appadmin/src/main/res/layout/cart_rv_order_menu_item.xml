@@ -12,7 +12,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="160dp"
             android:backgroundTint="@color/FEINT_PINK"
             app:cardCornerRadius="28dp"
             app:cardElevation="6dp">
@@ -59,6 +59,22 @@
                     />
 
                 <TextView
+                    android:id="@+id/cart_rv_menu_orderAddress"
+                    android:layout_width="200dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Address to deliver"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/cart_rv_menu_item_img"
+                    android:layout_below="@+id/cart_rv_menu_Restaurent"
+
+                    />
+
+                <TextView
                     android:id="@+id/cart_rv_menu_orderID"
                     android:layout_width="200dp"
                     android:layout_height="15dp"
@@ -70,7 +86,7 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/cart_rv_menu_item_img"
-                    android:layout_below="@+id/cart_rv_menu_Restaurent"
+                    android:layout_below="@+id/cart_rv_menu_orderAddress"
 
                     />
                 <androidx.cardview.widget.CardView

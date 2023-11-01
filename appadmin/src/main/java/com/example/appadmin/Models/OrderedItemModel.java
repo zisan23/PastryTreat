@@ -2,7 +2,7 @@ package com.example.appadmin.Models;
 
 public class OrderedItemModel {
     private String imageUri;
-    private String ownerId, foodId, buyerId;
+    private String ownerId, foodId, buyerId, buyerAddress;
     private String foodName, restaurentName;
     private Integer quantity;
     private Double totalPrice;
@@ -13,16 +13,25 @@ public class OrderedItemModel {
     }
 
 
-    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId) {
+    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String buyerAddress, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId) {
         this.imageUri = imageUri;
         this.ownerId = ownerId;
         this.foodId = foodId;
         this.buyerId = buyerId;
+        this.buyerAddress = buyerAddress;
         this.foodName = foodName;
         this.restaurentName = restaurentName;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.orderId = orderId;
+    }
+
+    public String getBuyerAddress() {
+        return buyerAddress;
+    }
+
+    public void setBuyerAddress(String buyerAddress) {
+        this.buyerAddress = buyerAddress;
     }
 
     public String getOrderId() {

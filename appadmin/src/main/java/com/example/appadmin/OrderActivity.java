@@ -68,6 +68,7 @@ public class OrderActivity extends AppCompatActivity {
                                 String foodName = documentSnapshot.getString("foodName");
                                 Long quantityLong = documentSnapshot.getLong("quantity");
                                 String orderId = documentSnapshot.getString("orderId");
+                                String buyerAddress = documentSnapshot.getString("buyerAddresss");
 
 
                                 int quantity = 0;
@@ -105,27 +106,11 @@ public class OrderActivity extends AppCompatActivity {
                                 orderedItem.setQuantity(quantity);
                                 orderedItem.setTotalPrice(totalPrice);
                                 orderedItem.setOrderId(orderId);
+                                orderedItem.setBuyerAddress(buyerAddress);
 
                                 orderedItemModels.add(orderedItem);
 
                             }
-                            //Log.d("Firestore", "Number of documents retrieved: " + queryDocumentSnapshots.size());
-                            //Toast.makeText(HomeActivity.this, queryDocumentSnapshots.toString(), Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(HomeActivity.this, "Restaurants Loaded", Toast.LENGTH_SHORT).show();
-
-//                            if(orderedItemModels.isEmpty()){
-//                                Toast.makeText(OrderActivity.this, "no orders == empty", Toast.LENGTH_LONG).show();
-//                            }
-
-//
-//                            ArrayList<HomeRvRestaurentParentModel> homeRvRestaurentParentModelList = new ArrayList<>();
-//
-//                            homeRvRestaurentParentModelList.add(new HomeRvRestaurentParentModel("Featured Restaurents", featuredRestaurents));
-//
-//                            HomeRvRestaurentParentAdapter homeRvRestaurentParentAdapter = new HomeRvRestaurentParentAdapter(HomeActivity.this, homeRvRestaurentParentModelList);
-//                            home_restaurent_rv_parent.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
-//                            home_restaurent_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
-//                            homeRvRestaurentParentAdapter.notifyDataSetChanged();
 
                             OrderedItemAdapter orderedItemAdapter = new OrderedItemAdapter(OrderActivity.this,
                                     orderedItemModels);

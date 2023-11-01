@@ -12,10 +12,14 @@ import android.widget.Toast;
 
 import com.example.pastry_treat.Models.OrderedItemModel;
 import com.example.pastry_treat.databinding.ActivityAddToCartBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,10 +39,12 @@ public class AddToCartActivity extends AppCompatActivity {
     String imageUri;
     Double price;
     String restaurantName;
+    String buyerAddress;
 
 
     FirebaseUser user;
     FirebaseFirestore firestore;
+    DocumentReference docRef;
 
     Integer quantity;
     Double total_price;
@@ -52,18 +58,39 @@ public class AddToCartActivity extends AppCompatActivity {
         binding = ActivityAddToCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         quantity = 0;
         total_price = 0.0;
         firestore = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-//        ActionBar actionBar = getSupportActionBar(); //actionbar = toolbar
-//        if (actionBar != null) {
-//            actionBar.hide();
-//        }
 
-       // getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-       // getSupportActionBar().setCustomView(R.drawable.custom_action_bar);
+        String uid = user.getUid();
+        docRef = firestore.collection("User").document(uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Data for the user exists, you can access it here
+                        buyerAddress = document.getString("address");
+                    } else {
+                        // Document does not exist
+                        Toast.makeText(AddToCartActivity.this, "Home Activity User Do Not Exists", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // An error occurred while fetching the data
+                    Toast.makeText(AddToCartActivity.this, "ERROR WHILE FRETCHING DATA", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+
 
         foodId = getIntent().getStringExtra("foodId");
         ownerId = getIntent().getStringExtra("ownerId");
@@ -118,8 +145,8 @@ public class AddToCartActivity extends AppCompatActivity {
                     order.setImageUri(imageUri);
                     order.setRestaurentName(restaurantName);
                     order.setOwnerId(ownerId);
-                    order.setBuyerId(user.getUid());
-
+                    order.setBuyerAddresss(buyerAddress);
+                    order.setBuyerId(uid);
 
                     addToCartFireStorePekka(order);
                 }
