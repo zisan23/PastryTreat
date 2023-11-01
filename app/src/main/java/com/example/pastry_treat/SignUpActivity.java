@@ -6,7 +6,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,11 +37,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Button SignUpButton;
 
-    EditText username, email, password, confirm_password;
+    EditText username, email, address, password, confirm_password;
 
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
     ProgressBar progressBar;
+    private Boolean passwordVisible = false ;
+    private Boolean passwordVisible2 = false ;
 
     public void onStart() {
         super.onStart();
@@ -83,28 +87,67 @@ public class SignUpActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
 
+        address = findViewById(R.id.address);
+
         password = findViewById(R.id.password);
 
         confirm_password = findViewById(R.id.confirm_password);
 
         progressBar = findViewById(R.id.progress_bar);
 
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int Right = 2;
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() > password.getRight() - password.getCompoundDrawables()[Right].getBounds().width()) {
+                        togglePasswordVisibility();
+                        return true; // Consume the touch event
+                    }
+                }
+
+                return false; // Let the system handle typing input
+            }
+        });
+
+        confirm_password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int Right = 2;
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() > confirm_password.getRight() - confirm_password.getCompoundDrawables()[Right].getBounds().width()) {
+                        togglePasswordVisibility2();
+                        return true; // Consume the touch event
+                    }
+                }
+
+                return false; // Let the system handle typing input
+            }
+        });
+
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Zisan", "starting signup");
 
-                String sUsername, sEmail, sPassword, sConfirm_Password;
+                String sUsername, sEmail, sAddress, sPassword, sConfirm_Password;
                 progressBar.setVisibility(View.VISIBLE);
 
                 sUsername = String.valueOf( username.getText());
                 sEmail = String.valueOf(email.getText());
+                sAddress = String.valueOf(address.getText());
                 sPassword = String.valueOf(password.getText());
                 sConfirm_Password = String.valueOf(confirm_password.getText());
 
 
                 if(TextUtils.isEmpty(sUsername)){
                     Toast.makeText(SignUpActivity.this, "Enter user name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(sAddress)) {
+                    Toast.makeText(SignUpActivity.this, "Enter address", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(sEmail)){
@@ -139,7 +182,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             Toast.makeText(SignUpActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
 
                                             firestore.collection("User").document(FirebaseAuth.getInstance().getUid())
-                                                    .set(new UserModel(sUsername, sEmail, sPassword));
+                                                    .set(new UserModel(sUsername, sEmail, sAddress, sPassword));
                                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                                     .setDisplayName(sUsername)
                                                     .build();
@@ -188,4 +231,32 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+    private void togglePasswordVisibility() {
+        int selection = password.getSelectionEnd();
+        if (passwordVisible) {
+            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
+            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            passwordVisible = false;
+        } else {
+            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+            password.setTransformationMethod(null); // Clear the transformation method
+            passwordVisible = true;
+        }
+        password.setSelection(selection);
+    }
+    private void togglePasswordVisibility2() {
+        int selection = confirm_password.getSelectionEnd();
+        if (passwordVisible2) {
+            confirm_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
+            confirm_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            passwordVisible2 = false;
+        } else {
+            confirm_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+            confirm_password.setTransformationMethod(null); // Clear the transformation method
+            passwordVisible2 = true;
+        }
+        confirm_password.setSelection(selection);
+    }
+
+
 }

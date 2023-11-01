@@ -40,8 +40,7 @@ public class profile_edit_activity extends AppCompatActivity {
 
     ImageView imageView;
     Button save_button_update, req;
-    EditText profile_name;
-    // EditText password, email; // Comment out the email and password fields
+    EditText profile_name, address;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -51,8 +50,7 @@ public class profile_edit_activity extends AppCompatActivity {
     StorageReference storageReference;
 
     int galleryRequestCode = 1000;
-    String user_name, user_email, user_password;
-    private static final String TAG = "ProfileEditActivity";
+    String user_name, user_email, user_password, user_address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +63,12 @@ public class profile_edit_activity extends AppCompatActivity {
         user_name = data.getStringExtra("name");
         user_email = data.getStringExtra("email");
         user_password = data.getStringExtra("password");
+        user_address = data.getStringExtra("address");
+
+        if(user_address == null) {
+            Toast.makeText(this, user_address, Toast.LENGTH_SHORT).show();
+        }
+
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -88,9 +92,11 @@ public class profile_edit_activity extends AppCompatActivity {
             imageView = findViewById(R.id.imageView);
             save_button_update = findViewById(R.id.save_button_update);
             profile_name = findViewById(R.id.profile_name);
+            address = findViewById(R.id.address);
             req = findViewById(R.id.req);
 
             profile_name.setText(user_name);
+            address.setText(user_address);
 
             uid = user.getUid();
             docRef = db.collection("User").document(uid);
@@ -142,12 +148,19 @@ public class profile_edit_activity extends AppCompatActivity {
                         Toast.makeText(profile_edit_activity.this, "Cannot update with an empty name", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (address.getText().toString().isEmpty()) {
+                        Toast.makeText(profile_edit_activity.this, "Cannot update with an empty address", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
 
                     final String newName = profile_name.getText().toString();
+                    final String newAddress = address.getText().toString();
 
                     // Update the name in Firestore
                     Map<String, Object> edited = new HashMap<>();
                     edited.put("name", newName);
+                    edited.put("address", newAddress);
 
                     docRef.update(edited)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {

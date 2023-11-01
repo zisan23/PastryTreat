@@ -13,7 +13,9 @@ public class OrderedItemModel {
     }
 
 
-    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId) {
+
+
+    public OrderedItemModel(String imageUri, String ownerId, String foodId, String buyerId, String buyerAddress, String foodName, String restaurentName, Integer quantity, Double totalPrice, String orderId) {
         this.imageUri = imageUri;
         this.ownerId = ownerId;
         this.foodId = foodId;

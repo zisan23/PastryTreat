@@ -30,6 +30,20 @@
         android:layout_marginRight="20dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:hint="Address"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/profile_name"
+        android:layout_centerHorizontal="true"/>
+
 
 
     <Button
@@ -40,7 +54,7 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:backgroundTint="@color/Theme_Green"
-        android:layout_below="@+id/profile_name"
+        android:layout_below="@+id/address"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"/>
 
@@ -56,7 +70,7 @@
         android:backgroundTint="@color/Theme_Green"
         android:layout_below="@+id/req"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="40dp"/>
 
 
 </RelativeLayout>

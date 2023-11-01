@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
    private TextView fp;
 
    private EditText email, password;
+   private Boolean passwordVisible = false ;
    FirebaseAuth mAuth;
 
 
@@ -80,6 +84,22 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int Right = 2;
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() > password.getRight() - password.getCompoundDrawables()[Right].getBounds().width()) {
+                        togglePasswordVisibility();
+                        return true; // Consume the touch event
+                    }
+                }
+
+                return false; // Let the system handle typing input
+            }
+        });
+
 
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 progress_bar.setVisibility(View.VISIBLE);
-
-
 
 
                 mAuth.signInWithEmailAndPassword(Lemail, Lpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -132,5 +150,19 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void togglePasswordVisibility() {
+        int selection = password.getSelectionEnd();
+        if (passwordVisible) {
+            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_off_24, 0);
+            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            passwordVisible = false;
+        } else {
+            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.baseline_visibility_24, 0);
+            password.setTransformationMethod(null); // Clear the transformation method
+            passwordVisible = true;
+        }
+        password.setSelection(selection);
     }
 }

@@ -1,17 +1,28 @@
 package com.example.pastry_treat;
 
 public class UserModel {
-    private String name, email, password;
+    private String name, email, address, password;
 
     public UserModel() {
 
     }
 
-    public UserModel(String name, String email, String password){
+
+
+    public UserModel(String name, String email, String address, String password){
         this.name = name;
         this.email = email;
+        this.address = address;
         this.password = password;
 
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getName() {

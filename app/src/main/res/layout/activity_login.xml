@@ -93,6 +93,10 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:singleLine="true"
+
+                android:drawableLeft="@drawable/round_alternate_email_24"
+                android:drawablePadding="10dp"
 
                 />
 
@@ -108,7 +112,15 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:singleLine="true"
+                android:longClickable="false"
+
+                android:drawableLeft="@drawable/baseline_key_24"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+                android:drawablePadding="10dp"
                  />
+
+
 
             <TextView
                 android:id="@+id/fp"

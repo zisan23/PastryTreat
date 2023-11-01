@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user;
     String uid;
     FirebaseFirestore db;
-    String userEmail, userName, userPassword;
+    String userEmail, userName, userPassword, userAddress;
     DocumentReference docRef;
     StorageReference storageReference;
 
@@ -95,6 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
                             userName = document.getString("name");
                             userEmail = document.getString("email");
                             userPassword = document.getString("password");
+                            userAddress = document.getString("address");
 
                             // Update UI with the retrieved data
                             profile_email.setText(userEmail);
@@ -110,6 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
             });
+
 
 
             sign_out = findViewById(R.id.sign_out);
@@ -132,6 +134,7 @@ public class ProfileActivity extends AppCompatActivity {
                 intent.putExtra("name", userName);
                 intent.putExtra("email", userEmail);
                 intent.putExtra("password", userPassword);
+                intent.putExtra("address", userAddress);
                 startActivity(intent);
                 finish();
             }
