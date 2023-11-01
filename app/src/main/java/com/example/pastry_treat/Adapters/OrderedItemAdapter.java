@@ -113,7 +113,7 @@ public class OrderedItemAdapter extends RecyclerView.Adapter<OrderedItemAdapter.
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         CollectionReference ordersCollection = firestore.collection("orders");
 
-        Toast.makeText(context, "deleting order " + orderId, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Deleting order", Toast.LENGTH_LONG).show();
 
         ordersCollection
                 .whereEqualTo("orderId",orderId)

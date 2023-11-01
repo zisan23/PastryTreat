@@ -90,7 +90,8 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-
+                android:drawableLeft="@drawable/round_account_circle_24"
+                android:drawablePadding="10dp"
                 />
 
             <EditText
@@ -103,6 +104,9 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+
+                android:drawableLeft="@drawable/baseline_alternate_email_24"
+                android:drawablePadding="10dp"
 
                 />
 
@@ -118,6 +122,13 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+
+                android:singleLine="true"
+                android:longClickable="false"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+
+                android:drawableLeft="@drawable/baseline_key_24"
+                android:drawablePadding="10dp"
                 />
 
             <EditText
@@ -132,6 +143,12 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:drawableLeft="@drawable/baseline_key_24"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:longClickable="false"
+
                 />
 
             <ProgressBar

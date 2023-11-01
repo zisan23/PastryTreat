@@ -577,8 +577,6 @@ public class HomeActivity extends AppCompatActivity {
                             wishlist_rv.setAdapter(wishListAdapter);
                             wishListAdapter.notifyDataSetChanged();
 
-                            Toast.makeText(getApplicationContext(),"wishlists Loaded",Toast.LENGTH_SHORT).show();
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

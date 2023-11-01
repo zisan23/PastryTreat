@@ -91,6 +91,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
 
+                android:drawableLeft="@drawable/baseline_alternate_email_24"
+                android:drawablePadding="10dp"
+
                 />
 
             <EditText
@@ -105,6 +108,13 @@
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:singleLine="true"
+                android:longClickable="false"
+
+                android:drawableLeft="@drawable/baseline_key_24"
+                android:drawableRight="@drawable/baseline_visibility_off_24"
+                android:drawablePadding="10dp"
+
                 />
             <TextView
                 android:id="@+id/forgot_password"
