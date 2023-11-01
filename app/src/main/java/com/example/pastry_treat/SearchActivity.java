@@ -207,7 +207,6 @@ public class SearchActivity extends AppCompatActivity {
                             search_rv_parent.setAdapter(homeRvRestaurentParentAdapter);
                             homeRvRestaurentParentAdapter.notifyDataSetChanged();
 
-                            Toast.makeText(SearchActivity.this, "Query DONE", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
