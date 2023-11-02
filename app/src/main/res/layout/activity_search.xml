@@ -11,6 +11,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/search_tab_layout"
+        style="@style/Widget.Design.TabLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:tabGravity="fill"
@@ -18,8 +19,8 @@
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorGravity="stretch"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/white"
-        style="@style/Widget.Design.TabLayout"/>
+        app:tabRippleColor="@color/Theme_Green"
+        app:tabSelectedTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/search_viewpager2"
