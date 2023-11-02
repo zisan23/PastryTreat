@@ -9,7 +9,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/search_cv_search"
+            android:id="@+id/fragment_rest_search_cv_search"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="20dp"
@@ -20,7 +20,7 @@
             app:cardCornerRadius="15dp">
 
             <EditText
-                android:id="@+id/search_et_search"
+                android:id="@+id/fragment_rest_search_et_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Search Restaurent..."
@@ -34,10 +34,10 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/search_search_btn"
+            android:id="@+id/fragment_search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/search_cv_search"
+            android:layout_below="@+id/fragment_rest_search_cv_search"
             android:text="Search"
             android:backgroundTint="@color/Theme_Green"
             android:textColor="@color/black"
@@ -45,10 +45,10 @@
             android:layout_marginTop="17dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_rv_parent"
+            android:id="@+id/fragment_rest_search_rv_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/search_search_btn"
+            android:layout_below="@+id/fragment_search_btn"
             android:layout_marginTop="50dp">
 
         </androidx.recyclerview.widget.RecyclerView>
