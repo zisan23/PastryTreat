@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="200dp"
+    android:layout_height="325dp"
+    android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rest_cv_child_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#FFF5E0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/card_gradient">
+
+            <ImageView
+                android:id="@+id/rest_iv_child_img"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/cheesecake" />
+
+            <TextView
+                android:id="@+id/rest_tv_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp" />
+
+            <TextView
+                android:id="@+id/rest_tv_product_description"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Product description goes here. Provide details about the delicious dessert."
+                android:textSize="14sp"
+                android:padding="16dp"
+                android:gravity="start"
+                />
+            <!-- <ImageView
+                        android:id="@+id/rest_iv_child_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            />
+                            <ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            /><ImageView
+                            android:id="@+id/rest_iv_child_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cheesecake" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp" />
+
+                        <TextView
+                            android:id="@+id/rest_tv_product_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:text="Product description goes here. Provide details about the delicious dessert."
+                            android:textSize="14sp"
+                            android:padding="16dp"
+                            android:gravity="start"
+                            />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price: "
+                    android:textColor="@color/ELECTRIC_RED"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingTop="4dp"
+                    android:layout_alignParentBottom="true"/>
+
+                <TextView
+                    android:id="@+id/rest_tv_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="$10.99"
+                    android:textColor="@color/ELECTRIC_RED"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="16dp"
+                    android:layout_alignParentBottom="true"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+
